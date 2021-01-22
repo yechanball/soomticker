@@ -433,15 +433,6 @@
                             clipContainer.appendChild(selectButton);
 							soundClips.appendChild(clipContainer);
                             
-                            //////////////////////////////////////////////
-                            //저장 코드 수정 중
-                            const saveButton = document.createElement('a');
-                            saveButton.textContent = '저장';
-                            saveButton.id = 'save';
-                            saveButton.href = '#';
-                            clipContainer.appendChild(saveButton);
-                            ///////////////////////////////////////////
-
 							audio.controls = true;
 							const blob = new Blob(chunks, { 'type': 'audio/ogg; codecs=opus' });
 							chunks = [];
@@ -449,15 +440,8 @@
 							audio.src = audioURL;
                             console.log("recorder stopped");
                             
-                            ///////////////////////////////////////////////
-                            // 저장 코드 수정 중
-                            var link = document.getElementById("save");
-                            link.href = audioURL;
-                            link.download = 'output.ogg';
-                            ////////////////////////////////////////
-
                             selectButton.onclick = function (e) {
-                                alert('audio URL:'+audioURL+' -> 최종 결정하시겠습니까?');
+                                alert('audio URL:'+audioURL+' -> 최종 결정하시겠습니까? (아직 서버 연동 X)');
                                 // 파일 선택시 해당 음성파일 전송 기능 넣기
                                 console.log("record file selected! -> audio URL: "+audioURL);
 							}
