@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi"/>
-    <title>숨 메인 페이지</title>
+    <title>loading...</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <style type="text/css">
         @font-face {
             font-family: 'BM HANNA Air';
@@ -48,54 +49,34 @@
             min-height: 550px;
             width: 100%;
             height: 100%;
-            background: rgba(108, 192, 186, 1);
+            background: rgb(255, 255, 255);
         }
 
-        #titleWord {
-            width: 100%;
-            height: 50%;
-        }
-
-        #titleWord img {
-            margin-top: 40%;
-            margin-left: 28%;
-            width: 50%;
-        }
-
-        #buttonArea {
-            width: 100%;
-            height: 50%;
-        }
-
-        #buttonArea button {
-            width: 40%;
-            height: 15%;
-            margin-left: 30%;
-            margin-top: 7%;
-            opacity: 0.8;
-		    fill: rgba(255,255,255,1);
-		    stroke: rgba(112,112,112,0.98);
-		    stroke-width: 4px;
-		    stroke-linejoin: miter;
-		    stroke-linecap: butt;
-		    stroke-miterlimit: 4;
-		    shape-rendering: auto;
+        #logoArea {
+            margin-top: 45%;
             text-align: center;
-            font-family: 'BM HANNA 11yrs old';
-            font-size: 18px;
-            border-radius: 12px;
+        }
+
+        #logoArea img {
+            margin-top: 10%;
+            width: 40%;
         }
     </style>
 </head>
 <body>
     <div id="wrap">
-        <div id="titleWord">
-            <img src="https://cdn.glitch.com/e587798e-1d89-4773-8fcc-9fe58f9fb564%2FmainLogo.jpg?v=1611215104748" alt="로고 이미지">
+        <div id="logoArea" class="animation-element" class="animate__animated animate__fadeIn animate__slow">
+            <img src="./img/logo_img.jpg" alt="Logo img"><br>
+            <img src="./img/logo_word.jpg" alt="Logo word">
         </div>
-        <div id="buttonArea">
-            <button onClick="location.href='record00.html'"></buttononClick>녹음</button><br>
-            <button onClick="location.href='listen00.html'"></buttononClick>재생</button>
-        </div>
+        <script type="text/javascript">
+            const element = document.querySelector('.animation-element');
+            element.classList.add('animate__animated', 'animate__fadeIn', 'animate__slow');
+            
+            element.addEventListener('animationend', () => {
+                location.replace("./tutorial.html");
+            });
+        </script>
     </div>
 </body>
 </html>
