@@ -6,31 +6,7 @@
     <title>tutorial</title>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <style type="text/css">
-        @font-face {
-            font-family: 'BM HANNA Air';
-            src: url(//cdn.glitch.com/e587798e-1d89-4773-8fcc-9fe58f9fb564%2FBMHANNAAir.eot);
-            src: url(//cdn.glitch.com/e587798e-1d89-4773-8fcc-9fe58f9fb564%2FBMHANNAAir.eot?#iefix) format('embedded-opentype'),
-                 url(//cdn.glitch.com/e587798e-1d89-4773-8fcc-9fe58f9fb564%2FBMHANNAAir.woff2) format('woff2'),
-                 url(//cdn.glitch.com/e587798e-1d89-4773-8fcc-9fe58f9fb564%2FBMHANNAAir.woff) format('woff'),
-                 url(//cdn.glitch.com/e587798e-1d89-4773-8fcc-9fe58f9fb564%2FBMHANNAAir.ttf) format('truetype');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
-        }
-    
-        @font-face {
-            font-family: 'BM HANNA 11yrs old';
-            src: url(//cdn.glitch.com/e587798e-1d89-4773-8fcc-9fe58f9fb564%2FBMHANNA11yrsold.eot);
-            src: url(//cdn.glitch.com/e587798e-1d89-4773-8fcc-9fe58f9fb564%2FBMHANNA11yrsold.eot?#iefix) format('embedded-opentype'),
-                 url(//cdn.glitch.com/e587798e-1d89-4773-8fcc-9fe58f9fb564%2FBMHANNA11yrsold.woff2) format('woff2'),
-                 url(//cdn.glitch.com/e587798e-1d89-4773-8fcc-9fe58f9fb564%2FBMHANNA11yrsold.woff) format('woff'),
-                 url(//cdn.glitch.com/e587798e-1d89-4773-8fcc-9fe58f9fb564%2FBMHANNA_11yrs_ttf.ttf) format('truetype');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
-        }
-    
+    <style type="text/css">    
         html,
         body {
             display: flex;
@@ -53,20 +29,20 @@
             background: rgb(255, 255, 255);
         }
 
-        #topButton {
+        #top-button {
             width: 100%;
             height: 10%;
         }
 
-        #topButton button {
+        #top-button button {
             float: left;
             margin: 5%;
-            height: 50%;
+            width: 15%;
+            height: 60%;
             text-align: center;
-            font-family: 'BM HANNA Air';
             font-size: 15px;
-		    color: rgb(252, 252, 252);
-            background-color: rgb(121, 113, 113);
+		    color: rgb(255, 255, 255);
+            background-color: #A3A3A3;
             border: none;
             border-radius: 20px;
         }
@@ -76,69 +52,92 @@
             height: 40%;
         }
 
+        .swiper-pagination {
+            width: 100%;
+            height: 5%;
+            text-align: center;
+        }
+
         .swiper-container {
             width: 100%;
-            height: 40%;
+            height: 30%;
+            margin-top: 10%;
         }
 
         .swiper-slide {
             text-align: center;
+        }
+
+        .swiper-slide h1 {
+            font-size: 28px;
+            line-height: 50px;
+        }
+
+        .swiper-slide p {
             font-size: 15px;
-            font-family: 'BM HANNA Air';
+            line-height: 25px;
+        }
+
+        .control-button {
+            position: absolute;
+            width: 100%;
+            height: 10%;
+            margin-bottom: 0%;
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <div id="wrap">
-        <div id="topButton">
+        <div id="top-button">
             <button onClick="location.href='./tutorialDone.html'"></buttononClick>Skip</button>
         </div>
         <div id="blank"></div>
+        <div class="swiper-pagination"></div>
         <div class="swiper-container">
-            <div class="swiper-pagination"></div>
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <h1><strong>녹음하기</strong></h1><br>
-                    <p>준비되시면<br><br>녹음 시작 버튼을 눌러주세요</p>
+                    <h1><strong>녹음하기</strong></h1>
+                    <p>준비되시면<br>녹음 시작 버튼을 눌러주세요</p>
                 </div>
                 <div class="swiper-slide">
-                    <h1><strong>음성메모와 연동</strong></h1><br>
-                    <p>기본 녹음 앱에 미리 저장된<br><br>녹음 파일을 사용할 수도 있습니다!</p>
+                    <h1><strong>음성메모와 연동</strong></h1>
+                    <p>기본 녹음 앱에 미리 저장된<br>녹음 파일을 사용할 수도 있습니다!</p>
                 </div>
                 <div class="swiper-slide">
-                    <h1><strong>저장하기</strong></h1><br>
-                    <p>녹음이 끝난 후<br><br>저장 버튼을 눌러 저장하세요</p>
+                    <h1><strong>저장하기</strong></h1>
+                    <p>녹음이 끝난 후<br>저장 버튼을 눌러 저장하세요</p>
                 </div>
                 <div class="swiper-slide">
-                    <h1><strong>스티커에 기록하기</strong></h1><br>
-                    <p>스티커를 휴대폰에 태그하고<br><br>업로드 버튼을 눌러주세요</p>
+                    <h1><strong>스티커에 기록하기</strong></h1>
+                    <p>스티커를 휴대폰에 태그하고<br>업로드 버튼을 눌러주세요</p>
                 </div>
             </div>
-
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-
-            <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
-            <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-            <script type="text/javascript">
-                const swiper = new Swiper('.swiper-container', {
-                    // Optional parameters
-                    direction: 'horizontal',
-                    loop: true,
-
-                    // If we need pagination
-                    pagination: {
-                        el: '.swiper-pagination',
-                    },
-
-                    // Navigation arrows
-                    navigation: {
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev',
-                    },
-                });
-            </script>
         </div>
+        <div class="control-button">
+            <!--
+            <button class="swiper-button-prev">prev</button>
+            <button class="swiper-button-next">next</button>
+            -->
+        </div>
+        <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+        <script type="text/javascript">
+            const swiper = new Swiper('.swiper-container', {
+                direction: 'horizontal',
+                loop: true,
+
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: 'true',
+                },
+
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+            });
+        </script>
     </div>
 </body>
 </html>
