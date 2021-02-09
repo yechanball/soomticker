@@ -110,16 +110,16 @@
         #waterdrop {
             position: absolute;
             top: 32%;
-            left: 27%;
-            width: 46%;
+            left: 30%;
+            width: 40%;
             visibility: visible;
         }
 
         #playbutton {
             position: absolute;
             top: 32%;
-            left: 27%;
-            width: 46%;
+            left: 30%;
+            width: 40%;
             padding: 0%;
             border: none;
             background-color: white;
@@ -130,14 +130,30 @@
         #pausebutton {
             position: absolute;
             top: 32%;
-            left: 27%;
-            width: 46%;
+            left: 30%;
+            width: 40%;
             padding: 0%;
             border: none;
             background-color: white;
             visibility: hidden;
         }
         #pausebutton img { margin: 0%; width: 100%;}
+
+        #dragdirection {
+            position: absolute;
+            top: 60%;
+            left: 49%;
+            width: 2%;
+            visibility: hidden;
+        }
+
+        #dragposition {
+            position: absolute;
+            bottom: 3%;
+            left: 30%;
+            width: 40%;
+            visibility: hidden;
+        }
 
         #recordbutton {
             position: absolute;
@@ -182,6 +198,9 @@
         
         <button id="recordbutton" class="record"><img src="./img/button_record.jpg" alt="record button img"></button>
         <button id="stopbutton" class="stop"><img src="./img/button_stop.jpg" alt="stop button img"></button>
+
+        <img id="dragdirection" src="./img/direction_dropdown.jpg" alt="drop down direction img">
+        <img id="dragposition" src="./img/waterdrop_dropdown.jpg" alt="drop down position">
     </div>
     <script>
         const record = document.querySelector('.record');
@@ -256,6 +275,8 @@
                     document.all.recordpausebutton.style.visibility="hidden";
                     document.all.stopbutton.style.visibility="hidden";
                     document.all.deletebutton.style.visibility="visible";
+                    document.all.dragdirection.style.visibility="visible";
+                    document.all.dragposition.style.visibility="visible";
 
                     stop.disabled = true;
                     record.disabled = false;
@@ -299,6 +320,8 @@
 
                         document.all.playbutton.style.visibility="hidden";
                         document.all.deletebutton.style.visibility="hidden";
+                        document.all.dragdirection.style.visibility="hidden";
+                        document.all.dragposition.style.visibility="hidden";
                         document.all.waterdrop.style.visibility="visible";
                         document.all.waterdrop.src="./img/waterdrop_blank.jpg";
                         document.all.uploadbutton.style.visibility="visible";
