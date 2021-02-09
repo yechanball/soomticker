@@ -165,6 +165,7 @@
         <p id="timer">00:00:00</p>
         <img id="waterdrop" src="./img/waterdrop_blank.jpg" alt="water drop blank img">
         <button id="playbutton" class="play"><img src="./img/waterdrop_playbutton.jpg" alt="water drop blank img"></button>
+        <audio class="record-audio"></audio>
         
         <button id="recordbutton" class="record"><img src="./img/button_record.jpg" alt="record button img"></button>
         <button id="stopbutton" class="stop"><img src="./img/button_stop.jpg" alt="stop button img"></button>
@@ -193,7 +194,7 @@
                     console.log(mediaRecorder.state);
                     console.log("recorder started");
                     
-                    document.all.waterdrop.src="./img/waterdrop_charge.jpg"
+                    document.all.waterdrop.src="./img/waterdrop_charge.jpg";
                     document.all.uploadbutton.style.visibility="hidden";
                     document.all.recordbutton.style.visibility="hidden";
                     document.all.pausebutton.style.visibility="visible";
@@ -250,26 +251,7 @@
                 mediaRecorder.onstop = function (e) {
                     console.log("data available after MediaRecorder.stop() called.");
 
-                    const clipContainer = document.createElement('article');
-                    const clipLabel = document.createElement('p');
-                    const audio = document.createElement('audio');
-                    const selectButton = document.createElement('button');
-                    const deleteButton = document.createElement('button');
-
-                    clipContainer.classList.add('clip');
-                    audio.setAttribute('controls', '');
-                    selectButton.textContent = '결정';
-                    selectButton.className = 'select';
-                    deleteButton.textContent = '삭제';
-                    deleteButton.className = 'delete';
-                    
-                    clipLabel.textContent = '나의 녹음본 ' + tryRecordNumber;
-                    
-                    clipContainer.appendChild(audio);
-                    clipContainer.appendChild(clipLabel);
-                    clipContainer.appendChild(deleteButton);
-                    clipContainer.appendChild(selectButton);
-                    soundClips.appendChild(clipContainer);
+                    const audio = document.querySelector('.record-audio'); 
 
                     audio.controls = true;
                     const blob = new Blob(chunks, { 'type': 'audio/ogg; codecs=opus' });
@@ -278,15 +260,19 @@
                     audio.src = audioURL;
                     console.log("recorder stopped");
 
-                    selectButton.onclick = function (e) {
-                        alert('audio URL:'+audioURL+' -> 최종 결정하시겠습니까?');
-                        // 파일 선택시 해당 음성파일 전송 기능 넣기
-                        console.log("record file selected! -> audio URL: "+audioURL);
-                    }
+                    deletebutton.onclick = function (e) {
+                        audio.src = "none";
+                        audio.controls = false;
 
-                    deleteButton.onclick = function (e) {
-                        let evtTgt = e.target;
-                        evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
+                        document.all.playbutton.style.visibility="hidden";
+                        document.all.deletebutton.style.visibility="hidden";
+                        document.all.waterdrop.style.visibility="visible";
+                        document.all.waterdrop.src="./img/waterdrop_blank.jpg";
+                        document.all.uploadbutton.style.visibility="visible";
+                        document.all.recordbutton.style.visibility="visible";
+                        document.all.pausebutton.style.visibility="hidden";
+                        document.all.stopbutton.style.visibility="hidden";
+                        document.all.timer.style.visibility="hidden";
                         console.log("record file deleted");
                     }
                 }
