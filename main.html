@@ -60,75 +60,96 @@
 			visibility: hidden;
         }
 
-        #top-button {
-            width: 100%;
-            height: 15%;
-        }
-
-        .upload-button {
-            float: left;
-            margin: 5%;
-            width: 15%;
-            height: 40%;
+        #uploadbutton {
+            position: absolute;
+            top: 3%;
+            left: 5%;
+            width: 13%;
+            height: 35px;
             text-align: center;
             font-size: 15px;
 		    color: rgb(0, 0, 0);
             background-color: #F5F5F5;
             border: none;
-            border-radius: 20px;
-            box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 1.5px 5px 0 rgba(0,0,0,0.19);
+            border-radius: 30px;
+            box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2), 0 0.7px 2.5px 0 rgba(0,0,0,0.19);
+            visibility: visible;
         }
 
-        #top-sub-button {
-            width: 100%;
-            height: 10%;
-            text-align: center;
-        }
-
-        .pause {
-            width: 13%;
+        #pausebutton {
+            position: absolute;
+            top: 10%;
+            left: 44%;
+            width: 12%;
             padding: 0%;
             border: none;
             background-color: white;
             visibility: hidden;
         }
+        #pausebutton img { margin: 0%; width: 100%;}
 
-        .pause img {
-            margin: 0%;
-            width: 100%;
+        #deletebutton {
+            position: absolute;
+            top: 10%;
+            left: 45%;
+            width: 10%;
+            padding: 0%;
+            border: none;
+            background-color: white;
+            visibility: hidden;
         }
-
-        #main-content {
-            width: 100%;
-            height: 55%;
-            text-align: center;
-        }
+        #deletebutton img { margin: 0%; width: 100%;}
 
         #timer {
+            position: absolute;
+            top: 25%;
+            left: 42%;
             visibility: hidden;
         }
 
         #waterdrop {
-            width: 47%;
+            position: absolute;
+            top: 32%;
+            left: 27%;
+            width: 46%;
+            visibility: visible;
         }
 
-        #bot-button {
-            width: 100%;
-            height: 20%;
-            text-align: center;
+        #playbutton {
+            position: absolute;
+            top: 32%;
+            left: 27%;
+            width: 46%;
+            padding: 0%;
+            border: none;
+            background-color: white;
+            visibility: hidden;
         }
+        #playbutton img { margin: 0%; width: 100%;}
 
-        .record {
+        #recordbutton {
+            position: absolute;
+            bottom: 10%;
+            left: 41%;
             width: 18%;
             padding: 0%;
             border: none;
             background-color: white;
+            visibility: visible;
         }
+        #recordbutton img { margin: 0%; width: 100%;}
 
-        .record img {
-            margin: 0%;
-            width: 100%;
+        #stopbutton {
+            position: absolute;
+            bottom: 10%;
+            left: 41%;
+            width: 18%;
+            padding: 0%;
+            border: none;
+            background-color: white;
+            visibility: hidden;
         }
+        #stopbutton img { margin: 0%; width: 100%;}
     </style>
 </head>
 <body>
@@ -136,19 +157,154 @@
         <div id="blank-space"></div>
         <div id="main-tutorial1"></div>
         <div id="main-tutorial2"></div>
-        <div id="top-button">
-            <button class="upload-button">+</button>
-        </div>
-        <div id="top-sub-button">
-            <button class="pause"><img id="pause-button" src="./img/button_pause.jpg" alt="pause button img"></button>
-        </div>
-        <div id="main-content">
-            <p id="timer">00:00:00</p>
-            <img id="waterdrop" src="./img/waterdrop_blank.jpg" alt="water drop blank img">
-        </div>
-        <div id="bot-button">
-            <button class="record"><img id="record-button" src="./img/button_record.jpg" alt="record button img"></button>
-        </div>
+
+        <button id="uploadbutton" class="upload">+</button>
+        <button id="pausebutton" class="pause"><img src="./img/button_pause.jpg" alt="pause button img"></button>
+        <button id="deletebutton" class="delete"><img src="./img/button_delete.jpg" alt="delete button img"></button>
+
+        <p id="timer">00:00:00</p>
+        <img id="waterdrop" src="./img/waterdrop_blank.jpg" alt="water drop blank img">
+        <button id="playbutton" class="play"><img src="./img/waterdrop_playbutton.jpg" alt="water drop blank img"></button>
+        
+        <button id="recordbutton" class="record"><img src="./img/button_record.jpg" alt="record button img"></button>
+        <button id="stopbutton" class="stop"><img src="./img/button_stop.jpg" alt="stop button img"></button>
     </div>
+    <script>
+        const record = document.querySelector('.record');
+        const resume = document.querySelector('.resume');
+        const pause = document.querySelector('.pause'); 
+        const stop = document.querySelector('.stop');
+
+        stop.disabled = true;
+        
+        let audioCtx;
+    
+        if (navigator.mediaDevices.getUserMedia) {
+            console.log('getUserMedia supported.');
+
+            const constraints = { audio: true };
+            let chunks = [];
+
+            let onSuccess = function (stream) {
+                const mediaRecorder = new MediaRecorder(stream);
+
+                record.onclick = function () {
+                    mediaRecorder.start();
+                    console.log(mediaRecorder.state);
+                    console.log("recorder started");
+                    
+                    document.all.waterdrop.src="./img/waterdrop_charge.jpg"
+                    document.all.uploadbutton.style.visibility="hidden";
+                    document.all.recordbutton.style.visibility="hidden";
+                    document.all.pausebutton.style.visibility="visible";
+                    document.all.stopbutton.style.visibility="visible";
+                    document.all.timer.style.visibility="visible";
+
+                    stop.disabled = false;
+                    record.disabled = true;
+                }
+
+                /*
+                pause.onclick = function () {
+                    mediaRecorder.pause();
+                    console.log(mediaRecorder.state);
+                    console.log("recorder paused");
+                    
+                    document.all.waterdrop.src="./img/waterdrop_playbutton.jpg"
+                    document.all.recordbutton.style.visibility="visible";
+                    document.all.pausebutton.style.visibility="hidden";
+
+                    stop.disabled = false;
+                    record.disabled = true;
+                }
+                
+                resume.onclick = function () {
+                    mediaRecorder.resume();
+                    console.log(mediaRecorder.state);
+                    console.log("recorder started");
+                    
+                    document.all.waterdrop.src="./img/waterdrop_charge.jpg"
+                    document.all.recordbutton.style.visibility="hidden";
+                    document.all.pausebutton.style.visibility="visible";
+
+                    stop.disabled = false;
+                    record.disabled = true;
+                }*/
+
+                stop.onclick = function () {
+                    mediaRecorder.stop();
+                    console.log(mediaRecorder.state);
+                    console.log("recorder stopped");
+                    // mediaRecorder.requestData();
+                    
+                    document.all.waterdrop.style.visibility="hidden";
+                    document.all.playbutton.style.visibility="visible";
+                    document.all.pausebutton.style.visibility="hidden";
+                    document.all.stopbutton.style.visibility="hidden";
+                    document.all.deletebutton.style.visibility="visible";
+
+                    stop.disabled = true;
+                    record.disabled = false;
+                }
+
+                mediaRecorder.onstop = function (e) {
+                    console.log("data available after MediaRecorder.stop() called.");
+
+                    const clipContainer = document.createElement('article');
+                    const clipLabel = document.createElement('p');
+                    const audio = document.createElement('audio');
+                    const selectButton = document.createElement('button');
+                    const deleteButton = document.createElement('button');
+
+                    clipContainer.classList.add('clip');
+                    audio.setAttribute('controls', '');
+                    selectButton.textContent = '결정';
+                    selectButton.className = 'select';
+                    deleteButton.textContent = '삭제';
+                    deleteButton.className = 'delete';
+                    
+                    clipLabel.textContent = '나의 녹음본 ' + tryRecordNumber;
+                    
+                    clipContainer.appendChild(audio);
+                    clipContainer.appendChild(clipLabel);
+                    clipContainer.appendChild(deleteButton);
+                    clipContainer.appendChild(selectButton);
+                    soundClips.appendChild(clipContainer);
+
+                    audio.controls = true;
+                    const blob = new Blob(chunks, { 'type': 'audio/ogg; codecs=opus' });
+                    chunks = [];
+                    const audioURL = window.URL.createObjectURL(blob);
+                    audio.src = audioURL;
+                    console.log("recorder stopped");
+
+                    selectButton.onclick = function (e) {
+                        alert('audio URL:'+audioURL+' -> 최종 결정하시겠습니까?');
+                        // 파일 선택시 해당 음성파일 전송 기능 넣기
+                        console.log("record file selected! -> audio URL: "+audioURL);
+                    }
+
+                    deleteButton.onclick = function (e) {
+                        let evtTgt = e.target;
+                        evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
+                        console.log("record file deleted");
+                    }
+                }
+
+                mediaRecorder.ondataavailable = function (e) {
+                    chunks.push(e.data);
+                }
+            }
+
+            let onError = function (err) {
+                console.log('The following error occured: ' + err);
+            }
+
+            navigator.mediaDevices.getUserMedia(constraints).then(onSuccess, onError);
+
+        } else {
+            console.log('getUserMedia not supported on your browser!');
+        }
+    </script>
 </body>
 </html>
