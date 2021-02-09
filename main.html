@@ -76,7 +76,7 @@
             visibility: visible;
         }
 
-        #pausebutton {
+        #recordpausebutton {
             position: absolute;
             top: 10%;
             left: 44%;
@@ -86,7 +86,7 @@
             background-color: white;
             visibility: hidden;
         }
-        #pausebutton img { margin: 0%; width: 100%;}
+        #recordpausebutton img { margin: 0%; width: 100%;}
 
         #deletebutton {
             position: absolute;
@@ -127,6 +127,18 @@
         }
         #playbutton img { margin: 0%; width: 100%;}
 
+        #pausebutton {
+            position: absolute;
+            top: 32%;
+            left: 27%;
+            width: 46%;
+            padding: 0%;
+            border: none;
+            background-color: white;
+            visibility: hidden;
+        }
+        #pausebutton img { margin: 0%; width: 100%;}
+
         #recordbutton {
             position: absolute;
             bottom: 10%;
@@ -159,13 +171,14 @@
         <div id="main-tutorial2"></div>
 
         <button id="uploadbutton" class="upload">+</button>
-        <button id="pausebutton" class="pause"><img src="./img/button_pause.jpg" alt="pause button img"></button>
+        <button id="recordpausebutton" class="recordpause"><img src="./img/button_pause.jpg" alt="pause button img"></button>
         <button id="deletebutton" class="delete"><img src="./img/button_delete.jpg" alt="delete button img"></button>
 
         <p id="timer">00:00:00</p>
         <img id="waterdrop" src="./img/waterdrop_blank.jpg" alt="water drop blank img">
-        <button id="playbutton" class="play"><img src="./img/waterdrop_playbutton.jpg" alt="water drop blank img"></button>
         <audio class="record-audio"></audio>
+        <button id="playbutton" class="play"><img src="./img/waterdrop_playbutton.jpg" alt="water drop play img"></button>
+        <button id="pausebutton" class="pause"><img src="./img/waterdrop_pausebutton.jpg" alt="water drop pause img"></button>
         
         <button id="recordbutton" class="record"><img src="./img/button_record.jpg" alt="record button img"></button>
         <button id="stopbutton" class="stop"><img src="./img/button_stop.jpg" alt="stop button img"></button>
@@ -173,7 +186,7 @@
     <script>
         const record = document.querySelector('.record');
         const resume = document.querySelector('.resume');
-        const pause = document.querySelector('.pause'); 
+        const pause = document.querySelector('.recordpause'); 
         const stop = document.querySelector('.stop');
 
         stop.disabled = true;
@@ -197,7 +210,7 @@
                     document.all.waterdrop.src="./img/waterdrop_charge.jpg";
                     document.all.uploadbutton.style.visibility="hidden";
                     document.all.recordbutton.style.visibility="hidden";
-                    document.all.pausebutton.style.visibility="visible";
+                    document.all.recordpausebutton.style.visibility="visible";
                     document.all.stopbutton.style.visibility="visible";
                     document.all.timer.style.visibility="visible";
 
@@ -213,7 +226,7 @@
                     
                     document.all.waterdrop.src="./img/waterdrop_playbutton.jpg"
                     document.all.recordbutton.style.visibility="visible";
-                    document.all.pausebutton.style.visibility="hidden";
+                    document.all.recordpausebutton.style.visibility="hidden";
 
                     stop.disabled = false;
                     record.disabled = true;
@@ -226,7 +239,7 @@
                     
                     document.all.waterdrop.src="./img/waterdrop_charge.jpg"
                     document.all.recordbutton.style.visibility="hidden";
-                    document.all.pausebutton.style.visibility="visible";
+                    document.all.recordpausebutton.style.visibility="visible";
 
                     stop.disabled = false;
                     record.disabled = true;
@@ -240,7 +253,7 @@
                     
                     document.all.waterdrop.style.visibility="hidden";
                     document.all.playbutton.style.visibility="visible";
-                    document.all.pausebutton.style.visibility="hidden";
+                    document.all.recordpausebutton.style.visibility="hidden";
                     document.all.stopbutton.style.visibility="hidden";
                     document.all.deletebutton.style.visibility="visible";
 
@@ -253,16 +266,36 @@
 
                     const audio = document.querySelector('.record-audio'); 
 
-                    audio.controls = true;
+                    audio.controls = false;
                     const blob = new Blob(chunks, { 'type': 'audio/ogg; codecs=opus' });
                     chunks = [];
                     const audioURL = window.URL.createObjectURL(blob);
                     audio.src = audioURL;
                     console.log("recorder stopped");
 
+                    playbutton.onclick = function (e) {
+                        audio.play();
+
+                        document.all.playbutton.style.visibility="hidden";
+                        document.all.pausebutton.style.visibility="visible";
+                    }
+
+                    pausebutton.onclick = function (e) {
+                        audio.pause();
+
+                        document.all.playbutton.style.visibility="visible";
+                        document.all.pausebutton.style.visibility="hidden";
+                    }
+
+                    audio.addEventListener('ended', function() { 
+                        this.currentTime = 0;
+                        
+                        document.all.playbutton.style.visibility="visible";
+                        document.all.pausebutton.style.visibility="hidden";
+                    }, false);
+                    
                     deletebutton.onclick = function (e) {
                         audio.src = "none";
-                        audio.controls = false;
 
                         document.all.playbutton.style.visibility="hidden";
                         document.all.deletebutton.style.visibility="hidden";
@@ -270,7 +303,7 @@
                         document.all.waterdrop.src="./img/waterdrop_blank.jpg";
                         document.all.uploadbutton.style.visibility="visible";
                         document.all.recordbutton.style.visibility="visible";
-                        document.all.pausebutton.style.visibility="hidden";
+                        document.all.recordpausebutton.style.visibility="hidden";
                         document.all.stopbutton.style.visibility="hidden";
                         document.all.timer.style.visibility="hidden";
                         console.log("record file deleted");
