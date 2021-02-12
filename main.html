@@ -38,6 +38,17 @@
 			visibility: visible;
         }
 
+        #blankSpace2 {
+            position: absolute;
+            width: 100%; 
+			height: 100%;
+			margin: 0%;
+            z-index: 1; 
+            opacity: 0.1;
+            background-color: rgb(255, 255, 255);
+			visibility: hidden;
+        }
+
         #mainTutorial1 {
             position: absolute;
             width: 100%; 
@@ -51,6 +62,42 @@
         }
 
         #mainTutorial2 {
+            position: absolute;
+            width: 100%; 
+			height: 100%;
+			margin: 0%;
+            text-align: center;
+            z-index: 1; 
+            opacity: 0.5;
+            background-color: black;
+			visibility: hidden;
+        }
+
+        #recordTutorial1 {
+            position: absolute;
+            width: 100%; 
+			height: 100%;
+			margin: 0%;
+            text-align: center;
+            z-index: 1; 
+            opacity: 0.5;
+            background-color: black;
+			visibility: hidden;
+        }
+
+        #recordTutorial2 {
+            position: absolute;
+            width: 100%; 
+			height: 100%;
+			margin: 0%;
+            text-align: center;
+            z-index: 1; 
+            opacity: 0.5;
+            background-color: black;
+			visibility: hidden;
+        }
+
+        #recordTutorial3 {
             position: absolute;
             width: 100%; 
 			height: 100%;
@@ -203,6 +250,19 @@
                     border: none; border-radius: 30px;">+</button>
             <p id="tutorialWord">+버튼을 눌러 파일 불러오기</p>
         </div>
+        <div id="blankSpace2" onclick="blankSpace2Del()"></div>
+        <div id="recordTutorial1" onclick="recordTutorial1Del()">
+            <p style="position:relative; top: 20%; font-size: 18px; color: white;">재생 버튼을 눌러 다시 듣기</p>
+            <img style="position: absolute; top: 44%; left: 45%; width: 10%; opacity: 1;" src="./img/recordtutorial_play.jpg" alt="play button"> 
+        </div>
+        <div id="recordTutorial2" onclick="recordTutorial2Del()">
+            <p style="position:relative; top: 18%; font-size: 18px; color: white;">아래로 드래그해서<br>스티커에 소리 저장하기</p>
+            <img style="position: absolute; top: 32%; left: 30%; width: 40%;" src="./img/waterdrop_playbutton.jpg" alt="play button"> 
+        </div>
+        <div id="recordTutorial3" onclick="recordTutorial3Del()">
+            <img style="position: absolute; top: 10%; left: 45%; width: 10%;" src="./img/button_delete.jpg" alt="delete button img">
+            <p style="position:relative; top: 18%; font-size: 18px; color: white;">휴지통을 클릭해서<br>삭제 후 재녹음하기</p> 
+        </div>
         <script>
             function blankSpaceDel(){
                 document.all.blankSpace.style.visibility="hidden";
@@ -214,6 +274,21 @@
             }
             function mainTutorial2Del(){
                 document.all.mainTutorial2.style.visibility="hidden";
+            }
+            function blankSpace2Del(){
+                document.all.blankSpace2.style.visibility="hidden";
+                document.all.recordTutorial1.style.visibility="visible";
+            }
+            function recordTutorial1Del(){
+                document.all.recordTutorial1.style.visibility="hidden";
+                document.all.recordTutorial2.style.visibility="visible";
+            }
+            function recordTutorial2Del(){
+                document.all.recordTutorial2.style.visibility="hidden";
+                document.all.recordTutorial3.style.visibility="visible";
+            }
+            function recordTutorial3Del(){
+                document.all.recordTutorial3.style.visibility="hidden";
             }
         </script>
 
@@ -308,6 +383,7 @@
                     document.all.deletebutton.style.visibility="visible";
                     document.all.dragdirection.style.visibility="visible";
                     document.all.dragposition.style.visibility="visible";
+                    document.all.blankSpace2.style.visibility="visible";
 
                     stop.disabled = true;
                     record.disabled = false;
