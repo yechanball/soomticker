@@ -27,7 +27,7 @@
             background: rgb(255, 255, 255);
         }
 
-        #blank-space {
+        #blankSpace {
             position: absolute;
             width: 100%; 
 			height: 100%;
@@ -35,29 +35,38 @@
             z-index: 1; 
             opacity: 0.1;
             background-color: rgb(255, 255, 255);
-			visibility: hidden;
+			visibility: visible;
         }
 
-        #main-tutorial1 {
+        #mainTutorial1 {
             position: absolute;
             width: 100%; 
 			height: 100%;
 			margin: 0%;
+            text-align: center;
             z-index: 1; 
             opacity: 0.5;
             background-color: black;
 			visibility: hidden;
         }
 
-        #main-tutorial2 {
+        #mainTutorial2 {
             position: absolute;
             width: 100%; 
 			height: 100%;
 			margin: 0%;
+            text-align: center;
             z-index: 1; 
             opacity: 0.5;
             background-color: black;
 			visibility: hidden;
+        }
+
+        #tutorialWord {
+            position: relative;
+            top: 45%;
+            font-size: 18px;
+            color: white;
         }
 
         #uploadbutton {
@@ -124,6 +133,7 @@
             border: none;
             background-color: white;
             visibility: hidden;
+            cursor: move;
         }
         #playbutton img { margin: 0%; width: 100%;}
 
@@ -182,9 +192,30 @@
 </head>
 <body>
     <div id="wrap">
-        <div id="blank-space"></div>
-        <div id="main-tutorial1"></div>
-        <div id="main-tutorial2"></div>
+        <div id="blankSpace" onclick="blankSpaceDel()"></div>
+        <div id="mainTutorial1" onclick="mainTutorial1Del()">
+            <p id="tutorialWord">녹음 버튼을 눌러 녹음</p>
+            <img style="position:absolute; bottom: 10.5%; left: 41%; width: 18%; border-radius: 70%; opacity: 1;"
+                src="./img/button_record.jpg" alt="record button img">
+        </div>
+        <div id="mainTutorial2" onclick="mainTutorial2Del()">
+            <button style="position: absolute; top: 3%; left: 5%; width: 13%; height: 35px; text-align: center; font-size: 15px; color: rgb(0, 0, 0); background-color: #F5F5F5;
+                    border: none; border-radius: 30px;">+</button>
+            <p id="tutorialWord">+버튼을 눌러 파일 불러오기</p>
+        </div>
+        <script>
+            function blankSpaceDel(){
+                document.all.blankSpace.style.visibility="hidden";
+                document.all.mainTutorial1.style.visibility="visible";
+            }
+            function mainTutorial1Del(){
+                document.all.mainTutorial1.style.visibility="hidden";
+                document.all.mainTutorial2.style.visibility="visible";
+            }
+            function mainTutorial2Del(){
+                document.all.mainTutorial2.style.visibility="hidden";
+            }
+        </script>
 
         <button id="uploadbutton" class="upload">+</button>
         <button id="recordpausebutton" class="recordpause"><img src="./img/button_pause.jpg" alt="pause button img"></button>
