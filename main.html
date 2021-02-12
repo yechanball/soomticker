@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi"/>
     <title>main</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <style type="text/css">
         html,
         body {
@@ -196,8 +197,8 @@
 
         #timer {
             position: absolute;
-            top: 25%;
-            left: 42%;
+            top: 28%;
+            left: 43%;
             visibility: hidden;
         }
 
@@ -351,7 +352,7 @@
             }
         </script>
 
-        <p id="timer">00:00:00</p>
+        <span id="timer">00:00:00</span>
         <img id="waterdrop" src="./img/waterdrop_blank.jpg" alt="water drop blank img">
         <audio class="record-audio"></audio>
         <button id="playbutton" class="play"><img src="./img/waterdrop_playbutton.jpg" alt="water drop play img"></button>
@@ -368,6 +369,7 @@
         const resume = document.querySelector('.resume');
         const pause = document.querySelector('.recordpause'); 
         const stop = document.querySelector('.stop');
+        var recordtimer = document.getElementById("timer");
 
         stop.disabled = true;
         
@@ -387,6 +389,7 @@
                     console.log(mediaRecorder.state);
                     console.log("recorder started");
                     
+                    //recordtimer.innerText = 녹음시간 넣기;
                     document.all.waterdrop.src="./img/waterdrop_charge.jpg";
                     document.all.uploadbutton.style.visibility="hidden";
                     document.all.recordbutton.style.visibility="hidden";
@@ -459,6 +462,7 @@
                     playbutton.onclick = function (e) {
                         audio.play();
 
+                        //recordtimer.innerText = 재생시간 넣기;
                         document.all.playbutton.style.visibility="hidden";
                         document.all.pausebutton.style.visibility="visible";
                     }
@@ -470,6 +474,13 @@
                         document.all.pausebutton.style.visibility="hidden";
                     }
 
+                    audio.addEventListener('timeupdate', function(e){
+                        var playtimeSec = Math.floor(audio.currentTime);
+                        var playtimeMin = parseInt(playtimeSec/60);
+                    
+                        $("#timer").html("00:"+playtimeMin+":"+playtimeSec);
+                    }, false);
+
                     audio.addEventListener('ended', function() { 
                         this.currentTime = 0;
                         
@@ -479,8 +490,10 @@
 
                     deletebutton.onclick = function (e) {
                         audio.src = "none";
+                        $("#timer").html("00:00:00");
 
                         document.all.playbutton.style.visibility="hidden";
+                        document.all.pausebutton.style.visibility="hidden";
                         document.all.deletePop.style.visibility="hidden";
                         document.all.backGround.style.visibility="hidden";
                         document.all.deletebuttonIcon.style.visibility="hidden";
