@@ -136,12 +136,30 @@
             height: 35px;
             text-align: center;
             font-size: 15px;
+            font-weight: bold;
+            line-height: 34px;
 		    color: rgb(0, 0, 0);
             background-color: #F5F5F5;
             border: none;
             border-radius: 30px;
             box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2), 0 0.7px 2.5px 0 rgba(0,0,0,0.19);
             visibility: visible;
+        }
+
+        #filebox {
+            position: absolute;
+            top: 35%;
+            left: 5%;
+            width: 90%;
+            height: 30%;
+            z-index: 1;
+            align-items: center;
+            text-align: center;
+            font-size: 16px;
+            line-height: 40px;
+            background-color:white;
+            border-radius: 30px;
+            visibility: hidden;
         }
 
         #recordpausebutton {
@@ -195,10 +213,11 @@
             border-radius: 30px;
         }
 
-        #timer {
+        #timerPosition {
             position: absolute;
             top: 28%;
-            left: 43%;
+            width: 100%;
+            text-align: center;
             visibility: hidden;
         }
 
@@ -278,6 +297,7 @@
 </head>
 <body>
     <div id="wrap">
+        <div id="backGround"></div>
         <div id="blankSpace" onclick="blankSpaceDel()"></div>
         <div id="mainTutorial1" onclick="mainTutorial1Del()">
             <p id="tutorialWord">녹음 버튼을 눌러 녹음</p>
@@ -331,10 +351,31 @@
             }
         </script>
 
-        <button id="uploadbutton" class="upload">+</button>
+        <form method="post" action="upload" enctype="multipart/form-data">
+            <label id="uploadbutton" for="audio_file" onclick="showFilebox()">+</label>
+            <div id="filebox">
+                <div style="width: 260px; height: 40px; margin-left: 30px; margin-top: 10%; margin-bottom: 20%; font-size: 18px; overflow: hidden;">
+                    <input type="file" id="audio_file" accept="audio/*" style="position: relative; width: 335px; left:-75px;">
+                </div>
+                <label onclick="closeFilebox()" style="position: relative; float: left; bottom: 0%; width: 25%; height: 35px; font-size: 15px;
+                    margin-left: 10%; margin-right: 10%; border: none; border-radius: 30px; color: rgb(0, 0, 0); background-color: #ececec;">취소</label>
+                <input type="submit" value="첨부" style="position:relative; float: right; bottom: 0%; width: 25%; height: 35px; font-size: 15px;
+                    margin-left: 10%; margin-right: 10%; border: none; border-radius: 30px; color: rgb(255, 255, 255); background-color: #F9C663;">
+            </div>
+        </form>
+        <script>
+            function showFilebox(){
+                document.all.backGround.style.visibility="visible";
+                document.all.filebox.style.visibility="visible";
+            }
+            function closeFilebox(){
+                document.all.backGround.style.visibility="hidden";
+                document.all.filebox.style.visibility="hidden";
+            }
+        </script>
+
         <button id="recordpausebutton" class="recordpause"><img src="./img/button_pause.jpg" alt="pause button img"></button>
         <button id="deletebuttonIcon" onclick="openDeletePop()"><img src="./img/button_delete.jpg" alt="delete button img"></button>
-        <div id="backGround"></div>
         <div id="deletePop">
             <p>현재 녹음된 파일은 삭제됩니다.<br>그래도 재녹음 하시겠습니까?</p><br><br>
             <button onclick="closeDeletePop()" style="float: left; color: rgb(0, 0, 0); background-color: #ececec;">취소</button>
@@ -352,7 +393,7 @@
             }
         </script>
 
-        <span id="timer">00:00:00</span>
+        <div id="timerPosition"><span id="timer">00:00:00</span></div>
         <img id="waterdrop" src="./img/waterdrop_blank.jpg" alt="water drop blank img">
         <audio class="record-audio"></audio>
         <button id="playbutton" class="play"><img src="./img/waterdrop_playbutton.jpg" alt="water drop play img"></button>
@@ -369,7 +410,6 @@
         const resume = document.querySelector('.resume');
         const pause = document.querySelector('.recordpause'); 
         const stop = document.querySelector('.stop');
-        var recordtimer = document.getElementById("timer");
 
         stop.disabled = true;
         
@@ -383,13 +423,16 @@
 
             let onSuccess = function (stream) {
                 const mediaRecorder = new MediaRecorder(stream);
+                //var nowTime = new Date().getTime();
 
                 record.onclick = function () {
                     mediaRecorder.start();
+                    //var startTime = new Date().getTime();
                     console.log(mediaRecorder.state);
                     console.log("recorder started");
                     
-                    //recordtimer.innerText = 녹음시간 넣기;
+                    //$("#timer").html("00:"+parseInt((nowTime-startTime)/1000/60)+":"+parseInt((nowTime-startTime)/1000));
+                    //https://higuma.github.io/web-audio-recorder-js/ 참고할것
                     document.all.waterdrop.src="./img/waterdrop_charge.jpg";
                     document.all.uploadbutton.style.visibility="hidden";
                     document.all.recordbutton.style.visibility="hidden";
@@ -430,10 +473,12 @@
 
                 stop.onclick = function () {
                     mediaRecorder.stop();
+                    //var endTime = new Date().getTime();
                     console.log(mediaRecorder.state);
                     console.log("recorder stopped");
                     // mediaRecorder.requestData();
                     
+                    //$("#timer").html("00:"+parseInt((endTime-startTime)/1000/60)+":"+parseInt((endTime-startTime)/1000));
                     document.all.waterdrop.style.visibility="hidden";
                     document.all.playbutton.style.visibility="visible";
                     document.all.recordpausebutton.style.visibility="hidden";
@@ -462,7 +507,6 @@
                     playbutton.onclick = function (e) {
                         audio.play();
 
-                        //recordtimer.innerText = 재생시간 넣기;
                         document.all.playbutton.style.visibility="hidden";
                         document.all.pausebutton.style.visibility="visible";
                     }
@@ -478,7 +522,7 @@
                         var playtimeSec = Math.floor(audio.currentTime);
                         var playtimeMin = parseInt(playtimeSec/60);
                     
-                        $("#timer").html("00:"+playtimeMin+":"+playtimeSec);
+                        $("#timer").html("00:"+parseInt(playtimeMin/10)+(playtimeMin%10)+":"+parseInt(playtimeSec/10)+(playtimeSec%10));
                     }, false);
 
                     audio.addEventListener('ended', function() { 
