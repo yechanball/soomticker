@@ -230,15 +230,11 @@
         }
 
         #playbutton {
-            position: absolute;
-            top: 32%;
-            left: 30%;
-            width: 40%;
+            width: 100%;
             padding: 0%;
             border: none;
             background-color: white;
             visibility: hidden;
-            cursor: move;
         }
         #playbutton img { margin: 0%; width: 100%;}
 
@@ -254,6 +250,15 @@
         }
         #pausebutton img { margin: 0%; width: 100%;}
 
+        .swiper-container {
+            position: absolute;
+            top: 32%;
+            left: 30%;
+            width: 40%;
+            height: 68%;
+            font-size: 0px;
+        }
+
         #dragdirection {
             position: absolute;
             top: 60%;
@@ -267,6 +272,21 @@
             bottom: 3%;
             left: 30%;
             width: 40%;
+            visibility: hidden;
+        }
+
+        #dragup {
+            position: absolute;
+            width: 100%;
+            height: 70%;
+            bottom: -70%;
+        }
+
+        #dragwaterdrop {
+            position: absolute;
+            width: 40%;
+            left: 30%;
+            bottom: 3%;
             visibility: hidden;
         }
 
@@ -302,7 +322,7 @@
         <div id="mainTutorial1" onclick="mainTutorial1Del()">
             <p id="tutorialWord">녹음 버튼을 눌러 녹음</p>
             <img style="position:absolute; bottom: 10.5%; left: 41%; width: 18%; border-radius: 70%; opacity: 1;"
-                src="./img/button_record.jpg" alt="record button img">
+                src="./img/button_record.png" alt="record button img">
         </div>
         <div id="mainTutorial2" onclick="mainTutorial2Del()">
             <button style="position: absolute; top: 3%; left: 5%; width: 13%; height: 35px; text-align: center; font-size: 15px; color: rgb(0, 0, 0); background-color: #F5F5F5;
@@ -312,14 +332,14 @@
         <div id="blankSpace2" onclick="blankSpace2Del()"></div>
         <div id="recordTutorial1" onclick="recordTutorial1Del()">
             <p style="position:relative; top: 20%; font-size: 18px; color: white;">재생 버튼을 눌러 다시 듣기</p>
-            <img style="position: absolute; top: 44%; left: 45%; width: 10%; opacity: 1;" src="./img/recordtutorial_play.jpg" alt="play button"> 
+            <img style="position: absolute; top: 44%; left: 45.5%; width: 9%; opacity: 1;" src="./img/recordtutorial_play.png" alt="play button"> 
         </div>
         <div id="recordTutorial2" onclick="recordTutorial2Del()">
             <p style="position:relative; top: 18%; font-size: 18px; color: white;">아래로 드래그해서<br>스티커에 소리 저장하기</p>
-            <img style="position: absolute; top: 32%; left: 30%; width: 40%;" src="./img/waterdrop_playbutton.jpg" alt="play button"> 
+            <img style="position: absolute; top: 32%; left: 30%; width: 40%;" src="./img/waterdrop_playbutton.png" alt="play button"> 
         </div>
         <div id="recordTutorial3" onclick="recordTutorial3Del()">
-            <img style="position: absolute; top: 10%; left: 45%; width: 10%;" src="./img/button_delete.jpg" alt="delete button img">
+            <img style="position: absolute; top: 10%; left: 45%; width: 10%;" src="./img/button_delete.png" alt="delete button img">
             <p style="position:relative; top: 18%; font-size: 18px; color: white;">휴지통을 클릭해서<br>삭제 후 재녹음하기</p> 
         </div>
         <script>
@@ -374,8 +394,8 @@
             }
         </script>
 
-        <button id="recordpausebutton" class="recordpause"><img src="./img/button_pause.jpg" alt="pause button img"></button>
-        <button id="deletebuttonIcon" onclick="openDeletePop()"><img src="./img/button_delete.jpg" alt="delete button img"></button>
+        <button id="recordpausebutton" class="recordpause"><img src="./img/button_pause.png" alt="pause button img"></button>
+        <button id="deletebuttonIcon" onclick="openDeletePop()"><img src="./img/button_delete.png" alt="delete button img"></button>
         <div id="deletePop">
             <p>현재 녹음된 파일은 삭제됩니다.<br>그래도 재녹음 하시겠습니까?</p><br><br>
             <button onclick="closeDeletePop()" style="float: left; color: rgb(0, 0, 0); background-color: #ececec;">취소</button>
@@ -393,17 +413,56 @@
             }
         </script>
 
-        <div id="timerPosition"><span id="timer">00:00:00</span></div>
-        <img id="waterdrop" src="./img/waterdrop_blank.jpg" alt="water drop blank img">
-        <audio class="record-audio"></audio>
-        <button id="playbutton" class="play"><img src="./img/waterdrop_playbutton.jpg" alt="water drop play img"></button>
-        <button id="pausebutton" class="pause"><img src="./img/waterdrop_pausebutton.jpg" alt="water drop pause img"></button>
-        
-        <button id="recordbutton" class="record"><img src="./img/button_record.jpg" alt="record button img"></button>
-        <button id="stopbutton" class="stop"><img src="./img/button_stop.jpg" alt="stop button img"></button>
+        <img id="dragup" src="./img/drag_on.png" alt="drag on">
+        <img id="dragwaterdrop" src="./img/waterdrop_playbutton.png" alt="play button img">
+        <img id="dragdirection" src="./img/direction_dropdown.png" alt="drop down direction img">
+        <img id="dragposition" src="./img/waterdrop_dropdown.png" alt="drop down position">
 
-        <img id="dragdirection" src="./img/direction_dropdown.jpg" alt="drop down direction img">
-        <img id="dragposition" src="./img/waterdrop_dropdown.jpg" alt="drop down position">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                </div>
+                <div class="swiper-slide">.
+                    <button id="playbutton" class="play"><img src="./img/waterdrop_playbutton.png" alt="water drop play img"></button>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+        <script type="text/javascript">
+            const swiper = new Swiper('.swiper-container', {
+                direction: 'vertical',
+                loop: false,
+                allowSlideNext: false,
+                initialSlide: 1,
+            });
+
+            swiper.on('slideChange', function(){
+                if(swiper.activeIndex == 0){
+                    //alert("슬라이드 완료");
+
+                    document.all.dragup.style.bottom = "-20%";
+                    document.all.dragwaterdrop.style.visibility = "visible";
+                    document.all.playbutton.style.visibility = "hidden";
+                    document.all.dragdirection.style.visibility = "hidden";
+                    document.all.dragposition.style.visibility = "hidden";
+                }
+            });
+
+            swiper.on('progress', function(){
+                var varNum = 30-(swiper.progress*100);
+                document.all.dragup.style.bottom = varNum+"%";
+            });
+        </script>
+
+        <div id="timerPosition"><span id="timer">00:00:00</span></div>
+        <img id="waterdrop" src="./img/waterdrop_blank.png" alt="water drop blank img">
+        <audio class="record-audio"></audio>
+        <button id="pausebutton" class="pause"><img src="./img/waterdrop_pausebutton.png" alt="water drop pause img"></button>
+        
+        <button id="recordbutton" class="record"><img src="./img/button_record.png" alt="record button img"></button>
+        <button id="stopbutton" class="stop"><img src="./img/button_stop.png" alt="stop button img"></button>
     </div>
     <script>
         const record = document.querySelector('.record');
@@ -433,7 +492,7 @@
                     
                     //$("#timer").html("00:"+parseInt((nowTime-startTime)/1000/60)+":"+parseInt((nowTime-startTime)/1000));
                     //https://higuma.github.io/web-audio-recorder-js/ 참고할것
-                    document.all.waterdrop.src="./img/waterdrop_charge.jpg";
+                    document.all.waterdrop.src="./img/waterdrop_charge.gif";
                     document.all.uploadbutton.style.visibility="hidden";
                     document.all.recordbutton.style.visibility="hidden";
                     document.all.recordpausebutton.style.visibility="visible";
@@ -544,7 +603,7 @@
                         document.all.dragdirection.style.visibility="hidden";
                         document.all.dragposition.style.visibility="hidden";
                         document.all.waterdrop.style.visibility="visible";
-                        document.all.waterdrop.src="./img/waterdrop_blank.jpg";
+                        document.all.waterdrop.src="./img/waterdrop_blank.png";
                         document.all.uploadbutton.style.visibility="visible";
                         document.all.recordbutton.style.visibility="visible";
                         document.all.recordpausebutton.style.visibility="hidden";
