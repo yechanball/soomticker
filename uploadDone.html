@@ -81,8 +81,13 @@
             <p>스티커를 태그하시면<br>녹음하신 소리를 들으실 수 있습니다.</p>
         </div>
         <div id="bot-button">
-            <button onClick="window.close();"></buttononClick>Finish</button>
+            <button onClick="WinClose()"></buttononClick>Finish</button>
         </div>
     </div>
+    <script>
+    function WinClose() {
+        window.open('','_self').close();     
+    }
+    </script>
 </body>
 </html>
