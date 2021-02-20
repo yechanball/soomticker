@@ -173,7 +173,7 @@
             visibility: hidden;
         }
         #recordpausebutton img { margin: 0%; width: 100%;}
-
+        
         #deletebuttonIcon {
             position: absolute;
             top: 10%;
@@ -185,6 +185,34 @@
             visibility: hidden;
         }
         #deletebuttonIcon img { margin: 0%; width: 100%;}
+
+        #recordfinishpop {
+            position: absolute;
+            top: -5%;
+            left: 5%;
+            width: 80%;
+            height: 50%;
+            padding: 5%;
+            z-index: 0.9;
+            text-align: center;
+            font-size: 16px;
+            line-height: 40px;
+            background-color:white;
+            border: none;
+            border-radius: 30px;
+            box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2), 0 0.7px 2.5px 0 rgba(0,0,0,0.19);
+            visibility: hidden;
+        }
+
+        #recordfinishpop button {
+            position: relative;
+            width: 25%;
+            height: 35px;
+            font-size: 15px;
+            margin: 10%;
+            border: none;
+            border-radius: 30px;
+        }
 
         #deletePop {
             position: absolute;
@@ -319,6 +347,8 @@
     <div id="wrap">
         <div id="backGround"></div>
         <div id="blankSpace" onclick="blankSpaceDel()"></div>
+        
+        <!--튜토리얼-->
         <div id="mainTutorial1" onclick="mainTutorial1Del()">
             <p id="tutorialWord">녹음 버튼을 눌러 녹음</p>
             <img style="position:absolute; bottom: 10.5%; left: 41%; width: 18%; border-radius: 70%; opacity: 1;"
@@ -342,35 +372,8 @@
             <img style="position: absolute; top: 10%; left: 45%; width: 10%;" src="./img/button_delete.png" alt="delete button img">
             <p style="position:relative; top: 18%; font-size: 18px; color: white;">휴지통을 클릭해서<br>삭제 후 재녹음하기</p> 
         </div>
-        <script>
-            function blankSpaceDel(){
-                document.all.blankSpace.style.visibility="hidden";
-                document.all.mainTutorial1.style.visibility="visible";
-            }
-            function mainTutorial1Del(){
-                document.all.mainTutorial1.style.visibility="hidden";
-                document.all.mainTutorial2.style.visibility="visible";
-            }
-            function mainTutorial2Del(){
-                document.all.mainTutorial2.style.visibility="hidden";
-            }
-            function blankSpace2Del(){
-                document.all.blankSpace2.style.visibility="hidden";
-                document.all.recordTutorial1.style.visibility="visible";
-            }
-            function recordTutorial1Del(){
-                document.all.recordTutorial1.style.visibility="hidden";
-                document.all.recordTutorial2.style.visibility="visible";
-            }
-            function recordTutorial2Del(){
-                document.all.recordTutorial2.style.visibility="hidden";
-                document.all.recordTutorial3.style.visibility="visible";
-            }
-            function recordTutorial3Del(){
-                document.all.recordTutorial3.style.visibility="hidden";
-            }
-        </script>
 
+        <!--업로드-->
         <form method="post" action="upload" enctype="multipart/form-data">
             <label id="uploadbutton" for="audio_file" onclick="showFilebox()">+</label>
             <div id="filebox">
@@ -383,17 +386,8 @@
                     margin-left: 10%; margin-right: 10%; border: none; border-radius: 30px; color: rgb(255, 255, 255); background-color: #F9C663;">
             </div>
         </form>
-        <script>
-            function showFilebox(){
-                document.all.backGround.style.visibility="visible";
-                document.all.filebox.style.visibility="visible";
-            }
-            function closeFilebox(){
-                document.all.backGround.style.visibility="hidden";
-                document.all.filebox.style.visibility="hidden";
-            }
-        </script>
 
+        <!--드래그-->
         <img id="dragup" src="./img/drag_on.png" alt="drag on">
         <img id="dragwaterdrop" src="./img/waterdrop_playbutton.png" alt="play button img">
         <img id="dragdirection" src="./img/direction_dropdown.png" alt="drop down direction img">
@@ -409,62 +403,86 @@
             </div>
         </div>
 
-        <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
-        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-        <script>
-            const swiper = new Swiper('.swiper-container', {
-                direction: 'vertical',
-                loop: false,
-                allowSlideNext: false,
-                initialSlide: 1,
-            });
-
-            swiper.on('slideChange', function(){
-                if(swiper.activeIndex == 0){
-                    //alert("슬라이드 완료");
-
-                    document.all.dragup.style.bottom = "-40%";
-                    document.all.dragwaterdrop.style.visibility = "visible";
-                    document.all.playbutton.style.visibility = "hidden";
-                    document.all.dragdirection.style.visibility = "hidden";
-                    document.all.dragposition.style.visibility = "hidden";
-                }
-            });
-
-            swiper.on('progress', function(){
-                var varNum = 10-(swiper.progress*100);
-                document.all.dragup.style.bottom = varNum+"%";
-            });
-        </script>
-
+        <div id="timerPosition"><span id="timer">00:00:00</span></div>
+        <img id="waterdrop" src="./img/waterdrop_blank.png" alt="water drop blank img">
+        <audio class="record-audio"></audio>
+        
+        <!--버튼-->
+        <button id="pausebutton" class="pause"><img src="./img/waterdrop_pausebutton.png" alt="water drop pause img"></button>
+        <button id="recordbutton" class="record"><img src="./img/button_record.png" alt="record button img"></button>
+        <button id="stopbutton" class="stop"><img src="./img/button_stop.png" alt="stop button img"></button>
         <button id="recordpausebutton" class="recordpause"><img src="./img/button_pause.png" alt="pause button img"></button>
         <button id="deletebuttonIcon" onclick="openDeletePop()"><img src="./img/button_delete.png" alt="delete button img"></button>
+
+        <!--레코드 완료-->
+        <div id="recordfinishpop">
+            <br><h style="font-weight: bold; font-size: 28px;">녹음 완료</h><br><br>
+            <P>녹음된 파일을 NFC 스티커에<br>업로드하시겠습니까?</P>
+            <button onclick="openDeletePop()" style="float: left; background-color: #ececec;">재녹음</button>
+            <button onclick="uploadCheckPopOpen()" style="float: right; color: rgb(255, 255, 255); background-color: #F9C663;">업로드</button>
+        </div>
+
+        <!--삭제-->
         <div id="deletePop">
             <p>현재 녹음된 파일은 삭제됩니다.<br>그래도 재녹음 하시겠습니까?</p><br><br>
             <button onclick="closeDeletePop()" style="float: left; color: rgb(0, 0, 0); background-color: #ececec;">취소</button>
             <button id="deletebutton" class="delete" style="float: right; color: rgb(255, 255, 255); background-color: #F9C663;">재녹음</button>
-        </div>
-            
-        <script>
-            function openDeletePop(){
-                document.all.backGround.style.visibility="visible";
-                document.all.deletePop.style.visibility="visible";
-            }
-            function closeDeletePop(){
-                document.all.backGround.style.visibility="hidden";
-                document.all.deletePop.style.visibility="hidden";
-            }
-        </script>        
-
-        <div id="timerPosition"><span id="timer">00:00:00</span></div>
-        <img id="waterdrop" src="./img/waterdrop_blank.png" alt="water drop blank img">
-        <audio class="record-audio"></audio>
-        <button id="pausebutton" class="pause"><img src="./img/waterdrop_pausebutton.png" alt="water drop pause img"></button>
-        
-        <button id="recordbutton" class="record"><img src="./img/button_record.png" alt="record button img"></button>
-        <button id="stopbutton" class="stop"><img src="./img/button_stop.png" alt="stop button img"></button>
+        </div>     
     </div>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
+        // 튜토리얼
+        var tryNum = 0;
+
+        function blankSpaceDel(){
+            document.all.blankSpace.style.visibility="hidden";
+            document.all.mainTutorial1.style.visibility="visible";
+        }
+        function mainTutorial1Del(){
+            document.all.mainTutorial1.style.visibility="hidden";
+            document.all.mainTutorial2.style.visibility="visible";
+        }
+        function mainTutorial2Del(){
+            document.all.mainTutorial2.style.visibility="hidden";
+        }
+
+        function blankSpace2Del(){
+            document.all.blankSpace2.style.visibility="hidden";
+            document.all.recordTutorial1.style.visibility="visible";
+        }
+        function recordTutorial1Del(){
+            document.all.recordTutorial1.style.visibility="hidden";
+            document.all.recordTutorial2.style.visibility="visible";
+        }
+        function recordTutorial2Del(){
+            document.all.recordTutorial2.style.visibility="hidden";
+            document.all.recordTutorial3.style.visibility="visible";
+        }
+        function recordTutorial3Del(){
+            document.all.recordTutorial3.style.visibility="hidden";
+        }
+
+        // 팝업
+        function showFilebox(){
+            document.all.backGround.style.visibility="visible";
+            document.all.filebox.style.visibility="visible";
+        }
+        function closeFilebox(){
+            document.all.backGround.style.visibility="hidden";
+            document.all.filebox.style.visibility="hidden";
+        }
+        function openDeletePop(){
+            document.all.backGround.style.visibility="visible";
+            document.all.deletePop.style.visibility="visible";
+        }
+        function closeDeletePop(){
+            document.all.backGround.style.visibility="hidden";
+            document.all.deletePop.style.visibility="hidden";
+        }
+
+        // 녹음
         const record = document.querySelector('.record');
         const resume = document.querySelector('.resume');
         const pause = document.querySelector('.recordpause'); 
@@ -545,13 +563,48 @@
                     document.all.deletebuttonIcon.style.visibility="visible";
                     document.all.dragdirection.style.visibility="visible";
                     document.all.dragposition.style.visibility="visible";
-                    document.all.blankSpace2.style.visibility="visible";
-
+                    if(tryNum==0){
+                        document.all.blankSpace2.style.visibility="visible";
+                    }
+                    
                     stop.disabled = true;
                     record.disabled = false;
                 }
 
                 mediaRecorder.onstop = function (e) {
+                    // 드래그 영역 생성
+                    const swiper = new Swiper('.swiper-container', {
+                        direction: 'vertical',
+                        loop: false,
+                        allowSlideNext: false,
+                        initialSlide: 1,
+                    });
+
+                    swiper.on('slideChange', function(){
+                        if(swiper.activeIndex == 0){
+                            //alert("슬라이드 완료");
+
+                            document.all.dragup.style.bottom = "-40%";
+                            document.all.dragwaterdrop.style.visibility = "visible";
+                            document.all.playbutton.style.visibility = "hidden";
+                            document.all.dragdirection.style.visibility = "hidden";
+                            document.all.dragposition.style.visibility = "hidden";
+                            document.all.recordfinishpop.style.visibility = "visible";
+                            document.all.timer.style.opacity = 0;
+                        }
+                    });
+
+                    swiper.on('progress', function(){
+                        if(swiper.progress==1){
+                            document.all.timer.style.opacity = 1;
+                        }
+                        else{
+                            document.all.timer.style.opacity = 0;
+                        }
+                        var varNum = 10-(swiper.progress*100);
+                        document.all.dragup.style.bottom = varNum+"%";
+                    });
+
                     console.log("data available after MediaRecorder.stop() called.");
 
                     const audio = document.querySelector('.record-audio'); 
@@ -593,6 +646,7 @@
 
                     deletebutton.onclick = function (e) {
                         audio.src = "none";
+                        tryNum++;
                         $("#timer").html("00:00:00");
 
                         document.all.playbutton.style.visibility="hidden";
@@ -609,6 +663,15 @@
                         document.all.recordpausebutton.style.visibility="hidden";
                         document.all.stopbutton.style.visibility="hidden";
                         document.all.timer.style.visibility="hidden";
+                        
+                        // 입히기 삭제 내용
+                        //swiper.slideTo(1);
+                        //swiper.init();
+                        document.all.dragup.style.bottom = "-70%";
+                        document.all.dragwaterdrop.style.visibility = "hidden";
+                        document.all.recordfinishpop.style.visibility = "hidden";
+                        document.all.timer.style.opacity = 1;
+
                         console.log("record file deleted");
                     }
                 }
