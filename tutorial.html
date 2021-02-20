@@ -80,7 +80,7 @@
             line-height: 25px;
         }
 
-        .swiper-button-next {
+        #nextbutton {
             position: absolute;
             top: 85%;
             left: 40%;
@@ -92,8 +92,24 @@
             background-color: #eeeeee;
             border: none;
             border-radius: 20px;
+            visibility: visible;
         }
         .swiper-button-next::after {font-size: 0px;}
+
+        #nextbutton2 {
+            position: absolute;
+            top: 85%;
+            left: 40%;
+            width: 20%;
+            height: 40px;
+            text-align: center;
+            font-size: 18px;
+		    color: rgb(0, 0, 0);
+            background-color: #eeeeee;
+            border: none;
+            border-radius: 20px;
+            visibility: hidden;
+        }
     </style>
 </head>
 <body>
@@ -124,11 +140,12 @@
             </div>
         </div>
         <!--<button class="swiper-button-prev">prev</button>-->
-        <button class="swiper-button-next">Next</button>
+        <button id="nextbutton" onclick="nextSlide()">Next</button>
+        <button id="nextbutton2" onClick="location.href='./tutorialDone.html'">Next</button>
 
         <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-        <script type="text/javascript">
+        <script>
             const swiper = new Swiper('.swiper-container', {
                 direction: 'horizontal',
                 loop: false,
@@ -140,8 +157,22 @@
 
                 navigation: {
                     nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
                 },
+            });
+
+            function nextSlide(){
+                swiper.slideNext();
+            }
+
+            swiper.on('slideChange', function(){
+                if(swiper.activeIndex == 3){
+                    document.all.nextbutton.style.visibility="hidden";
+                    document.all.nextbutton2.style.visibility="visible";
+                }
+                if(swiper.activeIndex == 2){
+                    document.all.nextbutton.style.visibility="visible";
+                    document.all.nextbutton2.style.visibility="hidden";
+                }
             });
         </script>
     </div>

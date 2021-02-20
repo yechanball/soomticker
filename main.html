@@ -233,7 +233,7 @@
             width: 100%;
             padding: 0%;
             border: none;
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0);
             visibility: hidden;
         }
         #playbutton img { margin: 0%; width: 100%;}
@@ -332,7 +332,7 @@
         <div id="blankSpace2" onclick="blankSpace2Del()"></div>
         <div id="recordTutorial1" onclick="recordTutorial1Del()">
             <p style="position:relative; top: 20%; font-size: 18px; color: white;">재생 버튼을 눌러 다시 듣기</p>
-            <img style="position: absolute; top: 44%; left: 45.5%; width: 9%; opacity: 1;" src="./img/recordtutorial_play.png" alt="play button"> 
+            <img style="position: absolute; top: 32%; left: 30%; width: 40%; background-color: rgba(255, 255, 255, 0);" src="./img/recordtutorial_play.png" alt="play button"> 
         </div>
         <div id="recordTutorial2" onclick="recordTutorial2Del()">
             <p style="position:relative; top: 18%; font-size: 18px; color: white;">아래로 드래그해서<br>스티커에 소리 저장하기</p>
@@ -430,7 +430,7 @@
 
         <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-        <script type="text/javascript">
+        <script>
             const swiper = new Swiper('.swiper-container', {
                 direction: 'vertical',
                 loop: false,
@@ -442,7 +442,7 @@
                 if(swiper.activeIndex == 0){
                     //alert("슬라이드 완료");
 
-                    document.all.dragup.style.bottom = "-20%";
+                    document.all.dragup.style.bottom = "-40%";
                     document.all.dragwaterdrop.style.visibility = "visible";
                     document.all.playbutton.style.visibility = "hidden";
                     document.all.dragdirection.style.visibility = "hidden";
@@ -451,7 +451,7 @@
             });
 
             swiper.on('progress', function(){
-                var varNum = 30-(swiper.progress*100);
+                var varNum = 10-(swiper.progress*100);
                 document.all.dragup.style.bottom = varNum+"%";
             });
         </script>
