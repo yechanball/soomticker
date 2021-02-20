@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi"/>
     <title>main</title>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <style type="text/css">
         html,
         body {
@@ -419,7 +420,7 @@
         <!--업로드-->
         <form method="post" action="upload" enctype="multipart/form-data">
             <label id="uploadbutton" for="audio_file" onclick="showFilebox()">+</label>
-            <div id="filebox">
+            <div id="filebox" class="popUp">
                 <div style="width: 260px; height: 40px; margin-left: 30px; margin-top: 10%; margin-bottom: 20%; font-size: 18px; overflow: hidden;">
                     <input type="file" id="audio_file" accept="audio/*" style="position: relative; width: 335px; left:-75px;">
                 </div>
@@ -458,7 +459,7 @@
         <button id="deletebuttonIcon" onclick="openDeletePop()"><img src="./img/button_delete.png" alt="delete button img"></button>
 
         <!--레코드 완료-->
-        <div id="recordfinishpop">
+        <div id="recordfinishpop" class="popDown animate__animated animate__fadeInDown">
             <br><h style="font-weight: bold; font-size: 28px;">녹음 완료</h><br><br>
             <P>녹음된 파일을 NFC 스티커에<br>업로드하시겠습니까?</P>
             <button onclick="openDeletePop()" style="float: left; background-color: #ececec;">재녹음</button>
@@ -466,7 +467,7 @@
         </div>
 
         <!--업로드-->
-        <div id="uploadCheckPop">
+        <div id="uploadCheckPop" class="popUp">
             <p>스티커에 소리를 입히시겠습니까?<br>이후 새로운 소리를 입힐 수 없습니다.</p><br><br>
             <button onclick="closeUploadCheckPop()" style="float: left; color: rgb(0, 0, 0); background-color: #ececec;">취소</button>
             <button id="finalUploadButton" style="float: right; color: rgb(255, 255, 255); background-color: #F9C663;">입히기</button>
@@ -478,7 +479,7 @@
         </div>
 
         <!--삭제-->
-        <div id="deletePop">
+        <div id="deletePop" class="popUp animate__animated animate__ZoomIn animate__slow">
             <p>현재 녹음된 파일은 삭제됩니다.<br>그래도 재녹음 하시겠습니까?</p><br><br>
             <button onclick="closeDeletePop()" style="float: left; color: rgb(0, 0, 0); background-color: #ececec;">취소</button>
             <button id="deletebutton" class="delete" style="float: right; color: rgb(255, 255, 255); background-color: #F9C663;">재녹음</button>
@@ -519,8 +520,16 @@
             document.all.recordTutorial3.style.visibility="hidden";
         }
 
-        // 팝업
+        // 팝업 & 애니메이션
+        const popUpElement = document.querySelector('.popUp');
+        const popDownElement = document.querySelector('.popDown');
+
+        popUpElement.classList.add('animate__animated', 'animate__ZoomIn', 'animate__slow');
+        popDownElement.classList.add('animate__animated', 'animate__fadeInDown', 'animate__slow');
+
         function showFilebox(){
+            popUpElement.classList.remove('animate__animated', 'animate__ZoomIn', 'animate__slow');
+            popUpElement.classList.add('animate__animated', 'animate__ZoomIn', 'animate__slow');
             document.all.backGround.style.visibility="visible";
             document.all.filebox.style.visibility="visible";
         }
@@ -529,6 +538,8 @@
             document.all.filebox.style.visibility="hidden";
         }
         function openUploadCheckPop(){
+            popUpElement.classList.remove('animate__animated', 'animate__ZoomIn', 'animate__slow');
+            popUpElement.classList.add('animate__animated', 'animate__ZoomIn', 'animate__slow');
             document.all.backGround.style.visibility="visible";
             document.all.uploadCheckPop.style.visibility="visible";
         }
@@ -537,6 +548,8 @@
             document.all.uploadCheckPop.style.visibility="hidden";
         }
         function openDeletePop(){
+            popUpElement.classList.remove('animate__animated', 'animate__ZoomIn', 'animate__slow');
+            popUpElement.classList.add('animate__animated', 'animate__ZoomIn', 'animate__slow');
             document.all.backGround.style.visibility="visible";
             document.all.deletePop.style.visibility="visible";
         }
@@ -648,12 +661,15 @@
                             //alert("슬라이드 완료");
 
                             document.all.dragup.style.bottom = "-40%";
+                            document.all.timer.style.opacity = 0;
                             document.all.dragwaterdrop.style.visibility = "visible";
                             document.all.playbutton.style.visibility = "hidden";
                             document.all.dragdirection.style.visibility = "hidden";
                             document.all.dragposition.style.visibility = "hidden";
+
                             document.all.recordfinishpop.style.visibility = "visible";
-                            document.all.timer.style.opacity = 0;
+                            popDownElement.classList.remove('animate__animated', 'animate__fadeInDown');
+                            popDownElement.classList.add('animate__animated', 'animate__fadeInDown');
                         }
                     });
 
