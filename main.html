@@ -214,6 +214,33 @@
             border-radius: 30px;
         }
 
+        #uploadCheckPop {
+            position: absolute;
+            top: 35%;
+            left: 5%;
+            width: 90%;
+            height: 30%;
+            z-index: 1;
+            text-align: center;
+            font-size: 16px;
+            line-height: 40px;
+            background-color:white;
+            border-radius: 30px;
+            visibility: hidden;
+        }
+
+        #uploadCheckPop button {
+            position: relative;
+            bottom: 30%;
+            width: 25%;
+            height: 35px;
+            font-size: 15px;
+            margin-left: 10%;
+            margin-right: 10%;
+            border: none;
+            border-radius: 30px;
+        }
+
         #deletePop {
             position: absolute;
             top: 35%;
@@ -341,6 +368,22 @@
             visibility: hidden;
         }
         #stopbutton img { margin: 0%; width: 100%;}
+
+        #uploading {
+            position: absolute;
+            top: 32%;
+            left: 27%;
+            width: 46%;
+            padding: 0%;
+            z-index: 1;
+            border: none;
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            color: #F9C663;
+            background-color: rgba(255, 255, 255, 0);
+            visibility: hidden;
+        }
     </style>
 </head>
 <body>
@@ -419,7 +462,19 @@
             <br><h style="font-weight: bold; font-size: 28px;">녹음 완료</h><br><br>
             <P>녹음된 파일을 NFC 스티커에<br>업로드하시겠습니까?</P>
             <button onclick="openDeletePop()" style="float: left; background-color: #ececec;">재녹음</button>
-            <button onclick="uploadCheckPopOpen()" style="float: right; color: rgb(255, 255, 255); background-color: #F9C663;">업로드</button>
+            <button onclick="openUploadCheckPop()" style="float: right; color: rgb(255, 255, 255); background-color: #F9C663;">업로드</button>
+        </div>
+
+        <!--업로드-->
+        <div id="uploadCheckPop">
+            <p>스티커에 소리를 입히시겠습니까?<br>이후 새로운 소리를 입힐 수 없습니다.</p><br><br>
+            <button onclick="closeUploadCheckPop()" style="float: left; color: rgb(0, 0, 0); background-color: #ececec;">취소</button>
+            <button id="finalUploadButton" style="float: right; color: rgb(255, 255, 255); background-color: #F9C663;">입히기</button>
+        </div> 
+
+        <div id="uploading">
+            <img style="width: 100%;" src="./img/waterdrop_charge.gif" alt="uploading img">
+            <p>100%</p>
         </div>
 
         <!--삭제-->
@@ -427,7 +482,7 @@
             <p>현재 녹음된 파일은 삭제됩니다.<br>그래도 재녹음 하시겠습니까?</p><br><br>
             <button onclick="closeDeletePop()" style="float: left; color: rgb(0, 0, 0); background-color: #ececec;">취소</button>
             <button id="deletebutton" class="delete" style="float: right; color: rgb(255, 255, 255); background-color: #F9C663;">재녹음</button>
-        </div>     
+        </div>
     </div>
 
     <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
@@ -472,6 +527,14 @@
         function closeFilebox(){
             document.all.backGround.style.visibility="hidden";
             document.all.filebox.style.visibility="hidden";
+        }
+        function openUploadCheckPop(){
+            document.all.backGround.style.visibility="visible";
+            document.all.uploadCheckPop.style.visibility="visible";
+        }
+        function closeUploadCheckPop(){
+            document.all.backGround.style.visibility="hidden";
+            document.all.uploadCheckPop.style.visibility="hidden";
         }
         function openDeletePop(){
             document.all.backGround.style.visibility="visible";
@@ -566,7 +629,7 @@
                     if(tryNum==0){
                         document.all.blankSpace2.style.visibility="visible";
                     }
-                    
+
                     stop.disabled = true;
                     record.disabled = false;
                 }
@@ -643,6 +706,21 @@
                         document.all.playbutton.style.visibility="visible";
                         document.all.pausebutton.style.visibility="hidden";
                     }, false);
+
+                    finalUploadButton.onclick = function (e) {
+                        document.all.uploadCheckPop.style.visibility="hidden";
+                        document.all.uploading.style.visibility = "visible";
+
+                        /////////////////////////////////////////////
+                        // 서버에 업로드해야 하는 구역
+                        // audio.src 값이 오디오 소스값
+                        /////////////////////////////////////////////
+                        console.log("record file upload start");
+                        setTimeout(function() {
+                            console.log("record file upload done");
+                            location.replace("./uploadDone.html");
+                        }, 3000);
+                    }
 
                     deletebutton.onclick = function (e) {
                         audio.src = "none";
