@@ -7,6 +7,10 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <style type="text/css">
+        :root {
+            --animate-duration: 0.2s;
+        }
+
         html,
         body {
             display: flex;
@@ -421,7 +425,7 @@
         <!--업로드-->
         <form method="post" action="upload" enctype="multipart/form-data">
             <label id="uploadbutton" for="audio_file" onclick="showFilebox()">+</label>
-            <div id="filebox" class="popUp">
+            <div id="filebox">
                 <div style="width: 260px; height: 40px; margin-left: 30px; margin-top: 10%; margin-bottom: 20%; font-size: 18px; overflow: hidden;">
                     <input type="file" id="audio_file" accept="audio/*" style="position: relative; width: 335px; left:-75px;">
                 </div>
@@ -460,7 +464,7 @@
         <button id="deletebuttonIcon" onclick="openDeletePop()"><img src="./img/button_delete.png" alt="delete button img"></button>
 
         <!--레코드 완료-->
-        <div id="recordfinishpop" class="popDown animate__animated animate__fadeInDown">
+        <div id="recordfinishpop" class="popDown">
             <br><h style="font-weight: bold; font-size: 28px;">녹음 완료</h><br><br>
             <P>녹음된 파일을 NFC 스티커에<br>업로드하시겠습니까?</P>
             <button onclick="openDeletePop()" style="float: left; background-color: #ececec;">재녹음</button>
@@ -468,7 +472,7 @@
         </div>
 
         <!--업로드-->
-        <div id="uploadCheckPop" class="popUp">
+        <div id="uploadCheckPop">
             <p>스티커에 소리를 입히시겠습니까?<br>이후 새로운 소리를 입힐 수 없습니다.</p><br><br>
             <button onclick="closeUploadCheckPop()" style="float: left; color: rgb(0, 0, 0); background-color: #ececec;">취소</button>
             <button id="finalUploadButton" style="float: right; color: rgb(255, 255, 255); background-color: #F9C663;">입히기</button>
@@ -480,7 +484,7 @@
         </div>
 
         <!--삭제-->
-        <div id="deletePop" class="popUp animate__animated animate__ZoomIn animate__slow">
+        <div id="deletePop" class="popUp">
             <p>현재 녹음된 파일은 삭제됩니다.<br>그래도 재녹음 하시겠습니까?</p><br><br>
             <button onclick="closeDeletePop()" style="float: left; color: rgb(0, 0, 0); background-color: #ececec;">취소</button>
             <button id="deletebutton" class="delete" style="float: right; color: rgb(255, 255, 255); background-color: #F9C663;">재녹음</button>
@@ -523,14 +527,11 @@
 
         // 팝업 & 애니메이션
         const popUpElement = document.querySelector('.popUp');
-        const popDownElement = document.querySelector('.popDown');
-
-        popUpElement.classList.add('animate__animated', 'animate__ZoomIn', 'animate__slow');
-        popDownElement.classList.add('animate__animated', 'animate__fadeInDown', 'animate__slow');
+        //const popDownElement = document.querySelector('.popDown');
 
         function showFilebox(){
-            popUpElement.classList.remove('animate__animated', 'animate__ZoomIn', 'animate__slow');
-            popUpElement.classList.add('animate__animated', 'animate__ZoomIn', 'animate__slow');
+            //popUpElement.classList.remove('animate__animated', 'animate__ZoomIn', 'animate__slow');
+            //popUpElement.classList.add('animate__animated', 'animate__ZoomIn', 'animate__slow');
             document.all.backGround.style.visibility="visible";
             document.all.filebox.style.visibility="visible";
         }
@@ -539,8 +540,8 @@
             document.all.filebox.style.visibility="hidden";
         }
         function openUploadCheckPop(){
-            popUpElement.classList.remove('animate__animated', 'animate__ZoomIn', 'animate__slow');
-            popUpElement.classList.add('animate__animated', 'animate__ZoomIn', 'animate__slow');
+            //popUpElement.classList.remove('animate__animated', 'animate__ZoomIn', 'animate__slow');
+            //popUpElement.classList.add('animate__animated', 'animate__ZoomIn', 'animate__slow');
             document.all.backGround.style.visibility="visible";
             document.all.uploadCheckPop.style.visibility="visible";
         }
@@ -549,12 +550,12 @@
             document.all.uploadCheckPop.style.visibility="hidden";
         }
         function openDeletePop(){
-            popUpElement.classList.remove('animate__animated', 'animate__ZoomIn', 'animate__slow');
-            popUpElement.classList.add('animate__animated', 'animate__ZoomIn', 'animate__slow');
+            popUpElement.classList.add('animate__animated', 'animate__zoomIn');
             document.all.backGround.style.visibility="visible";
             document.all.deletePop.style.visibility="visible";
         }
         function closeDeletePop(){
+            popUpElement.classList.remove('animate__animated', 'animate__zoomIn');
             document.all.backGround.style.visibility="hidden";
             document.all.deletePop.style.visibility="hidden";
         }
@@ -593,14 +594,10 @@
                 
                 swiper.activeIndex = 1;
                 swiper.slideReset();
-                //swiper.slidePrev();
-                //swiper.slideNext();
-                //swiper.init();
-                //swiper.initialSlide = 1;
 
                 document.all.recordfinishpop.style.visibility = "visible";
-                popDownElement.classList.remove('animate__animated', 'animate__fadeInDown');
-                popDownElement.classList.add('animate__animated', 'animate__fadeInDown');
+                //popDownElement.classList.remove('animate__animated', 'animate__fadeInDown');
+                //popDownElement.classList.add('animate__animated', 'animate__fadeInDown');
             }
         });
 
@@ -752,6 +749,9 @@
                         audio.src = "none";
                         tryNum++;
                         $("#timer").html("00:00:00");
+                        
+                        // 삭제 팝업 애니메이션 제거
+                        popUpElement.classList.remove('animate__animated', 'animate__zoomIn');
 
                         document.all.playbutton.style.visibility="hidden";
                         document.all.pausebutton.style.visibility="hidden";
@@ -769,9 +769,6 @@
                         document.all.timer.style.visibility="hidden";
                         
                         // 입히기 삭제 내용
-                        //swiper.slideTo(1);
-                        //swiper.initialSlide = 1; // 초기 슬라이드 재설정X
-                        //swiper.init(); // 초기화 함수 작동 X
                         document.all.dragup.style.bottom = "-100%";
                         document.all.dragwaterdrop.style.visibility = "hidden";
                         document.all.recordfinishpop.style.visibility = "hidden";
