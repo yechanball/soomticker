@@ -334,8 +334,9 @@
         #dragup {
             position: absolute;
             width: 100%;
-            height: 70%;
-            bottom: -70%;
+            height: 100%;
+            bottom: -100%;
+            opacity: 0.7;
         }
 
         #dragwaterdrop {
@@ -558,7 +559,50 @@
             document.all.deletePop.style.visibility="hidden";
         }
 
-        // 녹음
+        // 드래그 영역 생성
+        const swiper = new Swiper('.swiper-container', {
+            direction: 'vertical',
+            loop: false,
+            allowSlideNext: false,
+            initialSlide: 1,
+        });
+
+        swiper.on('progress', function(){
+            if(swiper.activeIndex == 1){
+                if(swiper.progress==1){
+                    document.all.timer.style.opacity = 1;
+                }
+                else{
+                    document.all.timer.style.opacity = 0;
+                }
+                var varNum = -(swiper.progress*100);
+                document.all.dragup.style.bottom = varNum+"%";
+            }
+        });
+
+        swiper.on('slideChange', function(){
+            if(swiper.activeIndex == 0){
+                //alert("슬라이드 완료");
+
+                document.all.dragup.style.bottom = "-40%";
+                document.all.timer.style.opacity = 0;
+                document.all.dragwaterdrop.style.visibility = "visible";
+                document.all.playbutton.style.visibility = "hidden";
+                document.all.dragdirection.style.visibility = "hidden";
+                document.all.dragposition.style.visibility = "hidden";
+                swiper.activeIndex = 1;
+                //swiper.slidePrev();
+                //swiper.slideNext();
+                //swiper.init();
+                //swiper.initialSlide = 1;
+
+                document.all.recordfinishpop.style.visibility = "visible";
+                popDownElement.classList.remove('animate__animated', 'animate__fadeInDown');
+                popDownElement.classList.add('animate__animated', 'animate__fadeInDown');
+            }
+        });
+
+        // 녹음 기능
         const record = document.querySelector('.record');
         const resume = document.querySelector('.resume');
         const pause = document.querySelector('.recordpause'); 
@@ -648,42 +692,6 @@
                 }
 
                 mediaRecorder.onstop = function (e) {
-                    // 드래그 영역 생성
-                    const swiper = new Swiper('.swiper-container', {
-                        direction: 'vertical',
-                        loop: false,
-                        allowSlideNext: false,
-                        initialSlide: 1,
-                    });
-
-                    swiper.on('slideChange', function(){
-                        if(swiper.activeIndex == 0){
-                            //alert("슬라이드 완료");
-
-                            document.all.dragup.style.bottom = "-40%";
-                            document.all.timer.style.opacity = 0;
-                            document.all.dragwaterdrop.style.visibility = "visible";
-                            document.all.playbutton.style.visibility = "hidden";
-                            document.all.dragdirection.style.visibility = "hidden";
-                            document.all.dragposition.style.visibility = "hidden";
-
-                            document.all.recordfinishpop.style.visibility = "visible";
-                            popDownElement.classList.remove('animate__animated', 'animate__fadeInDown');
-                            popDownElement.classList.add('animate__animated', 'animate__fadeInDown');
-                        }
-                    });
-
-                    swiper.on('progress', function(){
-                        if(swiper.progress==1){
-                            document.all.timer.style.opacity = 1;
-                        }
-                        else{
-                            document.all.timer.style.opacity = 0;
-                        }
-                        var varNum = 10-(swiper.progress*100);
-                        document.all.dragup.style.bottom = varNum+"%";
-                    });
-
                     console.log("data available after MediaRecorder.stop() called.");
 
                     const audio = document.querySelector('.record-audio'); 
@@ -760,8 +768,9 @@
                         
                         // 입히기 삭제 내용
                         //swiper.slideTo(1);
-                        //swiper.init();
-                        document.all.dragup.style.bottom = "-70%";
+                        //swiper.initialSlide = 1; // 초기 슬라이드 재설정X
+                        //swiper.init(); // 초기화 함수 작동 X
+                        document.all.dragup.style.bottom = "-100%";
                         document.all.dragwaterdrop.style.visibility = "hidden";
                         document.all.recordfinishpop.style.visibility = "hidden";
                         document.all.timer.style.opacity = 1;
