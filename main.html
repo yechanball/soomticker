@@ -425,7 +425,7 @@
         <!--업로드-->
         <form method="post" action="upload" enctype="multipart/form-data">
             <label id="uploadbutton" for="audio_file" onclick="showFilebox()">+</label>
-            <div id="filebox">
+            <div id="filebox" class="popUpFile">
                 <div style="width: 260px; height: 40px; margin-left: 30px; margin-top: 10%; margin-bottom: 20%; font-size: 18px; overflow: hidden;">
                     <input type="file" id="audio_file" accept="audio/*" style="position: relative; width: 335px; left:-75px;">
                 </div>
@@ -472,7 +472,7 @@
         </div>
 
         <!--업로드-->
-        <div id="uploadCheckPop">
+        <div id="uploadCheckPop" class="popUpUpload">
             <p>스티커에 소리를 입히시겠습니까?<br>이후 새로운 소리를 입힐 수 없습니다.</p><br><br>
             <button onclick="closeUploadCheckPop()" style="float: left; color: rgb(0, 0, 0); background-color: #ececec;">취소</button>
             <button id="finalUploadButton" style="float: right; color: rgb(255, 255, 255); background-color: #F9C663;">입히기</button>
@@ -484,7 +484,7 @@
         </div>
 
         <!--삭제-->
-        <div id="deletePop" class="popUp">
+        <div id="deletePop" class="popUpDelete">
             <p>현재 녹음된 파일은 삭제됩니다.<br>그래도 재녹음 하시겠습니까?</p><br><br>
             <button onclick="closeDeletePop()" style="float: left; color: rgb(0, 0, 0); background-color: #ececec;">취소</button>
             <button id="deletebutton" class="delete" style="float: right; color: rgb(255, 255, 255); background-color: #F9C663;">재녹음</button>
@@ -526,36 +526,38 @@
         }
 
         // 팝업 & 애니메이션
-        const popUpElement = document.querySelector('.popUp');
-        //const popDownElement = document.querySelector('.popDown');
+        const popUpFileElement = document.querySelector('.popUpFile');
+        const popUpUploadElement = document.querySelector('.popUpUpload');
+        const popUpDeleteElement = document.querySelector('.popUpDelete');
+        const popDownElement = document.querySelector('.popDown');
 
         function showFilebox(){
-            //popUpElement.classList.remove('animate__animated', 'animate__ZoomIn', 'animate__slow');
-            //popUpElement.classList.add('animate__animated', 'animate__ZoomIn', 'animate__slow');
+            popUpFileElement.classList.add('animate__animated', 'animate__zoomIn');
             document.all.backGround.style.visibility="visible";
             document.all.filebox.style.visibility="visible";
         }
         function closeFilebox(){
+            popUpFileElement.classList.remove('animate__animated', 'animate__zoomIn');
             document.all.backGround.style.visibility="hidden";
             document.all.filebox.style.visibility="hidden";
         }
         function openUploadCheckPop(){
-            //popUpElement.classList.remove('animate__animated', 'animate__ZoomIn', 'animate__slow');
-            //popUpElement.classList.add('animate__animated', 'animate__ZoomIn', 'animate__slow');
+            popUpUploadElement.classList.add('animate__animated', 'animate__zoomIn');
             document.all.backGround.style.visibility="visible";
             document.all.uploadCheckPop.style.visibility="visible";
         }
         function closeUploadCheckPop(){
+            popUpUploadElement.classList.remove('animate__animated', 'animate__zoomIn');
             document.all.backGround.style.visibility="hidden";
             document.all.uploadCheckPop.style.visibility="hidden";
         }
         function openDeletePop(){
-            popUpElement.classList.add('animate__animated', 'animate__zoomIn');
+            popUpDeleteElement.classList.add('animate__animated', 'animate__zoomIn');
             document.all.backGround.style.visibility="visible";
             document.all.deletePop.style.visibility="visible";
         }
         function closeDeletePop(){
-            popUpElement.classList.remove('animate__animated', 'animate__zoomIn');
+            popUpDeleteElement.classList.remove('animate__animated', 'animate__zoomIn');
             document.all.backGround.style.visibility="hidden";
             document.all.deletePop.style.visibility="hidden";
         }
@@ -596,8 +598,7 @@
                 swiper.slideReset();
 
                 document.all.recordfinishpop.style.visibility = "visible";
-                //popDownElement.classList.remove('animate__animated', 'animate__fadeInDown');
-                //popDownElement.classList.add('animate__animated', 'animate__fadeInDown');
+                popDownElement.classList.add('animate__animated', 'animate__fadeInDown');
             }
         });
 
@@ -751,7 +752,10 @@
                         $("#timer").html("00:00:00");
                         
                         // 삭제 팝업 애니메이션 제거
-                        popUpElement.classList.remove('animate__animated', 'animate__zoomIn');
+                        popUpFileElement.classList.remove('animate__animated', 'animate__zoomIn');
+                        popUpUploadElement.classList.remove('animate__animated', 'animate__zoomIn');
+                        popUpDeleteElement.classList.remove('animate__animated', 'animate__zoomIn');
+                        popDownElement.classList.remove('animate__animated', 'animate__fadeInDown');
 
                         document.all.playbutton.style.visibility="hidden";
                         document.all.pausebutton.style.visibility="hidden";
