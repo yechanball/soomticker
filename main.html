@@ -178,6 +178,18 @@
             visibility: hidden;
         }
         #recordpausebutton img { margin: 0%; width: 100%;}
+
+        #recordresumebutton {
+            position: absolute;
+            top: 10%;
+            left: 44%;
+            width: 12%;
+            padding: 0%;
+            border: none;
+            background-color: rgba(255, 255, 255, 0);
+            visibility: hidden;
+        }
+        #recordresumebutton img { margin: 0%; width: 100%;}
         
         #deletebuttonIcon {
             position: absolute;
@@ -322,8 +334,8 @@
         #dragdirection {
             position: absolute;
             top: 60%;
-            left: 49%;
-            width: 2%;
+            left: 49.1%;
+            width: 1.8%;
             visibility: hidden;
         }
 
@@ -442,7 +454,7 @@
         <img id="dragdirection" src="./img/direction_dropdown.png" alt="drop down direction img">
         <img id="dragposition" src="./img/waterdrop_dropdown.png" alt="drop down position">
 
-        <div class="swiper-container">
+        <div id="swiperDiv" class="swiper-container" style="visibility: hidden;">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                 </div>
@@ -461,6 +473,7 @@
         <button id="recordbutton" class="record"><img src="./img/button_record.png" alt="record button img"></button>
         <button id="stopbutton" class="stop"><img src="./img/button_stop.png" alt="stop button img"></button>
         <button id="recordpausebutton" class="recordpause"><img src="./img/button_pause.png" alt="pause button img"></button>
+        <button id="recordresumebutton" class="recordresume"><img src="./img/button_resume.png" alt="resume button img"></button>
         <button id="deletebuttonIcon" onclick="openDeletePop()"><img src="./img/button_delete.png" alt="delete button img"></button>
 
         <!--레코드 완료-->
@@ -574,9 +587,14 @@
             if(swiper.activeIndex == 1){
                 if(swiper.progress==1){
                     document.all.timer.style.opacity = 1;
+                    document.all.dragdirection.style.opacity = "1";
+                }
+                else if(swiper.progress<0.4){
+                    //stop swiper
                 }
                 else{
                     document.all.timer.style.opacity = 0;
+                    document.all.dragdirection.style.opacity = "0";
                 }
                 var varNum = -(swiper.progress*100);
                 document.all.dragup.style.bottom = varNum+"%";
@@ -585,17 +603,12 @@
 
         swiper.on('slideChange', function(){
             if(swiper.activeIndex == 0){
-                //alert("슬라이드 완료");
-
                 document.all.dragup.style.bottom = "-40%";
                 document.all.timer.style.opacity = 0;
                 document.all.dragwaterdrop.style.visibility = "visible";
                 document.all.playbutton.style.visibility = "hidden";
                 document.all.dragdirection.style.visibility = "hidden";
                 document.all.dragposition.style.visibility = "hidden";
-                
-                swiper.activeIndex = 1;
-                swiper.slideReset();
 
                 document.all.recordfinishpop.style.visibility = "visible";
                 popDownElement.classList.add('animate__animated', 'animate__fadeInDown');
@@ -604,8 +617,8 @@
 
         // 녹음 기능
         const record = document.querySelector('.record');
-        const resume = document.querySelector('.resume');
-        const pause = document.querySelector('.recordpause'); 
+        const recordresume = document.querySelector('.recordresume');
+        const recordpause = document.querySelector('.recordpause'); 
         const stop = document.querySelector('.stop');
 
         stop.disabled = true;
@@ -641,32 +654,31 @@
                     record.disabled = true;
                 }
 
-                /*
-                pause.onclick = function () {
+                recordpause.onclick = function () {
                     mediaRecorder.pause();
                     console.log(mediaRecorder.state);
                     console.log("recorder paused");
                     
-                    document.all.waterdrop.src="./img/waterdrop_playbutton.jpg"
-                    document.all.recordbutton.style.visibility="visible";
+                    document.all.waterdrop.src="./img/waterdrop_charge.png"
+                    document.all.recordresumebutton.style.visibility="visible";
                     document.all.recordpausebutton.style.visibility="hidden";
 
                     stop.disabled = false;
                     record.disabled = true;
                 }
                 
-                resume.onclick = function () {
+                recordresume.onclick = function () {
                     mediaRecorder.resume();
                     console.log(mediaRecorder.state);
-                    console.log("recorder started");
+                    console.log("recorder resumed");
                     
-                    document.all.waterdrop.src="./img/waterdrop_charge.jpg"
-                    document.all.recordbutton.style.visibility="hidden";
+                    document.all.waterdrop.src="./img/waterdrop_charge.gif"
+                    document.all.recordresumebutton.style.visibility="hidden";
                     document.all.recordpausebutton.style.visibility="visible";
 
                     stop.disabled = false;
                     record.disabled = true;
-                }*/
+                }
 
                 stop.onclick = function () {
                     mediaRecorder.stop();
@@ -679,8 +691,10 @@
                     document.all.waterdrop.style.visibility="hidden";
                     document.all.playbutton.style.visibility="visible";
                     document.all.recordpausebutton.style.visibility="hidden";
+                    document.all.recordresumebutton.style.visibility="hidden";
                     document.all.stopbutton.style.visibility="hidden";
                     document.all.deletebuttonIcon.style.visibility="visible";
+                    document.all.swiperDiv.style.visibility="visible";
                     document.all.dragdirection.style.visibility="visible";
                     document.all.dragposition.style.visibility="visible";
                     if(tryNum==0){
@@ -773,10 +787,14 @@
                         document.all.timer.style.visibility="hidden";
                         
                         // 입히기 삭제 내용
+                        document.all.swiperDiv.style.visibility="hidden";
                         document.all.dragup.style.bottom = "-100%";
                         document.all.dragwaterdrop.style.visibility = "hidden";
                         document.all.recordfinishpop.style.visibility = "hidden";
                         document.all.timer.style.opacity = 1;
+
+                        swiper.activeIndex = 1;
+                        swiper.slideReset();
 
                         console.log("record file deleted");
                     }
