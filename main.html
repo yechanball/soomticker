@@ -300,6 +300,13 @@
             width: 40%;
             visibility: visible;
         }
+        #waterdropIng {
+            position: absolute;
+            top: 32%;
+            left: 30%;
+            width: 40%;
+            visibility: hidden;
+        }
 
         #playbutton {
             width: 100%;
@@ -466,6 +473,7 @@
 
         <div id="timerPosition"><span id="timer">00:00:00</span></div>
         <img id="waterdrop" src="./img/waterdrop_blank.png" alt="water drop blank img">
+        <img id="waterdropIng" src="./img/record_ing.gif" alt="recording img">
         <audio class="record-audio"></audio>
         
         <!--버튼-->
@@ -651,8 +659,10 @@
                     document.all.timer.style.visibility="visible";
 
                     setTimeout(function() {
-                        document.all.waterdrop.src="./img/record_ing.gif";
-                    }, 1560);
+                        document.all.waterdrop.style.visibility = "hidden";
+                        document.all.waterdropIng.style.visibility = "visible";
+                        //document.all.waterdrop.src="./img/record_ing.gif";
+                    }, 1360);
 
                     stop.disabled = false;
                     record.disabled = true;
@@ -662,6 +672,9 @@
                     mediaRecorder.pause();
                     console.log(mediaRecorder.state);
                     console.log("recorder paused");
+                    
+                    document.all.waterdrop.style.visibility = "visible";
+                    document.all.waterdropIng.style.visibility = "hidden";
                     
                     document.all.waterdrop.src="./img/waterdrop_charge.png";
                     document.all.recordresumebutton.style.visibility="visible";
@@ -676,6 +689,9 @@
                     console.log(mediaRecorder.state);
                     console.log("recorder resumed");
                     
+                    document.all.waterdrop.style.visibility = "hidden";
+                    document.all.waterdropIng.style.visibility = "visible";
+
                     document.all.waterdrop.src="./img/record_ing.gif";
                     document.all.recordresumebutton.style.visibility="hidden";
                     document.all.recordpausebutton.style.visibility="visible";
@@ -691,7 +707,10 @@
                     console.log("recorder stopped");
                     // mediaRecorder.requestData();
                     
+                    document.all.waterdropIng.style.visibility = "hidden";
                     document.all.waterdrop.src="./img/record_end.gif";
+                    document.all.waterdrop.style.visibility = "visible";
+
                     //$("#timer").html("00:"+parseInt((endTime-startTime)/1000/60)+":"+parseInt((endTime-startTime)/1000));
                     document.all.recordpausebutton.style.visibility="hidden";
                     document.all.recordresumebutton.style.visibility="hidden";
