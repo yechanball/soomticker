@@ -643,12 +643,16 @@
                     
                     //$("#timer").html("00:"+parseInt((nowTime-startTime)/1000/60)+":"+parseInt((nowTime-startTime)/1000));
                     //https://higuma.github.io/web-audio-recorder-js/ 참고할것
-                    document.all.waterdrop.src="./img/waterdrop_charge.gif";
+                    document.all.waterdrop.src="./img/record_start.gif";
                     document.all.uploadbutton.style.visibility="hidden";
                     document.all.recordbutton.style.visibility="hidden";
                     document.all.recordpausebutton.style.visibility="visible";
                     document.all.stopbutton.style.visibility="visible";
                     document.all.timer.style.visibility="visible";
+
+                    setTimeout(function() {
+                        document.all.waterdrop.src="./img/record_ing.gif";
+                    }, 1560);
 
                     stop.disabled = false;
                     record.disabled = true;
@@ -659,7 +663,7 @@
                     console.log(mediaRecorder.state);
                     console.log("recorder paused");
                     
-                    document.all.waterdrop.src="./img/waterdrop_charge.png"
+                    document.all.waterdrop.src="./img/waterdrop_charge.png";
                     document.all.recordresumebutton.style.visibility="visible";
                     document.all.recordpausebutton.style.visibility="hidden";
 
@@ -672,7 +676,7 @@
                     console.log(mediaRecorder.state);
                     console.log("recorder resumed");
                     
-                    document.all.waterdrop.src="./img/waterdrop_charge.gif"
+                    document.all.waterdrop.src="./img/record_ing.gif";
                     document.all.recordresumebutton.style.visibility="hidden";
                     document.all.recordpausebutton.style.visibility="visible";
 
@@ -687,19 +691,23 @@
                     console.log("recorder stopped");
                     // mediaRecorder.requestData();
                     
+                    document.all.waterdrop.src="./img/record_end.gif";
                     //$("#timer").html("00:"+parseInt((endTime-startTime)/1000/60)+":"+parseInt((endTime-startTime)/1000));
-                    document.all.waterdrop.style.visibility="hidden";
-                    document.all.playbutton.style.visibility="visible";
                     document.all.recordpausebutton.style.visibility="hidden";
                     document.all.recordresumebutton.style.visibility="hidden";
                     document.all.stopbutton.style.visibility="hidden";
-                    document.all.deletebuttonIcon.style.visibility="visible";
-                    document.all.swiperDiv.style.visibility="visible";
-                    document.all.dragdirection.style.visibility="visible";
-                    document.all.dragposition.style.visibility="visible";
-                    if(tryNum==0){
-                        document.all.blankSpace2.style.visibility="visible";
-                    }
+
+                    setTimeout(function() {
+                        document.all.waterdrop.style.visibility="hidden";
+                        document.all.playbutton.style.visibility="visible";
+                        document.all.deletebuttonIcon.style.visibility="visible";
+                        document.all.swiperDiv.style.visibility="visible";
+                        document.all.dragdirection.style.visibility="visible";
+                        document.all.dragposition.style.visibility="visible";
+                        if(tryNum==0){
+                            document.all.blankSpace2.style.visibility="visible";
+                        }
+                    }, 1860);
 
                     stop.disabled = true;
                     record.disabled = false;
