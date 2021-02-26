@@ -447,7 +447,7 @@
             <label id="uploadbutton" for="audio_file" onclick="showFilebox()">+</label>
             <div id="filebox" class="popUpFile">
                 <div style="width: 260px; height: 40px; margin-left: 30px; margin-top: 10%; margin-bottom: 20%; font-size: 18px; overflow: hidden;">
-                    <input type="file" id="audio_file" accept="audio/*" style="position: relative; width: 335px; left:-75px;">
+                    <input type="file" id="audio_file" accept="audio/*" style="width: 260px;">
                 </div>
                 <label onclick="closeFilebox()" style="position: relative; float: left; bottom: 0%; width: 25%; height: 35px; font-size: 15px;
                     margin-left: 10%; margin-right: 10%; border: none; border-radius: 30px; color: rgb(0, 0, 0); background-color: #ececec;">취소</label>
@@ -502,7 +502,7 @@
 
         <div id="uploading">
             <img style="width: 100%;" src="./img/waterdrop_charge.gif" alt="uploading img">
-            <p>100%</p>
+            <p id="uploadProgress"></p>
         </div>
 
         <!--삭제-->
@@ -802,10 +802,23 @@
                         // audio.src 값이 오디오 소스값
                         /////////////////////////////////////////////
                         console.log("record file upload start");
+
+                        ////////////////////////////////////////////
+                        // 업로드 진행도는 실제 서버 작업할 때 수정하기
+                        var upProgress = 0;
+                        var UploadProgress = setInterval(function(){
+                            $("#uploadProgress").html(upProgress+"%");
+                            upProgress++;
+                        }, 20);
+
                         setTimeout(function() {
-                            console.log("record file upload done");
-                            location.replace("./uploadDone.html");
-                        }, 3000);
+                            clearInterval(UploadProgress);
+                            setTimeout(function() {
+                                console.log("record file upload done");
+                                location.replace("./uploadDone.html");
+                            }, 1000);
+                        }, 2030);
+                        //////////////////////////////////////////////
                     }
 
                     deletebutton.onclick = function (e) {
