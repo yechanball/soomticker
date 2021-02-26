@@ -289,6 +289,7 @@
             position: absolute;
             top: 28%;
             width: 100%;
+            align-items: center;
             text-align: center;
             visibility: hidden;
         }
@@ -624,6 +625,11 @@
         });
 
         // 녹음 기능
+        var recordTimer = 0;
+        var recordTime = 1;
+        var min = "";
+        var sec = "";
+
         const record = document.querySelector('.record');
         const recordresume = document.querySelector('.recordresume');
         const recordpause = document.querySelector('.recordpause'); 
@@ -641,20 +647,25 @@
 
             let onSuccess = function (stream) {
                 const mediaRecorder = new MediaRecorder(stream);
-                //var nowTime = new Date().getTime();
 
                 record.onclick = function () {
                     mediaRecorder.start();
-                    //var startTime = new Date().getTime();
+
                     console.log(mediaRecorder.state);
                     console.log("recorder started");
                     
-                    //$("#timer").html("00:"+parseInt((nowTime-startTime)/1000/60)+":"+parseInt((nowTime-startTime)/1000));
-                    //https://higuma.github.io/web-audio-recorder-js/ 참고할것
                     document.all.waterdrop.src="./img/record_start.gif";
                     document.all.uploadbutton.style.visibility="hidden";
                     document.all.recordbutton.style.visibility="hidden";
                     document.all.timer.style.visibility="visible";
+
+                    recordTimer = setInterval(function(){
+                        min = parseInt(recordTime/60);
+                        sec = recordTime%60;
+
+                        $("#timer").html("00:"+parseInt(min/10)+(min%10)+":"+parseInt(sec/10)+(sec%10));
+                        recordTime++;
+                    }, 1000);
 
                     setTimeout(function() {
                         document.all.recordpausebutton.style.visibility="visible";
@@ -672,6 +683,8 @@
                     mediaRecorder.pause();
                     console.log(mediaRecorder.state);
                     console.log("recorder paused");
+
+                    clearInterval(recordTimer);
                     
                     document.all.waterdrop.style.visibility = "visible";
                     document.all.waterdropIng.style.visibility = "hidden";
@@ -688,6 +701,14 @@
                     mediaRecorder.resume();
                     console.log(mediaRecorder.state);
                     console.log("recorder resumed");
+
+                    recordTimer = setInterval(function(){
+                        min = parseInt(recordTime/60);
+                        sec = recordTime%60;
+
+                        $("#timer").html("00:"+parseInt(min/10)+(min%10)+":"+parseInt(sec/10)+(sec%10));
+                        recordTime++;
+                    }, 1000);
                     
                     document.all.waterdrop.style.visibility = "hidden";
                     document.all.waterdropIng.style.visibility = "visible";
@@ -702,16 +723,17 @@
 
                 stop.onclick = function () {
                     mediaRecorder.stop();
-                    //var endTime = new Date().getTime();
+    
                     console.log(mediaRecorder.state);
                     console.log("recorder stopped");
                     // mediaRecorder.requestData();
                     
+                    clearInterval(recordTimer);
+
                     document.all.waterdropIng.style.visibility = "hidden";
                     document.all.waterdrop.src="./img/record_end.gif";
                     document.all.waterdrop.style.visibility = "visible";
 
-                    //$("#timer").html("00:"+parseInt((endTime-startTime)/1000/60)+":"+parseInt((endTime-startTime)/1000));
                     document.all.recordpausebutton.style.visibility="hidden";
                     document.all.recordresumebutton.style.visibility="hidden";
                     document.all.stopbutton.style.visibility="hidden";
@@ -745,6 +767,7 @@
                     console.log("recorder stopped");
 
                     playbutton.onclick = function (e) {
+                        this.currentTime = 0;
                         audio.play();
 
                         document.all.playbutton.style.visibility="hidden";
@@ -766,8 +789,6 @@
                     }, false);
 
                     audio.addEventListener('ended', function() { 
-                        this.currentTime = 0;
-                        
                         document.all.playbutton.style.visibility="visible";
                         document.all.pausebutton.style.visibility="hidden";
                     }, false);
