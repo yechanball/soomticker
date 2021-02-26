@@ -50,7 +50,11 @@
             element.classList.add('animate__animated', 'animate__fadeIn', 'animate__slow');
             
             element.addEventListener('animationend', () => {
+                //////////////////////////////////////////
+                // 쿼리 확인해서 재생 or 튜토리얼로 전환
+                /////////////////////////////////////////
                 location.replace("./tutorial.html");
+
             });
         </script>
     </div>
