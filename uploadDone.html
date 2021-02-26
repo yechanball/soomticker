@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi"/>
     <title>upload done</title>
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <style type="text/css">
         html,
         body {
@@ -81,13 +79,16 @@
             <p>스티커를 태그하시면<br>녹음하신 소리를 들으실 수 있습니다.</p>
         </div>
         <div id="bot-button">
-            <button onClick="WinClose()"></buttononClick>Finish</button>
+            <button onClick="closeWeb();"></buttononClick>Finish</button>
+            <script>
+                function closeWeb(){
+                    window.open('', '_self', '');
+                    window.close();
+                    return false;
+                }
+            </script>
+
         </div>
     </div>
-    <script>
-    function WinClose() {
-        window.open('','_self').close();     
-    }
-    </script>
 </body>
 </html>
