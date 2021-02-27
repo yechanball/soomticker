@@ -472,7 +472,7 @@
             </div>
         </div>
 
-        <div id="timerPosition"><span id="timer">00:00:00</span></div>
+        <div id="timerPosition"><span id="timer">00:00</span></div>
         <img id="waterdrop" src="./img/waterdrop_blank.png" alt="water drop blank img">
         <img id="waterdropIng" src="./img/record_ing.gif" alt="recording img">
         <audio class="record-audio"></audio>
@@ -663,8 +663,12 @@
                         min = parseInt(recordTime/60);
                         sec = recordTime%60;
 
-                        $("#timer").html("00:"+parseInt(min/10)+(min%10)+":"+parseInt(sec/10)+(sec%10));
+                        $("#timer").html(parseInt(min/10)+""+(min%10)+":"+parseInt(sec/10)+""+(sec%10));
                         recordTime++;
+
+                        if(recordTime > 180) {
+                            alert("Time Out!! 기능 추가 예정");
+                        }
                     }, 1000);
 
                     setTimeout(function() {
@@ -706,7 +710,7 @@
                         min = parseInt(recordTime/60);
                         sec = recordTime%60;
 
-                        $("#timer").html("00:"+parseInt(min/10)+(min%10)+":"+parseInt(sec/10)+(sec%10));
+                        $("#timer").html(parseInt(min/10)+""+(min%10)+":"+parseInt(sec/10)+""+(sec%10));
                         recordTime++;
                     }, 1000);
                     
@@ -785,7 +789,7 @@
                         var playtimeSec = Math.floor(audio.currentTime);
                         var playtimeMin = parseInt(playtimeSec/60);
                     
-                        $("#timer").html("00:"+parseInt(playtimeMin/10)+(playtimeMin%10)+":"+parseInt(playtimeSec/10)+(playtimeSec%10));
+                        $("#timer").html(parseInt(playtimeMin/10)+""+(playtimeMin%10)+":"+parseInt(playtimeSec/10)+""+(playtimeSec%10));
                     }, false);
 
                     audio.addEventListener('ended', function() { 
@@ -817,14 +821,15 @@
                                 console.log("record file upload done");
                                 location.replace("./uploadDone.html");
                             }, 800);
-                        }, 2030);
+                        }, 2035);
                         //////////////////////////////////////////////
                     }
 
                     deletebutton.onclick = function (e) {
                         audio.src = "none";
                         tryNum++;
-                        $("#timer").html("00:00:00");
+                        $("#timer").html("00:00");
+                        recordTime = 1;
                         
                         // 삭제 팝업 애니메이션 제거
                         popUpFileElement.classList.remove('animate__animated', 'animate__zoomIn');
