@@ -626,7 +626,7 @@
 
         // 녹음 기능
         var recordTimer = 0;
-        var recordTime = 1;
+        var recordTime;
         var min = "";
         var sec = "";
 
@@ -650,6 +650,9 @@
 
                 record.onclick = function () {
                     mediaRecorder.start();
+                    recordTime = 0;
+                    min = "";
+                    sec = "";
 
                     console.log(mediaRecorder.state);
                     console.log("recorder started");
@@ -727,7 +730,7 @@
 
                 stop.onclick = function () {
                     mediaRecorder.stop();
-    
+                    
                     console.log(mediaRecorder.state);
                     console.log("recorder stopped");
                     // mediaRecorder.requestData();
@@ -785,6 +788,13 @@
                         document.all.pausebutton.style.visibility="hidden";
                     }
 
+                    audio.addEventListener('canplay', function(e){
+                        min = parseInt(recordTime/60);
+                        sec = recordTime%60;
+
+                        $("#timer").html(parseInt(min/10)+""+(min%10)+":"+parseInt(sec/10)+""+(sec%10));
+                    });
+
                     audio.addEventListener('timeupdate', function(e){
                         var playtimeSec = Math.floor(audio.currentTime);
                         var playtimeMin = parseInt(playtimeSec/60);
@@ -829,7 +839,6 @@
                         audio.src = "none";
                         tryNum++;
                         $("#timer").html("00:00");
-                        recordTime = 1;
                         
                         // 삭제 팝업 애니메이션 제거
                         popUpFileElement.classList.remove('animate__animated', 'animate__zoomIn');
