@@ -680,7 +680,7 @@
                         document.all.waterdrop.style.visibility = "hidden";
                         document.all.waterdropIng.style.visibility = "visible";
                         //document.all.waterdrop.src="./img/record_ing.gif";
-                    }, 1360);
+                    }, 1410);
 
                     stop.disabled = false;
                     record.disabled = true;
@@ -747,6 +747,7 @@
 
                     setTimeout(function() {
                         document.all.waterdrop.style.visibility="hidden";
+                        document.all.waterdrop.src="./img/waterdrop_blank.png";
                         document.all.playbutton.style.visibility="visible";
                         document.all.deletebuttonIcon.style.visibility="visible";
                         document.all.swiperDiv.style.visibility="visible";
@@ -755,7 +756,7 @@
                         if(tryNum==0){
                             document.all.blankSpace2.style.visibility="visible";
                         }
-                    }, 1200);
+                    }, 1790);
 
                     stop.disabled = true;
                     record.disabled = false;
@@ -823,15 +824,15 @@
                         var UploadProgress = setInterval(function(){
                             $("#uploadProgress").html(upProgress+"%");
                             upProgress++;
-                        }, 20);
+                        }, 18);
 
                         setTimeout(function() {
                             clearInterval(UploadProgress);
                             setTimeout(function() {
                                 console.log("record file upload done");
                                 location.replace("./uploadDone.html");
-                            }, 800);
-                        }, 2035);
+                            }, 50);
+                        }, 1800);
                         //////////////////////////////////////////////
                     }
 
@@ -854,7 +855,6 @@
                         document.all.dragdirection.style.visibility="hidden";
                         document.all.dragposition.style.visibility="hidden";
                         document.all.waterdrop.style.visibility="visible";
-                        document.all.waterdrop.src="./img/waterdrop_blank.png";
                         document.all.uploadbutton.style.visibility="visible";
                         document.all.recordbutton.style.visibility="visible";
                         document.all.recordpausebutton.style.visibility="hidden";
