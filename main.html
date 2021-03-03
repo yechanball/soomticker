@@ -713,15 +713,15 @@
                 var UploadProgress = setInterval(function(){
                     $("#uploadProgress").html(upProgress+"%");
                     upProgress++;
-                }, 18);
+                }, 17);
 
                 setTimeout(function() {
                     clearInterval(UploadProgress);
                     setTimeout(function() {
                         console.log("record file upload done");
                         location.replace("./uploadDone.html");
-                    }, 50);
-                }, 1800);
+                    }, 100);
+                }, 1700);
                 //////////////////////////////////////////////
             }
 
@@ -820,7 +820,7 @@
                         document.all.waterdrop.style.visibility = "hidden";
                         document.all.waterdropIng.style.visibility = "visible";
                         //document.all.waterdrop.src="./img/record_ing.gif";
-                    }, 1410);
+                    }, 1310);
 
                     stop.disabled = false;
                     record.disabled = true;
@@ -896,7 +896,7 @@
                         if(tryNum==0){
                             document.all.blankSpace2.style.visibility="visible";
                         }
-                    }, 1790);
+                    }, 1800);
 
                     stop.disabled = true;
                     record.disabled = false;
@@ -964,15 +964,15 @@
                         var UploadProgress = setInterval(function(){
                             $("#uploadProgress").html(upProgress+"%");
                             upProgress++;
-                        }, 18);
+                        }, 17);
 
                         setTimeout(function() {
                             clearInterval(UploadProgress);
                             setTimeout(function() {
                                 console.log("record file upload done");
                                 location.replace("./uploadDone.html");
-                            }, 50);
-                        }, 1800);
+                            }, 100);
+                        }, 1700);
                         //////////////////////////////////////////////
                     }
 
