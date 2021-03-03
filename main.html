@@ -443,7 +443,7 @@
         </div>
 
         <!--업로드-->
-        <form method="post" action="upload" enctype="multipart/form-data">
+        <form name="tempUploadForm" method="post" enctype="multipart/form-data">
             <label id="uploadbutton" for="audio_file" onclick="showFilebox()">+</label>
             <div id="filebox" class="popUpFile">
                 <div style="width: 260px; height: 40px; margin-left: 30px; margin-top: 10%; margin-bottom: 20%; font-size: 18px; overflow: hidden;">
@@ -451,8 +451,9 @@
                 </div>
                 <label onclick="closeFilebox()" style="position: relative; float: left; bottom: 0%; width: 25%; height: 35px; font-size: 15px;
                     margin-left: 10%; margin-right: 10%; border: none; border-radius: 30px; color: rgb(0, 0, 0); background-color: #ececec;">취소</label>
-                <input type="submit" value="첨부" style="position:relative; float: right; bottom: 0%; width: 25%; height: 35px; font-size: 15px;
-                    margin-left: 10%; margin-right: 10%; border: none; border-radius: 30px; color: rgb(255, 255, 255); background-color: #F9C663;">
+                <input type="button" value="첨부" style="position:relative; float: right; bottom: 0%; width: 25%; height: 35px; font-size: 15px;
+                    margin-left: 10%; margin-right: 10%; border: none; border-radius: 30px; color: rgb(255, 255, 255); background-color: #F9C663;"
+                    onclick="tempUpload()">
             </div>
         </form>
 
@@ -623,6 +624,145 @@
                 popDownElement.classList.add('animate__animated', 'animate__fadeInDown');
             }
         });
+
+        // 파일 업로드시 재생 및 입히기 기능
+        function tempUpload(){
+            /////////////////////////////////////////////////////////
+            //파일 업로드 구현 하기
+            //document.tempUploadForm.action = "업로드 액션";
+            //document.tempUploadForm.submit();
+            /////////////////////////////////////////////////////////
+
+            // 화면 전환
+            popUpFileElement.classList.remove('animate__animated', 'animate__zoomIn');
+            document.all.backGround.style.visibility="hidden";
+            document.all.filebox.style.visibility="hidden";
+            document.all.uploadbutton.style.visibility="hidden";
+            document.all.recordbutton.style.visibility="hidden";
+            document.all.waterdrop.style.visibility="hidden";
+            document.all.timer.style.visibility="visible";
+            document.all.playbutton.style.visibility="visible";
+            document.all.deletebuttonIcon.style.visibility="visible";
+            document.all.swiperDiv.style.visibility="visible";
+            document.all.dragdirection.style.visibility="visible";
+            document.all.dragposition.style.visibility="visible";
+            if(tryNum==0){
+                document.all.blankSpace2.style.visibility="visible";
+            }
+            
+            // 오디오 기능
+            const audio = document.querySelector('.record-audio'); 
+
+            audio.controls = false;
+            // 오디오 파일 소스 불러오기
+            //const audioURL = 서버의 오디오 파일 URL;
+            const audioURL = "./img/TempVoice.oga";
+            audio.src = audioURL;
+            console.log("Temporary upload done! Audio activate!");
+
+            playbutton.onclick = function (e) {
+                this.currentTime = 0;
+                audio.play();
+
+                document.all.playbutton.style.visibility="hidden";
+                document.all.pausebutton.style.visibility="visible";
+            }
+
+            pausebutton.onclick = function (e) {
+                audio.pause();
+
+                document.all.playbutton.style.visibility="visible";
+                document.all.pausebutton.style.visibility="hidden";
+            }
+
+            /*
+            audio.addEventListener('canplay', function(e){
+                var audioTime = 오디오 타임 구하기;
+                min = parseInt(audioTime/60);
+                sec = audioTime%60;
+
+                $("#timer").html(parseInt(min/10)+""+(min%10)+":"+parseInt(sec/10)+""+(sec%10));
+            });
+            */
+
+            audio.addEventListener('timeupdate', function(e){
+                var playtimeSec = Math.floor(audio.currentTime);
+                var playtimeMin = parseInt(playtimeSec/60);
+            
+                $("#timer").html(parseInt(playtimeMin/10)+""+(playtimeMin%10)+":"+parseInt(playtimeSec/10)+""+(playtimeSec%10));
+            }, false);
+
+            audio.addEventListener('ended', function() { 
+                document.all.playbutton.style.visibility="visible";
+                document.all.pausebutton.style.visibility="hidden";
+            }, false);
+
+            finalUploadButton.onclick = function (e) {
+                document.all.uploadCheckPop.style.visibility="hidden";
+                document.all.uploading.style.visibility = "visible";
+
+                /////////////////////////////////////////////
+                // 서버에 업로드해야 하는 구역
+                // audio.src 값이 오디오 소스값
+                /////////////////////////////////////////////
+                console.log("record file upload start");
+
+                ////////////////////////////////////////////
+                // 업로드 진행도는 실제 서버 작업할 때 수정하기
+                var upProgress = 0;
+                var UploadProgress = setInterval(function(){
+                    $("#uploadProgress").html(upProgress+"%");
+                    upProgress++;
+                }, 18);
+
+                setTimeout(function() {
+                    clearInterval(UploadProgress);
+                    setTimeout(function() {
+                        console.log("record file upload done");
+                        location.replace("./uploadDone.html");
+                    }, 50);
+                }, 1800);
+                //////////////////////////////////////////////
+            }
+
+            deletebutton.onclick = function (e) {
+                audio.src = "none";
+                tryNum++;
+                $("#timer").html("00:00");
+                
+                // 삭제 팝업 애니메이션 제거
+                popUpFileElement.classList.remove('animate__animated', 'animate__zoomIn');
+                popUpUploadElement.classList.remove('animate__animated', 'animate__zoomIn');
+                popUpDeleteElement.classList.remove('animate__animated', 'animate__zoomIn');
+                popDownElement.classList.remove('animate__animated', 'animate__fadeInDown');
+
+                document.all.playbutton.style.visibility="hidden";
+                document.all.pausebutton.style.visibility="hidden";
+                document.all.deletePop.style.visibility="hidden";
+                document.all.backGround.style.visibility="hidden";
+                document.all.deletebuttonIcon.style.visibility="hidden";
+                document.all.dragdirection.style.visibility="hidden";
+                document.all.dragposition.style.visibility="hidden";
+                document.all.waterdrop.style.visibility="visible";
+                document.all.uploadbutton.style.visibility="visible";
+                document.all.recordbutton.style.visibility="visible";
+                document.all.recordpausebutton.style.visibility="hidden";
+                document.all.stopbutton.style.visibility="hidden";
+                document.all.timer.style.visibility="hidden";
+                
+                // 입히기 삭제 내용
+                document.all.swiperDiv.style.visibility="hidden";
+                document.all.dragup.style.bottom = "-100%";
+                document.all.dragwaterdrop.style.visibility = "hidden";
+                document.all.recordfinishpop.style.visibility = "hidden";
+                document.all.timer.style.opacity = 1;
+
+                swiper.activeIndex = 1;
+                swiper.slideReset();
+
+                console.log("record file deleted");
+            }
+        }
 
         // 녹음 기능
         var recordTimer = 0;
@@ -887,6 +1027,7 @@
             navigator.mediaDevices.getUserMedia(constraints).then(onSuccess, onError);
 
         } else {
+            alert("해당 브라우저에서는 음성 녹음 기능을 지원하지 않습니다!");
             console.log('getUserMedia not supported on your browser!');
         }
     </script>
