@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi"/>
+    <title>main</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <style type="text/css">
+        html,
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+    
+        #wrap {
+            position: relative;
+            max-width: 420px;
+            min-width: 300px;
+            max-height: 850px;
+            min-height: 550px;
+            width: 100%;
+            height: 100%;
+            background: rgb(255, 255, 255);
+        }
+
+        #savebutton {
+            position: absolute;
+            top: 10%;
+            left: 44%;
+            width: 12%;
+            padding: 0%;
+            border: none;
+            background-color: rgba(255, 255, 255, 0);
+            visibility: visible;
+        }
+        #savebutton img { margin: 0%; width: 100%;}
+       
+        #timerPosition {
+            position: absolute;
+            top: 28%;
+            width: 100%;
+            align-items: center;
+            text-align: center;
+            visibility: visible;
+        }
+
+        #playbutton {
+            position: absolute;
+            top: 32%;
+            left: 30%;
+            width: 40%;
+            padding: 0%;
+            border: none;
+            background-color: rgba(255, 255, 255, 0);
+            visibility: visible;
+        }
+        #playbutton img { margin: 0%; width: 100%;}
+
+        #stopbutton {
+            position: absolute;
+            top: 32%;
+            left: 30%;
+            width: 40%;
+            padding: 0%;
+            border: none;
+            background-color: rgba(255, 255, 255, 0);
+            visibility: hidden;
+        }
+        #stopbutton img { margin: 0%; width: 100%;}
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <a class="downloadLink" href="#" download="#"><button id="savebutton" class="save"><img src="./img/button_save.png" alt="save button img"></button></a>
+        <div id="timerPosition"><span id="timer">00:00</span></div>
+        <audio class="record-audio"></audio>
+        <button id="playbutton" class="play"><img src="./img/waterdrop_playbutton.png" alt="water drop play img"></button>
+        <button id="stopbutton" class="stop"><img src="./img/record_ing.gif" alt="water drop charging img"></button>
+    </div>
+    <script>
+        // 오디오 기능
+        const audio = document.querySelector('.record-audio'); 
+        var link = document.querySelector('.downloadLink');
+
+        audio.controls = false;
+        // 오디오 파일 소스 불러오기
+        //const audioURL = 서버의 오디오 파일 URL;
+        const audioURL = "./img/TempVoice.oga"; //임시로 설정한 오디오 파일
+        audio.src = audioURL;
+        console.log("Temporary upload done! Audio activate!");
+
+        savebutton.onclick = function (e) {
+            link.href = audioURL;
+            link.download = "SOOM_Voice.wav";
+            // 추후 수정
+        }
+
+        playbutton.onclick = function (e) {
+            this.currentTime = 0;
+            audio.play();
+
+            document.all.playbutton.style.visibility="hidden";
+            document.all.stopbutton.style.visibility="visible";
+        }
+
+        stopbutton.onclick = function (e) {
+            audio.pause();
+            // 오디오 초기화 코드 넣기
+
+            document.all.playbutton.style.visibility="visible";
+            document.all.stopbutton.style.visibility="hidden";
+        }
+
+        /*
+        audio.addEventListener('canplay', function(e){
+            var audioTime = 오디오 타임 구하기;
+            min = parseInt(audioTime/60);
+            sec = audioTime%60;
+
+            $("#timer").html(parseInt(min/10)+""+(min%10)+":"+parseInt(sec/10)+""+(sec%10));
+        });
+        */
+
+        audio.addEventListener('timeupdate', function(e){
+            var playtimeSec = Math.floor(audio.currentTime);
+            var playtimeMin = parseInt(playtimeSec/60);
+        
+            $("#timer").html(parseInt(playtimeMin/10)+""+(playtimeMin%10)+":"+parseInt(playtimeSec/10)+""+(playtimeSec%10));
+        }, false);
+
+        audio.addEventListener('ended', function() { 
+            document.all.playbutton.style.visibility="visible";
+            document.all.stopbutton.style.visibility="hidden";
+        }, false);
+    </script>
+</body>
+</html>
