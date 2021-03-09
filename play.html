@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi"/>
-    <title>main</title>
+    <title>play</title>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <style type="text/css">
         html,
@@ -109,22 +109,21 @@
 
         stopbutton.onclick = function (e) {
             audio.pause();
-            this.currentTime = 0;
+
             // 오디오 초기화 코드 넣기
+            //this.currentTime = 0;
 
             document.all.playbutton.style.visibility="visible";
             document.all.stopbutton.style.visibility="hidden";
         }
 
-        /*
         audio.addEventListener('canplay', function(e){
-            var audioTime = 오디오 타임 구하기;
+            var audioTime = audio.duration;
             min = parseInt(audioTime/60);
             sec = audioTime%60;
 
             $("#timer").html(parseInt(min/10)+""+(min%10)+":"+parseInt(sec/10)+""+(sec%10));
         });
-        */
 
         audio.addEventListener('timeupdate', function(e){
             var playtimeSec = Math.floor(audio.currentTime);
