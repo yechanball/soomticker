@@ -6,6 +6,18 @@
     <title>play</title>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <style type="text/css">
+        @font-face {
+            font-family: 'Noto Sans';
+            src: url(./font/NotoSans-Regular.eot);
+            src: url(./font/NotoSans-Regular.eot?#iefix) format('embedded-opentype'),
+                 url(./font/NotoSans-Regular.woff2) format('woff2'),
+                 url(./font/NotoSans-Regular.woff) format('woff'),
+                 url(./font/NotoSans-Regular.ttf) format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
         html,
         body {
             display: flex;
@@ -15,6 +27,7 @@
             height: 100%;
             margin: 0;
             overflow: hidden;
+            font-family: 'Noto Sans';
         }
     
         #wrap {

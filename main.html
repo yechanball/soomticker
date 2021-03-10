@@ -7,6 +7,18 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <style type="text/css">
+        @font-face {
+            font-family: 'Noto Sans';
+            src: url(./font/NotoSans-Regular.eot);
+            src: url(./font/NotoSans-Regular.eot?#iefix) format('embedded-opentype'),
+                 url(./font/NotoSans-Regular.woff2) format('woff2'),
+                 url(./font/NotoSans-Regular.woff) format('woff'),
+                 url(./font/NotoSans-Regular.ttf) format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
         :root {
             --animate-duration: 0.2s;
         }
@@ -20,6 +32,7 @@
             height: 100%;
             margin: 0;
             overflow: hidden;
+            font-family: 'Noto Sans';
         }
     
         #wrap {
@@ -809,15 +822,15 @@
                     document.all.timer.style.visibility="visible";
 
                     recordTimer = setInterval(function(){
+                        if(recordTime > 600) {
+                            alert("Time Out!! 기능 추가 예정");
+                        }
+                        
                         min = parseInt(recordTime/60);
                         sec = recordTime%60;
 
                         $("#timer").html(parseInt(min/10)+""+(min%10)+":"+parseInt(sec/10)+""+(sec%10));
                         recordTime++;
-
-                        if(recordTime > 180) {
-                            alert("Time Out!! 기능 추가 예정");
-                        }
                     }, 1000);
 
                     setTimeout(function() {
