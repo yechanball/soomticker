@@ -6,15 +6,21 @@
     <title>upload done</title>
     <style type="text/css">
         @font-face {
-            font-family: 'Noto Sans';
-            src: url(./font/NotoSans-Regular.eot);
-            src: url(./font/NotoSans-Regular.eot?#iefix) format('embedded-opentype'),
-                 url(./font/NotoSans-Regular.woff2) format('woff2'),
-                 url(./font/NotoSans-Regular.woff) format('woff'),
-                 url(./font/NotoSans-Regular.ttf) format('truetype');
-            font-weight: normal;
+            font-family: 'Noto Sans KR Light';
             font-style: normal;
-            font-display: swap;
+            font-weight: 300;
+            src: url(./font/NotoSansKR-Light.woff2) format('woff2'),
+                url(./font/NotoSansKR-Light.woff) format('woff'),
+                url(./font/NotoSansKR-Light.otf) format('opentype');
+        }
+
+        @font-face {
+            font-family: 'Noto Sans KR Bold';
+            font-style: normal;
+            font-weight: 700;
+            src: url(./font/NotoSansKR-Bold.woff2) format('woff2'),
+                url(./font/NotoSansKR-Bold.woff) format('woff'),
+                url(./font/NotoSansKR-Bold.otf) format('opentype');
         }
 
         html,
@@ -26,7 +32,6 @@
             height: 100%;
             margin: 0;
             overflow: hidden;
-            font-family: 'Noto Sans';
         }
     
         #wrap {
@@ -57,13 +62,15 @@
         }
 
         #container h1 {
+            font-family: 'Noto Sans KR Bold';
             font-size: 28px;
-            line-height: 50px;
+            line-height: 56px;
         }
 
         #container p {
-            font-size: 15px;
-            line-height: 25px;
+            font-family: 'Noto Sans KR Light';
+            font-size: 18px;
+            line-height: 36px;
         }
 
         #bot-button {
@@ -76,7 +83,8 @@
             width: 20%;
             height: 30%;
             text-align: center;
-            font-size: 14px;
+            font-family: 'Noto Sans KR Light';
+            font-size: 18px;
 		    color: rgb(255, 255, 255);
             background-color: #F0B24C;
             border: none;
