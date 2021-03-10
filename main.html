@@ -293,7 +293,7 @@
 
         #uploadCheckPop button {
             position: absolute;
-            bottom: 25%;
+            bottom: 20%;
             width: 25%;
             height: 35px;
             font-family: 'Noto Sans KR Light';
@@ -500,9 +500,9 @@
                 <div style="width: 260px; height: 40px; margin-left: 30px; margin-top: 10%; margin-bottom: 20%; font-size: 18px; overflow: hidden;">
                     <input type="file" id="audio_file" accept="audio/*" style="width: 260px;">
                 </div>
-                <label onclick="closeFilebox()" style="position: absolute; left: 12%; bottom: 25%; width: 25%; height: 35px; font-family: 'Noto Sans KR Light'; font-size: 14px;
+                <label onclick="closeFilebox()" style="position: absolute; left: 12%; bottom: 20%; width: 25%; height: 35px; font-family: 'Noto Sans KR Light'; font-size: 14px;
                     border: none; border-radius: 30px; color: rgb(0, 0, 0); background-color: #ececec;">취소</label>
-                <input type="button" value="첨부" style="position: absolute; right: 12%; bottom: 25%; width: 25%; height: 35px; font-family: 'Noto Sans KR Light'; font-size: 14px;
+                <input type="button" value="첨부" style="position: absolute; right: 12%; bottom: 20%; width: 25%; height: 35px; font-family: 'Noto Sans KR Light'; font-size: 14px;
                     border: none; border-radius: 30px; color: rgb(255, 255, 255); background-color: #F0B24C;"
                     onclick="tempUpload()">
             </div>
@@ -539,7 +539,7 @@
 
         <!--레코드 완료-->
         <div id="recordfinishpop" class="popDown">
-            <br><h style="font-weight: bold; font-size: 28px;">녹음 완료</h><br><br>
+            <br><h style="font-weight: bold; font-size: 28px;">녹음 완료</h><br>
             <P>녹음된 파일을 NFC 스티커에<br>업로드하시겠습니까?</P>
             <button onclick="openDeletePop()" style="left: 12%; background-color: #ececec;">재녹음</button>
             <button onclick="openUploadCheckPop()" style="right: 12%; color: rgb(255, 255, 255); background-color: #F0B24C;">업로드</button>
