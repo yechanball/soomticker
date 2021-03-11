@@ -39,7 +39,7 @@
        
         #timerPosition {
             position: absolute;
-            top: 26%;
+            top: 27%;
             width: 100%;
             align-items: center;
             text-align: center;
@@ -110,7 +110,6 @@
         //https://blog.naver.com/javaking75/140174017765
 
         playbutton.onclick = function (e) {
-            this.currentTime = 0;
             audio.play();
             console.log(audio.duration);
 
@@ -120,9 +119,7 @@
 
         stopbutton.onclick = function (e) {
             audio.pause();
-
-            // 오디오 초기화 코드 넣기
-            //this.currentTime = 0;
+            audio.currentTime = 0;
 
             document.all.playbutton.style.visibility="visible";
             document.all.stopbutton.style.visibility="hidden";
