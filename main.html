@@ -533,8 +533,10 @@
         <button id="pausebutton" class="pause"><img src="./img/waterdrop_pausebutton.png" alt="water drop pause img"></button>
         <button id="recordbutton" class="record"><img src="./img/button_record.png" alt="record button img"></button>
         <button id="stopbutton" class="stop"><img src="./img/button_stop.png" alt="stop button img"></button>
+        <!--
         <button id="recordpausebutton" class="recordpause"><img src="./img/button_pause.png" alt="pause button img"></button>
-        <button id="recordresumebutton" class="recordresume"><img src="./img/button_resume.png" alt="resume button img"></button>
+        <button id="recordresumebutton" class="recordresume"><img src="./img/button_resume.png" alt="resume button img"></button> 
+        -->
         <button id="deletebuttonIcon" onclick="openDeletePop()"><img src="./img/button_delete.png" alt="delete button img"></button>
 
         <!--레코드 완료-->
@@ -829,8 +831,8 @@
         var sec = "";
 
         const record = document.querySelector('.record');
-        const recordresume = document.querySelector('.recordresume');
-        const recordpause = document.querySelector('.recordpause'); 
+        //const recordresume = document.querySelector('.recordresume');
+        //const recordpause = document.querySelector('.recordpause'); 
         const stop = document.querySelector('.stop');
 
         stop.disabled = true;
@@ -873,7 +875,7 @@
                     }, 1000);
 
                     setTimeout(function() {
-                        document.all.recordpausebutton.style.visibility="visible";
+                        //document.all.recordpausebutton.style.visibility="visible";
                         document.all.stopbutton.style.visibility="visible";
                         document.all.waterdrop.style.visibility = "hidden";
                         document.all.waterdropIng.style.visibility = "visible";
@@ -884,6 +886,7 @@
                     record.disabled = true;
                 }
 
+                /*
                 recordpause.onclick = function () {
                     mediaRecorder.pause();
                     console.log(mediaRecorder.state);
@@ -924,7 +927,7 @@
 
                     stop.disabled = false;
                     record.disabled = true;
-                }
+                }*/
 
                 stop.onclick = function () {
                     mediaRecorder.stop();
@@ -939,8 +942,8 @@
                     document.all.waterdrop.src="./img/record_end.gif";
                     document.all.waterdrop.style.visibility = "visible";
 
-                    document.all.recordpausebutton.style.visibility="hidden";
-                    document.all.recordresumebutton.style.visibility="hidden";
+                    //document.all.recordpausebutton.style.visibility="hidden";
+                    //document.all.recordresumebutton.style.visibility="hidden";
                     document.all.stopbutton.style.visibility="hidden";
 
                     setTimeout(function() {
