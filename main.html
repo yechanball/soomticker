@@ -707,12 +707,12 @@
             audio.controls = false;
             // 오디오 파일 소스 불러오기
             //const audioURL = 서버의 오디오 파일 URL;
-            const audioURL = "./img/TempVoice.oga";
+            const audioURL = "./img/TempVoice.wav";
             audio.src = audioURL;
             console.log("Temporary upload done! Audio activate!");
 
             playbutton.onclick = function (e) {
-                this.currentTime = 0;
+                audio.currentTime = 0;
                 audio.play();
 
                 document.all.playbutton.style.visibility="hidden";
@@ -726,24 +726,31 @@
                 document.all.pausebutton.style.visibility="hidden";
             }
 
-            /*
+            audio.addEventListener('loadedmetadata', function(e){
+                audio.currentTime = 24*60*60;
+            });
+
             audio.addEventListener('canplay', function(e){
-                var audioTime = 오디오 타임 구하기;
+                var audioTime = audio.duration;
                 min = parseInt(audioTime/60);
-                sec = audioTime%60;
+                sec = parseInt(audioTime%60);
 
                 $("#timer").html(parseInt(min/10)+""+(min%10)+":"+parseInt(sec/10)+""+(sec%10));
             });
-            */
 
             audio.addEventListener('timeupdate', function(e){
-                var playtimeSec = Math.floor(audio.currentTime);
+                var playtimeSec = Math.floor(audio.duration-audio.currentTime);
                 var playtimeMin = parseInt(playtimeSec/60);
             
                 $("#timer").html(parseInt(playtimeMin/10)+""+(playtimeMin%10)+":"+parseInt(playtimeSec/10)+""+(playtimeSec%10));
             }, false);
 
             audio.addEventListener('ended', function() { 
+                var audioTime = audio.duration;
+                min = parseInt(audioTime/60);
+                sec = parseInt(audioTime%60);
+
+                $("#timer").html(parseInt(min/10)+""+(min%10)+":"+parseInt(sec/10)+""+(sec%10));
                 document.all.playbutton.style.visibility="visible";
                 document.all.pausebutton.style.visibility="hidden";
             }, false);
@@ -841,7 +848,7 @@
 
                 record.onclick = function () {
                     mediaRecorder.start();
-                    recordTime = 0;
+                    recordTime = 1;
                     min = "";
                     sec = "";
 
@@ -982,19 +989,24 @@
 
                     audio.addEventListener('canplay', function(e){
                         min = parseInt(recordTime/60);
-                        sec = recordTime%60;
+                        sec = parseInt(recordTime%60);
 
                         $("#timer").html(parseInt(min/10)+""+(min%10)+":"+parseInt(sec/10)+""+(sec%10));
                     });
 
                     audio.addEventListener('timeupdate', function(e){
-                        var playtimeSec = Math.floor(audio.currentTime);
+                        var playtimeSec = Math.floor(recordTime-audio.currentTime);
                         var playtimeMin = parseInt(playtimeSec/60);
                     
                         $("#timer").html(parseInt(playtimeMin/10)+""+(playtimeMin%10)+":"+parseInt(playtimeSec/10)+""+(playtimeSec%10));
                     }, false);
 
                     audio.addEventListener('ended', function() { 
+                        min = parseInt(recordTime/60);
+                        sec = parseInt(recordTime%60);
+
+                        $("#timer").html(parseInt(min/10)+""+(min%10)+":"+parseInt(sec/10)+""+(sec%10));
+
                         document.all.playbutton.style.visibility="visible";
                         document.all.pausebutton.style.visibility="hidden";
                     }, false);

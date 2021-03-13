@@ -105,13 +105,11 @@
         audio.src = audioURL;
         link.href = audioURL;
         link.download = "SOOM_Voice.wav";
-        console.log("Temporary upload done! Audio activate!");
-        console.log(audio.duration);
-        //https://blog.naver.com/javaking75/140174017765
+        console.log("Audio activate!");
 
         playbutton.onclick = function (e) {
+            audio.currentTime = 0;
             audio.play();
-            console.log(audio.duration);
 
             document.all.playbutton.style.visibility="hidden";
             document.all.stopbutton.style.visibility="visible";
@@ -119,28 +117,36 @@
 
         stopbutton.onclick = function (e) {
             audio.pause();
-            audio.currentTime = 0;
 
             document.all.playbutton.style.visibility="visible";
             document.all.stopbutton.style.visibility="hidden";
         }
 
+        audio.addEventListener('loadedmetadata', function(e){
+            audio.currentTime = 24*60*60;
+        });
+
         audio.addEventListener('canplay', function(e){
             var audioTime = audio.duration;
             min = parseInt(audioTime/60);
-            sec = audioTime%60;
+            sec = parseInt(audioTime%60);
 
             $("#timer").html(parseInt(min/10)+""+(min%10)+":"+parseInt(sec/10)+""+(sec%10));
         });
 
         audio.addEventListener('timeupdate', function(e){
-            var playtimeSec = Math.floor(audio.currentTime);
+            var playtimeSec = Math.floor(audio.duration-audio.currentTime);
             var playtimeMin = parseInt(playtimeSec/60);
         
             $("#timer").html(parseInt(playtimeMin/10)+""+(playtimeMin%10)+":"+parseInt(playtimeSec/10)+""+(playtimeSec%10));
         }, false);
 
         audio.addEventListener('ended', function() { 
+            var audioTime = audio.duration;
+            min = parseInt(audioTime/60);
+            sec = parseInt(audioTime%60);
+
+            $("#timer").html(parseInt(min/10)+""+(min%10)+":"+parseInt(sec/10)+""+(sec%10));
             document.all.playbutton.style.visibility="visible";
             document.all.stopbutton.style.visibility="hidden";
         }, false);
