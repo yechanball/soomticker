@@ -863,8 +863,8 @@
                     document.all.timer.style.visibility="visible";
 
                     recordTimer = setInterval(function(){
-                        if(recordTime > 600) {
-                            alert("Time Out!! 기능 추가 예정");
+                        if(recordTime > 601) {
+                            alert("녹음 시간이 10분을 초과하였습니다! 녹음이 중지됩니다.");
                         }
                         
                         min = parseInt(recordTime/60);
