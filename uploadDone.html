@@ -80,7 +80,7 @@
         }
 
         #bot-button button {
-            width: 20%;
+            width: 40%;
             height: 30%;
             text-align: center;
             font-family: 'Noto Sans KR Light';
@@ -100,11 +100,11 @@
             <p>스티커를 태그하시면<br>녹음하신 소리를 들으실 수 있습니다.</p>
         </div>
         <div id="bot-button">
-            <button onClick="closeWeb();"></buttononClick>Finish</button>
+            <button onClick="gotoSurveyForm();"></buttononClick>설문하러 가기</button>
             <script>
                 // Open Survey form 
                 function gotoSurveyForm(){
-                    //location.replace(/*Put Survey Form URL in this*/);
+                    location.replace("https://docs.google.com/forms/d/1vI7L9oBunwgMZ7hV3-kZpViDd4l1Lx2xB8ZwsbRQMks/edit?usp=drive_web");
                 }
 
                 // Close function don't work in Chrome 
