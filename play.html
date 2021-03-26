@@ -123,14 +123,14 @@
             min = parseInt(audioTime/60);
             sec = parseInt(audioTime%60);
 
-            $("#timer").html(parseInt(min/10)+""+(min%10)+":"+parseInt(sec/10)+""+(sec%10));
+            ($("#timer")).html(parseInt(min/10)+""+parseInt(min%10)+":"+parseInt(sec/10)+""+parseInt(sec%10));
         });
 
         audio.addEventListener('timeupdate', function(e){
             var playtimeSec = Math.floor(audio.duration-audio.currentTime);
             var playtimeMin = parseInt(playtimeSec/60);
         
-            $("#timer").html(parseInt(playtimeMin/10)+""+(playtimeMin%10)+":"+parseInt(playtimeSec/10)+""+(playtimeSec%10));
+            ($("#timer")).html(parseInt(playtimeMin/10)+""+parseInt(playtimeMin%10)+":"+parseInt(playtimeSec/10)+""+parseInt(playtimeSec%10));
         }, false);
 
         audio.addEventListener('ended', function() { 
@@ -138,7 +138,7 @@
             min = parseInt(audioTime/60);
             sec = parseInt(audioTime%60);
 
-            $("#timer").html(parseInt(min/10)+""+(min%10)+":"+parseInt(sec/10)+""+(sec%10));
+            ($("#timer")).html(parseInt(min/10)+""+parseInt(min%10)+":"+parseInt(sec/10)+""+parseInt(sec%10));
             document.all.playbutton.style.visibility="visible";
             document.all.stopbutton.style.visibility="hidden";
         }, false);
