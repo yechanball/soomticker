@@ -936,7 +936,7 @@
                     const audio = document.querySelector('.record-audio'); 
 
                     audio.controls = false;
-                    const blob = new Blob(chunks, {type: 'audio/mpeg'});
+                    const blob = new Blob(chunks, {type: 'audio/aac'});
                     chunks = [];
                     const audioURL = window.URL.createObjectURL(blob);
                     audio.src = audioURL;
