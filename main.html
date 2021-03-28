@@ -492,7 +492,7 @@
         <div id="timerPosition"><span id="timer">00:00</span></div>
         <img id="waterdrop" src="./img/waterdrop_blank.png" alt="water drop blank img">
         <img id="waterdropIng" src="./img/record_ing.gif" alt="recording img">
-        <audio class="record-audio"></audio>
+        <audio class="record-audio" src="#"></audio>
 
         <!--버튼-->
         <button id="pausebutton" class="pause"><img src="./img/waterdrop_pausebutton.png" alt="water drop pause img"></button>
@@ -709,7 +709,7 @@
 
             audio.addEventListener('timeupdate', function(e){
                 var playtime = Math.floor(audio.duration-audio.currentTime);
-		var playtimeSec = parseInt(playtime%60);
+                var playtimeSec = parseInt(playtime%60);
                 var playtimeMin = parseInt(playtime/60);
             
                 ($("#timer")).html(parseInt(playtimeMin/10)+""+parseInt(playtimeMin%10)+":"+parseInt(playtimeSec/10)+""+parseInt(playtimeSec%10));
@@ -937,7 +937,7 @@
                     const audio = document.querySelector('.record-audio'); 
 
                     audio.controls = false;
-                    const blob = new Blob(chunks, {type: 'audio/aac'});
+                    const blob = new Blob(chunks, {type: 'audio/mpeg'});
                     chunks = [];
                     const audioURL = window.URL.createObjectURL(blob);
                     audio.src = audioURL;
@@ -968,8 +968,9 @@
                     });
 
                     audio.addEventListener('timeupdate', function(e){
-                        var playtimeSec = Math.floor(recordTime-audio.currentTime);
-                        var playtimeMin = parseInt(playtimeSec/60);
+                        var playtime = Math.floor(audio.duration-audio.currentTime);
+                        var playtimeSec = parseInt(playtime%60);
+                        var playtimeMin = parseInt(playtime/60);
                     
                         ($("#timer")).html(parseInt(playtimeMin/10)+""+parseInt(playtimeMin%10)+":"+parseInt(playtimeSec/10)+""+parseInt(playtimeSec%10));
                     }, false);
