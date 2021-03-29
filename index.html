@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi"/>
+    <title>loading...</title>
+    <link rel="stylesheet" href="./font/NotoSansKR.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style type="text/css">
+        html,
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+    
+        #wrap {
+            position: relative;
+            max-width: 420px;
+            min-width: 300px;
+            max-height: 850px;
+            min-height: 550px;
+            width: 100%;
+            height: 100%;
+            background: rgb(255, 255, 255);
+        }
+
+        #logoArea {
+            margin-top: 45%;
+            text-align: center;
+        }
+
+        #logoArea img {
+            margin-top: 10%;
+            width: 40%;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="logoArea" class="animation-element" class="animate__animated animate__fadeIn animate__slow">
+            <img src="./img/logo_img.png" alt="Logo img"><br>
+            <img src="./img/logo_word.png" alt="Logo word">
+        </div>
+        <script type="text/javascript">
+            const element = document.querySelector('.animation-element');
+            element.classList.add('animate__animated', 'animate__fadeIn', 'animate__slow');
+            
+            element.addEventListener('animationend', () => {
+                //////////////////////////////////////////
+                // 쿼리 확인해서 재생 or 튜토리얼로 전환
+                /*
+                if(쿼리 == true){
+                    location.replace("./play.html");
+                }else if(쿼리 == false){
+                    location.replace("./tutorial.html");
+                }else{
+                    alert("잘못된 접근입니다!");
+                }
+                */
+                /////////////////////////////////////////
+                location.replace("./tutorial.html");
+
+            });
+        </script>
+        <!--preload img-->
+        <img style="height: 0.1px; width: 0.1px;" src="./img/tutorial_img_1.png">
+        <img style="height: 0.1px; width: 0.1px;" src="./img/tutorial_img_2.png">
+        <img style="height: 0.1px; width: 0.1px;" src="./img/tutorial_img_3.png">
+        <img style="height: 0.1px; width: 0.1px;" src="./img/tutorial_img_4.png">
+        <p style="font-family: 'Noto Sans KR Light'; font-size: 0.1px; color: white;">.</p>
+        <p style="font-family: 'Noto Sans KR Bold'; font-size: 0.1px; color: white;">.</p>
+    </div>
+</body>
+</html>

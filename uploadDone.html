@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi"/>
+    <title>upload done</title>
+    <link rel="stylesheet" href="./font/NotoSansKR.css" type="text/css">
+    <style type="text/css">
+        html,
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+    
+        #wrap {
+            position: relative;
+            max-width: 420px;
+            min-width: 300px;
+            max-height: 850px;
+            min-height: 550px;
+            width: 100%;
+            height: 100%;
+            background: rgb(255, 255, 255);
+        }
+
+        #topButton {
+            width: 100%;
+            height: 10%;
+        }
+
+        #blank {
+            width: 100%;
+            height: 52%;
+        }
+
+        #container {
+            width: 100%;
+            height: 30%;
+            text-align: center;
+        }
+
+        #container h1 {
+            font-family: 'Noto Sans KR Bold';
+            font-size: 28px;
+            line-height: 56px;
+        }
+
+        #container p {
+            font-family: 'Noto Sans KR Light';
+            font-size: 18px;
+            line-height: 36px;
+        }
+
+        #bot-button {
+            width: 100%;
+            height: 20%;
+            text-align: center;
+        }
+
+        #bot-button button {
+            width: 40%;
+            height: 30%;
+            text-align: center;
+            font-family: 'Noto Sans KR Light';
+            font-size: 18px;
+		    color: rgb(255, 255, 255);
+            background-color: #F0B24C;
+            border: none;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="blank"></div>
+        <div id="container">
+            <h1><strong>저장 완료!</strong></h1>
+            <p>스티커를 태그하시면<br>녹음하신 소리를 들으실 수 있습니다.</p>
+        </div>
+        <div id="bot-button">
+            <button onClick="gotoSurveyForm();"></buttononClick>설문하러 가기</button>
+            <script>
+                // Open Survey form 
+                function gotoSurveyForm(){
+                    location.replace("https://docs.google.com/forms/d/1vI7L9oBunwgMZ7hV3-kZpViDd4l1Lx2xB8ZwsbRQMks/edit?usp=drive_web");
+                }
+
+                // Close function don't work in Chrome 
+                function closeWeb(){
+                    window.open('', '_self', '');
+                    window.close();
+                    return false;
+                }
+            </script>
+        </div>
+    </div>
+</body>
+</html>

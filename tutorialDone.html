@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi"/>
+    <title>tutorial</title>
+    <link rel="stylesheet" href="./font/NotoSansKR.css" type="text/css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <style type="text/css">
+        html,
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+    
+        #wrap {
+            position: relative;
+            max-width: 420px;
+            min-width: 300px;
+            max-height: 850px;
+            min-height: 550px;
+            width: 100%;
+            height: 100%;
+            background: rgb(255, 255, 255);
+        }
+
+        #topButton {
+            width: 100%;
+            height: 10%;
+        }
+
+        #tutorialImg {
+            width: 100%;
+            height: 55%;
+        }
+
+        #tutorialImg img {
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 80%;
+        }
+
+        #container {
+            width: 100%;
+            height: 30%;
+            text-align: center;
+        }
+
+        #container h1 {
+            font-family: 'Noto Sans KR Bold';
+            font-size: 28px;
+            line-height: 56px;
+        }
+
+        #container p {
+            font-family: 'Noto Sans KR Light';
+            font-size: 18px;
+            line-height: 36px;
+        }
+
+        #bot-button {
+            width: 100%;
+            height: 20%;
+            text-align: center;
+        }
+
+        #bot-button button {
+            width: 20%;
+            height: 30%;
+            text-align: center;
+            font-family: 'Noto Sans KR Light';
+            font-size: 18px;
+		    color: rgb(255, 255, 255);
+            background-color: #F0B24C;
+            border: none;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="tutorialImg">
+            <img src="./img/tutorial_img_5.png" alt="tutorial img 5">
+        </div>
+        <div id="container">
+            <h1><strong>시작하기</strong></h1>
+            <p>자 이제 그럼<br>시작해볼까요?</p>
+        </div>
+        <div id="bot-button">
+            <button onClick="location.href='./main.html'"></buttononClick>Go!</button>
+        </div>
+        <!--preload img-->
+        <img style="height: 0.1px; width: 0.1px;" src="./img/record_start.gif">
+        <img style="height: 0.1px; width: 0.1px;" src="./img/record_ing.gif">
+        <img style="height: 0.1px; width: 0.1px;" src="./img/record_end.gif">
+        <img style="height: 0.1px; width: 0.1px;" src="./img/waterdrop_charge.gif">
+    </div>
+</body>
+</html>
