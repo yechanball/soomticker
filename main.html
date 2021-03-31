@@ -709,8 +709,9 @@
             });
 
             audio.addEventListener('timeupdate', function(e){
-                var playtimeSec = Math.floor(audio.duration-audio.currentTime);
-                var playtimeMin = parseInt(playtimeSec/60);
+                var playtime = Math.floor(audio.duration-audio.currentTime);
+                var playtimeSec = parseInt(playtime%60);
+                var playtimeMin = parseInt(playtime/60);
             
                 ($("#timer")).html(parseInt(playtimeMin/10)+""+parseInt(playtimeMin%10)+":"+parseInt(playtimeSec/10)+""+parseInt(playtimeSec%10));
             }, false);
@@ -936,8 +937,9 @@
             });
 
             audio.addEventListener('timeupdate', function(e){
-                var playtimeSec = Math.floor(recordTime-audio.currentTime);
-                var playtimeMin = parseInt(playtimeSec/60);
+                var playtime = Math.floor(recordTime-audio.currentTime);
+                var playtimeSec = parseInt(playtime%60);
+                var playtimeMin = parseInt(playtime/60);
             
                 ($("#timer")).html(parseInt(playtimeMin/10)+""+parseInt(playtimeMin%10)+":"+parseInt(playtimeSec/10)+""+parseInt(playtimeSec%10));
             }, false);
