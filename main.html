@@ -812,221 +812,212 @@
         var recordButton = document.getElementById("recordbutton");
         var stopButton = document.getElementById("stopbutton");
 
-        ////////////////////////////////////////////////////////
-        // 여기부터 작업하기
-        if (navigator.mediaDevices.getUserMedia) {
-            console.log('getUserMedia supported.');
+        recordButton.addEventListener("click", startRecording);
+        stopButton.addEventListener("click", stopRecording);
+
+        function startRecording() {
+            console.log("recordButton clicked");
 
             var constraints = { audio: true, video:false };
 
-            let onSuccess = function (stream) {
-                recordButton.addEventListener("click", startRecording);
-                stopButton.addEventListener("click", stopRecording);
+            recordButton.disabled = true;
+            stopButton.disabled = false;
 
-                function startRecording() {
-                    recordButton.disabled = true;
-                    stopButton.disabled = false;
+            navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
+                audioContext = new AudioContext();
+                gumStream = stream;
+                input = audioContext.createMediaStreamSource(stream);
+                rec = new Recorder(input,{numChannels:1});
+                rec.record();
 
-                    audioContext = new AudioContext();
-                    gumStream = stream;
-                    input = audioContext.createMediaStreamSource(stream);
-                    rec = new Recorder(input,{numChannels:1});
-                    rec.record();
+                recordTime = 1;
+                min = "";
+                sec = "";
 
-                    recordTime = 1;
-                    min = "";
-                    sec = "";
+                console.log("recorder started");
+                
+                document.all.waterdrop.src="./img/record_start.gif";
+                document.all.uploadbutton.style.visibility="hidden";
+                document.all.recordbutton.style.visibility="hidden";
+                document.all.timer.style.visibility="visible";
 
-                    console.log("recorder started");
+                recordTimer = setInterval(function(){
+                    if(recordTime > 601) {
+                        alert("녹음 시간이 10분을 초과하였습니다! 녹음이 중지됩니다.");
+                    }
                     
-                    document.all.waterdrop.src="./img/record_start.gif";
-                    document.all.uploadbutton.style.visibility="hidden";
-                    document.all.recordbutton.style.visibility="hidden";
-                    document.all.timer.style.visibility="visible";
+                    min = parseInt(recordTime/60);
+                    sec = recordTime%60;
 
-                    recordTimer = setInterval(function(){
-                        if(recordTime > 601) {
-                            alert("녹음 시간이 10분을 초과하였습니다! 녹음이 중지됩니다.");
-                        }
-                        
-                        min = parseInt(recordTime/60);
-                        sec = recordTime%60;
+                    ($("#timer")).html(parseInt(min/10)+""+parseInt(min%10)+":"+parseInt(sec/10)+""+parseInt(sec%10));
+                    recordTime++;
+                }, 1000);
 
-                        ($("#timer")).html(parseInt(min/10)+""+parseInt(min%10)+":"+parseInt(sec/10)+""+parseInt(sec%10));
-                        recordTime++;
-                    }, 1000);
+                setTimeout(function() {
+                    //document.all.recordpausebutton.style.visibility="visible";
+                    document.all.stopbutton.style.visibility="visible";
+                    document.all.waterdrop.style.visibility = "hidden";
+                    document.all.waterdropIng.style.visibility = "visible";
+                    //document.all.waterdrop.src="./img/record_ing.gif";
+                }, 1310);
+            }).catch(function(err) {
+                console.log("enable the record button if getUserMedia() fails");
+                //enable the record button if getUserMedia() fails
+                recordButton.disabled = false;
+                stopButton.disabled = true;
+            });
+        }
 
-                    setTimeout(function() {
-                        //document.all.recordpausebutton.style.visibility="visible";
-                        document.all.stopbutton.style.visibility="visible";
-                        document.all.waterdrop.style.visibility = "hidden";
-                        document.all.waterdropIng.style.visibility = "visible";
-                        //document.all.waterdrop.src="./img/record_ing.gif";
-                    }, 1310);
+        function stopRecording() {
+            stopButton.disabled = true;
+            recordButton.disabled = false;
+
+            rec.stop();
+            gumStream.getAudioTracks()[0].stop();
+            clearInterval(recordTimer);
+            rec.exportWAV(createLink);
+
+            console.log("recorder stopped");
+
+            document.all.waterdropIng.style.visibility = "hidden";
+            document.all.waterdrop.src="./img/record_end.gif";
+            document.all.waterdrop.style.visibility = "visible";
+
+            //document.all.recordpausebutton.style.visibility="hidden";
+            //document.all.recordresumebutton.style.visibility="hidden";
+            document.all.stopbutton.style.visibility="hidden";
+
+            setTimeout(function() {
+                document.all.waterdrop.style.visibility="hidden";
+                document.all.waterdrop.src="./img/waterdrop_blank.png";
+                document.all.playbutton.style.visibility="visible";
+                document.all.deletebuttonIcon.style.visibility="visible";
+                document.all.swiperDiv.style.visibility="visible";
+                document.all.dragdirection.style.visibility="visible";
+                document.all.dragposition.style.visibility="visible";
+                if(tryNum==0){
+                    document.all.blankSpace2.style.visibility="visible";
                 }
+            }, 1800);
+        }
 
-                function stopRecording() {
-                    stopButton.disabled = true;
-                    recordButton.disabled = false;
+        function createLink(blob) {
+            var audioURL = URL.createObjectURL(blob);
+            var filename = new Date().toISOString();
 
-                    rec.stop();
-                    gumStream.getAudioTracks()[0].stop();
-                    clearInterval(recordTimer);
-                    rec.exportWAV(createLink);
+            const audio = document.querySelector('.record-audio'); 
 
-                    console.log("recorder stopped");
+            audio.controls = false;
+            audio.src = audioURL;
+            console.log("recording audio can play");
 
-                    document.all.waterdropIng.style.visibility = "hidden";
-                    document.all.waterdrop.src="./img/record_end.gif";
-                    document.all.waterdrop.style.visibility = "visible";
+            playbutton.onclick = function (e) {
+                this.currentTime = 0;
+                audio.play();
 
-                    //document.all.recordpausebutton.style.visibility="hidden";
-                    //document.all.recordresumebutton.style.visibility="hidden";
-                    document.all.stopbutton.style.visibility="hidden";
-
-                    setTimeout(function() {
-                        document.all.waterdrop.style.visibility="hidden";
-                        document.all.waterdrop.src="./img/waterdrop_blank.png";
-                        document.all.playbutton.style.visibility="visible";
-                        document.all.deletebuttonIcon.style.visibility="visible";
-                        document.all.swiperDiv.style.visibility="visible";
-                        document.all.dragdirection.style.visibility="visible";
-                        document.all.dragposition.style.visibility="visible";
-                        if(tryNum==0){
-                            document.all.blankSpace2.style.visibility="visible";
-                        }
-                    }, 1800);
-                }
-
-                function createLink(blob) {
-                    var audioURL = URL.createObjectURL(blob);
-	                var filename = new Date().toISOString();
-
-                    const audio = document.querySelector('.record-audio'); 
-
-                    audio.controls = false;
-                    audio.src = audioURL;
-                    console.log("recording audio can play");
-
-                    playbutton.onclick = function (e) {
-                        this.currentTime = 0;
-                        audio.play();
-
-                        document.all.playbutton.style.visibility="hidden";
-                        document.all.swiperDiv.style.visibility="hidden";
-                        document.all.pausebutton.style.visibility="visible";
-                    }
-
-                    pausebutton.onclick = function (e) {
-                        audio.pause();
-
-                        document.all.playbutton.style.visibility="visible";
-                        document.all.swiperDiv.style.visibility="visible";
-                        document.all.pausebutton.style.visibility="hidden";
-                    }
-
-                    audio.addEventListener('canplay', function(e){
-                        min = parseInt(recordTime/60);
-                        sec = parseInt(recordTime%60);
-
-                        ($("#timer")).html(parseInt(min/10)+""+parseInt(min%10)+":"+parseInt(sec/10)+""+parseInt(sec%10));
-                    });
-
-                    audio.addEventListener('timeupdate', function(e){
-                        var playtimeSec = Math.floor(recordTime-audio.currentTime);
-                        var playtimeMin = parseInt(playtimeSec/60);
-                    
-                        ($("#timer")).html(parseInt(playtimeMin/10)+""+parseInt(playtimeMin%10)+":"+parseInt(playtimeSec/10)+""+parseInt(playtimeSec%10));
-                    }, false);
-
-                    audio.addEventListener('ended', function() { 
-                        min = parseInt(recordTime/60);
-                        sec = parseInt(recordTime%60);
-
-                        ($("#timer")).html(parseInt(min/10)+""+parseInt(min%10)+":"+parseInt(sec/10)+""+parseInt(sec%10));
-
-                        document.all.playbutton.style.visibility="visible";
-                        document.all.pausebutton.style.visibility="hidden";
-                    }, false);
-
-                    finalUploadButton.onclick = function (e) {
-                        document.all.uploadCheckPop.style.visibility="hidden";
-                        document.all.uploading.style.visibility = "visible";
-
-                        /////////////////////////////////////////////
-                        // 서버에 업로드해야 하는 구역
-                        // audio.src 값이 오디오 소스값
-                        /////////////////////////////////////////////
-                        console.log("record file upload start");
-
-                        ////////////////////////////////////////////
-                        // 업로드 진행도는 실제 서버 작업할 때 수정하기
-                        var upProgress = 0;
-                        var UploadProgress = setInterval(function(){
-                            $("#uploadProgress").html(upProgress+"%");
-                            upProgress++;
-                        }, 17);
-
-                        setTimeout(function() {
-                            clearInterval(UploadProgress);
-                            setTimeout(function() {
-                                console.log("record file upload done");
-                                location.replace("./uploadDone.html");
-                            }, 100);
-                        }, 1700);
-                        //////////////////////////////////////////////
-                    }
-
-                    deletebutton.onclick = function (e) {
-                        audio.src = "none";
-                        tryNum++;
-                        recordTime = 0;
-                        ($("#timer")).html("00:00");
-                        
-                        // 삭제 팝업 애니메이션 제거
-                        popUpFileElement.classList.remove('animate__animated', 'animate__zoomIn');
-                        popUpUploadElement.classList.remove('animate__animated', 'animate__zoomIn');
-                        popUpDeleteElement.classList.remove('animate__animated', 'animate__zoomIn');
-                        popDownElement.classList.remove('animate__animated', 'animate__fadeInDown');
-
-                        document.all.playbutton.style.visibility="hidden";
-                        document.all.pausebutton.style.visibility="hidden";
-                        document.all.deletePop.style.visibility="hidden";
-                        document.all.backGround.style.visibility="hidden";
-                        document.all.deletebuttonIcon.style.visibility="hidden";
-                        document.all.dragdirection.style.visibility="hidden";
-                        document.all.dragposition.style.visibility="hidden";
-                        document.all.waterdrop.style.visibility="visible";
-                        document.all.uploadbutton.style.visibility="visible";
-                        document.all.recordbutton.style.visibility="visible";
-                        //document.all.recordpausebutton.style.visibility="hidden";
-                        document.all.stopbutton.style.visibility="hidden";
-                        document.all.timer.style.visibility="hidden";
-                        
-                        // 입히기 삭제 내용
-                        document.all.swiperDiv.style.visibility="hidden";
-                        document.all.dragup.style.bottom = "-100%";
-                        document.all.dragwaterdrop.style.visibility = "hidden";
-                        document.all.recordfinishpop.style.visibility = "hidden";
-                        document.all.timer.style.opacity = 1;
-
-                        swiper.activeIndex = 1;
-                        swiper.slideReset();
-
-                        console.log("record file deleted");
-                    }
-                }
+                document.all.playbutton.style.visibility="hidden";
+                document.all.swiperDiv.style.visibility="hidden";
+                document.all.pausebutton.style.visibility="visible";
             }
 
-            let onError = function (err) {
-                console.log('The following error occured: ' + err);
+            pausebutton.onclick = function (e) {
+                audio.pause();
+
+                document.all.playbutton.style.visibility="visible";
+                document.all.swiperDiv.style.visibility="visible";
+                document.all.pausebutton.style.visibility="hidden";
             }
 
-            navigator.mediaDevices.getUserMedia(constraints).then(onSuccess, onError);
+            audio.addEventListener('canplay', function(e){
+                min = parseInt(recordTime/60);
+                sec = parseInt(recordTime%60);
 
-        } else {
-            alert("해당 브라우저에서는 음성 녹음 기능을 지원하지 않습니다!");
-            console.log('getUserMedia not supported on your browser!');
+                ($("#timer")).html(parseInt(min/10)+""+parseInt(min%10)+":"+parseInt(sec/10)+""+parseInt(sec%10));
+            });
+
+            audio.addEventListener('timeupdate', function(e){
+                var playtimeSec = Math.floor(recordTime-audio.currentTime);
+                var playtimeMin = parseInt(playtimeSec/60);
+            
+                ($("#timer")).html(parseInt(playtimeMin/10)+""+parseInt(playtimeMin%10)+":"+parseInt(playtimeSec/10)+""+parseInt(playtimeSec%10));
+            }, false);
+
+            audio.addEventListener('ended', function() { 
+                min = parseInt(recordTime/60);
+                sec = parseInt(recordTime%60);
+
+                ($("#timer")).html(parseInt(min/10)+""+parseInt(min%10)+":"+parseInt(sec/10)+""+parseInt(sec%10));
+
+                document.all.playbutton.style.visibility="visible";
+                document.all.pausebutton.style.visibility="hidden";
+            }, false);
+
+            finalUploadButton.onclick = function (e) {
+                document.all.uploadCheckPop.style.visibility="hidden";
+                document.all.uploading.style.visibility = "visible";
+
+                /////////////////////////////////////////////
+                // 서버에 업로드해야 하는 구역
+                // audio.src 값이 오디오 소스값
+                /////////////////////////////////////////////
+                console.log("record file upload start");
+
+                ////////////////////////////////////////////
+                // 업로드 진행도는 실제 서버 작업할 때 수정하기
+                var upProgress = 0;
+                var UploadProgress = setInterval(function(){
+                    $("#uploadProgress").html(upProgress+"%");
+                    upProgress++;
+                }, 17);
+
+                setTimeout(function() {
+                    clearInterval(UploadProgress);
+                    setTimeout(function() {
+                        console.log("record file upload done");
+                        location.replace("./uploadDone.html");
+                    }, 100);
+                }, 1700);
+                //////////////////////////////////////////////
+            }
+
+            deletebutton.onclick = function (e) {
+                audio.src = "none";
+                tryNum++;
+                recordTime = 0;
+                ($("#timer")).html("00:00");
+                
+                // 삭제 팝업 애니메이션 제거
+                popUpFileElement.classList.remove('animate__animated', 'animate__zoomIn');
+                popUpUploadElement.classList.remove('animate__animated', 'animate__zoomIn');
+                popUpDeleteElement.classList.remove('animate__animated', 'animate__zoomIn');
+                popDownElement.classList.remove('animate__animated', 'animate__fadeInDown');
+
+                document.all.playbutton.style.visibility="hidden";
+                document.all.pausebutton.style.visibility="hidden";
+                document.all.deletePop.style.visibility="hidden";
+                document.all.backGround.style.visibility="hidden";
+                document.all.deletebuttonIcon.style.visibility="hidden";
+                document.all.dragdirection.style.visibility="hidden";
+                document.all.dragposition.style.visibility="hidden";
+                document.all.waterdrop.style.visibility="visible";
+                document.all.uploadbutton.style.visibility="visible";
+                document.all.recordbutton.style.visibility="visible";
+                //document.all.recordpausebutton.style.visibility="hidden";
+                document.all.stopbutton.style.visibility="hidden";
+                document.all.timer.style.visibility="hidden";
+                
+                // 입히기 삭제 내용
+                document.all.swiperDiv.style.visibility="hidden";
+                document.all.dragup.style.bottom = "-100%";
+                document.all.dragwaterdrop.style.visibility = "hidden";
+                document.all.recordfinishpop.style.visibility = "hidden";
+                document.all.timer.style.opacity = 1;
+
+                swiper.activeIndex = 1;
+                swiper.slideReset();
+
+                console.log("record file deleted");
+            }
         }
     </script>
 </body>
