@@ -644,6 +644,23 @@
             }
         });
 
+        function getExtension(filename) {
+            var parts = filename.split('.');
+            return parts[parts.length - 1];
+        }
+        function isAudio(filename) {
+            var ext = getExtension(filename);
+            switch (ext.toLowerCase()) {
+                case 'mp3':
+                case 'wav':
+                case 'm4a':
+                case 'aac':
+                case 'ogg'://etc
+                return true;
+            }return false;
+        }
+
+
         // 파일 업로드시 재생 및 입히기 기능
         function tempUpload(){
             /////////////////////////////////////////////////////////
@@ -670,12 +687,21 @@
             }
             
             // 오디오 기능
+            var audioFile = document.getElementById('audio_file').files[0];
+            console.log(audioFile.name);
+
+            if(isAudio(audioFile.name)){
+                console.log("collect Audio File input!");
+            }else{
+                console.log("It is not Audio File! Page reload!");
+                alert("잘못된 파일 형식입니다.");
+                location.reload();
+            }
+
+            const audioURL = window.URL.createObjectURL(audioFile);            
             const audio = document.querySelector('.record-audio'); 
 
             audio.controls = false;
-            // 오디오 파일 소스 불러오기
-            //const audioURL = 서버의 오디오 파일 URL;
-            const audioURL = "./img/TempVoice.wav";
             audio.src = audioURL;
             console.log("Temporary upload done! Audio activate!");
 
