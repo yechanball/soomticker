@@ -504,7 +504,7 @@
         <div id="timerPosition"><span id="timer">00:00</span></div>
         <img id="waterdrop" src="./img/waterdrop_blank.png" alt="water drop blank img">
         <img id="waterdropIng" src="./img/record_ing.gif" alt="recording img">
-        <audio class="record-audio" src="#"></audio>
+        <audio controls class="record-audio" src="#"></audio>
 
         <!--버튼-->
         <button id="pausebutton" class="pause"><img src="./img/waterdrop_pausebutton.png" alt="water drop pause img"></button>
@@ -542,7 +542,6 @@
             <button onclick="closeDeletePop()" style="left: 12%; color: rgb(0, 0, 0); background-color: #ececec;">취소</button>
             <button id="deletebutton" class="delete" style="right: 12%; color: rgb(255, 255, 255); background-color: #F0B24C;">재녹음</button>
         </div>
-        <audio controls class="record-audio2" src="#"></audio>
         <a class="downloadLink" href="#" download><button id="savebutton" class="save"><img src="./img/button_save.png" alt="save button img"></button></a>
     </div>
 
@@ -714,11 +713,9 @@
 
             const audioURL = window.URL.createObjectURL(audioFile);            
             const audio = document.querySelector('.record-audio');
-            const audio2 = document.querySelector('.record-audio2'); 
 
             audio.controls = false;
             audio.src = audioURL;
-            audio2.src = audioURL;
 
             var link = document.querySelector('.downloadLink');
             link.href = audioURL;
