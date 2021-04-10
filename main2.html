@@ -951,6 +951,9 @@
             const audio = document.querySelector('.record-audio'); 
 
             audio.src = audioURL;
+            var link = document.querySelector('.downloadLink');
+            link.href = audioURL;
+            link.download = "SOOM_Voice.mp3";
             console.log("recording audio can play");
 
             playbutton.onclick = function (e) {
