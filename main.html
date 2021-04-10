@@ -709,11 +709,11 @@
             
             // 오디오 기능
             const audio = document.querySelector('.record-audio'); 
-
             audio.controls = false;
+            
             // 오디오 파일 소스 불러오기
-            //const audioURL = 서버의 오디오 파일 URL;
-            const audioURL = "./img/TempVoice.wav";
+            var audioFile = document.getElementById('audio_file').files[0];
+            const audioURL = window.URL.createObjectURL(audioFile); 
             audio.src = audioURL;
             console.log("Temporary upload done! Audio activate!");
 
