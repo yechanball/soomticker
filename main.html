@@ -34,28 +34,6 @@
             background: rgb(255, 255, 255);
         }
 
-        #blankSpace {
-            position: absolute;
-            width: 100%; 
-			height: 100%;
-			margin: 0%;
-            z-index: 1; 
-            opacity: 0;
-            background-color: rgb(255, 255, 255);
-			visibility: visible;
-        }
-
-        #blankSpace2 {
-            position: absolute;
-            width: 100%; 
-			height: 100%;
-			margin: 0%;
-            z-index: 1; 
-            opacity: 0;
-            background-color: rgb(255, 255, 255);
-			visibility: hidden;
-        }
-
         #backGround {
             position: absolute;
             width: 100%; 
@@ -76,10 +54,34 @@
             z-index: 1; 
             opacity: 0.7;
             background-color: black;
-			visibility: hidden;
+			visibility: visible;
         }
 
         #mainTutorial2 {
+            position: absolute;
+            width: 100%; 
+			height: 100%;
+			margin: 0%;
+            text-align: center;
+            z-index: 1; 
+            opacity: 0.7;
+            background-color: black;
+			visibility: hidden;
+        }
+
+        #mainTutorial3 {
+            position: absolute;
+            width: 100%; 
+			height: 100%;
+			margin: 0%;
+            text-align: center;
+            z-index: 1; 
+            opacity: 0.7;
+            background-color: black;
+			visibility: hidden;
+        }
+
+        #mainTutorial4 {
             position: absolute;
             width: 100%; 
 			height: 100%;
@@ -127,9 +129,28 @@
 			visibility: hidden;
         }
 
+        #recordTutorial4 {
+            position: absolute;
+            width: 100%; 
+			height: 100%;
+			margin: 0%;
+            text-align: center;
+            z-index: 1; 
+            opacity: 0.7;
+            background-color: black;
+			visibility: hidden;
+        }
+
+        #tutorialStep {
+            position: absolute;
+            width: 20%;
+            top: 3%;
+            right: 5%;
+        }
+
         #tutorialWord {
             position: relative;
-            top: 40%;
+            top: 45%;
             font-family: 'Noto Sans KR Bold';
             font-size: 20px;
             line-height: 35px;
@@ -431,29 +452,44 @@
         
         <!--튜토리얼-->
         <div id="mainTutorial1" onclick="mainTutorial1Del()">
-            <p id="tutorialWord">녹음 버튼을 눌러 녹음<br>(최대 10분 녹음 가능)</p>
+            <img id="tutorialStep" src="./img/tutorial_step_1.png" alt="tutorial step 1">
+            <p id="tutorialWord">녹음하는 방법 살펴보기</p>
+        </div>
+        <div id="mainTutorial2" onclick="mainTutorial2Del()">
+            <img id="tutorialStep" src="./img/tutorial_step_2.png" alt="tutorial step 2">
+            <p id="tutorialWord">버튼을 눌러 녹음하기</p>
+            <img style="position: absolute; width: 10%; top: 55%; left: 35%;" src="./img/tutorial_direct_down.png" alt="tutorial direct down">
             <img style="position:absolute; bottom: 10.5%; left: 41%; width: 18%; border-radius: 70%; opacity: 1;"
                 src="./img/button_record.png" alt="record button img">
         </div>
-        <div id="mainTutorial2" onclick="mainTutorial2Del()">
+        <div id="mainTutorial3" onclick="mainTutorial3Del()">
+            <img id="tutorialStep" src="./img/tutorial_step_3.png" alt="tutorial step 3">
             <label style="position: absolute;top: 3%;left: 5%;width: 13%;height: 35px;text-align: center;font-size: 15px;font-weight: bold;line-height: 34px;
 		            color: rgb(0, 0, 0);background-color: #F5F5F5;border: none;border-radius: 30px;">+</label>
-            <!--
-            <button style="position: absolute; top: 3%; left: 5%; width: 13%; height: 35px; text-align: center; font-size: 15px; color: rgb(0, 0, 0); background-color: #F5F5F5;
-                    border: none; border-radius: 30px;">+</button>
-            -->
-            <p id="tutorialWord">+ 버튼을 눌러 파일 불러오기<br>(10분 정도의 녹음파일 가능)</p>
+            <img style="position: absolute; width: 22%; bottom: 55%; left: 35%;" src="./img/tutorial_direct_up.png" alt="tutorial direct up">
+            <p id="tutorialWord">버튼을 눌러 파일 불러오기</p>
         </div>
-        <div id="blankSpace2" onclick="blankSpace2Del()"></div>
+        <div id="mainTutorial4" onclick="mainTutorial4Del()">
+            <img id="tutorialStep" src="./img/tutorial_step_4.png" alt="tutorial step 4">
+            <p id="tutorialWord">이제 녹음을 시작해볼까요?</p>
+        </div>
+
         <div id="recordTutorial1" onclick="recordTutorial1Del()">
+            <img id="tutorialStep" src="./img/tutorial_step_1.png" alt="tutorial step 1">
+            <p id="tutorialWord">저장하는 방법 살펴보기</p>
+        </div>
+        <div id="recordTutorial2" onclick="recordTutorial2Del()">
+            <img id="tutorialStep" src="./img/tutorial_step_2.png" alt="tutorial step 2">
             <p style="position:relative; top: 20%; font-family: 'Noto Sans KR Bold'; font-size: 20px; line-height: 35px; color: white;">재생 버튼을 눌러 다시 듣기</p>
             <img style="position: absolute; top: 32%; left: 30%; width: 40%; background-color: rgba(255, 255, 255, 0);" src="./img/recordtutorial_play.png" alt="play button"> 
         </div>
-        <div id="recordTutorial2" onclick="recordTutorial2Del()">
+        <div id="recordTutorial3" onclick="recordTutorial3Del()">
+            <img id="tutorialStep" src="./img/tutorial_step_3.png" alt="tutorial step 3">
             <p style="position:relative; top: 18%; font-family: 'Noto Sans KR Bold'; font-size: 20px; line-height: 35px; color: white;">아래로 드래그해서<br>스티커에 소리 저장하기</p>
             <img style="position: absolute; top: 32%; left: 30%; width: 40%;" src="./img/waterdrop_playbutton.png" alt="play button"> 
         </div>
-        <div id="recordTutorial3" onclick="recordTutorial3Del()">
+        <div id="recordTutorial4" onclick="recordTutorial4Del()">
+            <img id="tutorialStep" src="./img/tutorial_step_4.png" alt="tutorial step 4">
             <img style="position: absolute; top: 10%; left: 45%; width: 10%;" src="./img/button_delete.png" alt="delete button img">
             <p style="position:relative; top: 18%; font-family: 'Noto Sans KR Bold'; font-size: 20px; line-height: 35px; color: white;">휴지통을 클릭해서<br>삭제 후 재녹음하기</p> 
         </div>
@@ -539,22 +575,22 @@
         // 튜토리얼
         var tryNum = 0;
 
-        function blankSpaceDel(){
-            document.all.blankSpace.style.visibility="hidden";
-            document.all.mainTutorial1.style.visibility="visible";
-        }
         function mainTutorial1Del(){
             document.all.mainTutorial1.style.visibility="hidden";
             document.all.mainTutorial2.style.visibility="visible";
         }
         function mainTutorial2Del(){
             document.all.mainTutorial2.style.visibility="hidden";
+            document.all.mainTutorial3.style.visibility="visible";
+        }
+        function mainTutorial3Del(){
+            document.all.mainTutorial3.style.visibility="hidden";
+            document.all.mainTutorial4.style.visibility="visible";
+        }
+        function mainTutorial4Del(){
+            document.all.mainTutorial4.style.visibility="hidden";
         }
 
-        function blankSpace2Del(){
-            document.all.blankSpace2.style.visibility="hidden";
-            document.all.recordTutorial1.style.visibility="visible";
-        }
         function recordTutorial1Del(){
             document.all.recordTutorial1.style.visibility="hidden";
             document.all.recordTutorial2.style.visibility="visible";
@@ -565,6 +601,10 @@
         }
         function recordTutorial3Del(){
             document.all.recordTutorial3.style.visibility="hidden";
+            document.all.recordTutorial4.style.visibility="visible";
+        }
+        function recordTutorial4Del(){
+            document.all.recordTutorial4.style.visibility="hidden";
         }
 
         // 팝업 & 애니메이션
@@ -683,7 +723,7 @@
             document.all.dragdirection.style.visibility="visible";
             document.all.dragposition.style.visibility="visible";
             if(tryNum==0){
-                document.all.blankSpace2.style.visibility="visible";
+                document.all.recordTutorial1.style.visibility="visible";
             }
             
             // 오디오 기능
@@ -923,7 +963,7 @@
                 document.all.dragdirection.style.visibility="visible";
                 document.all.dragposition.style.visibility="visible";
                 if(tryNum==0){
-                    document.all.blankSpace2.style.visibility="visible";
+                    document.all.recordTutorial1.style.visibility="visible";
                 }
             }, 1800);
         }
