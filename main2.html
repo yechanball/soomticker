@@ -542,7 +542,7 @@
             <button onclick="closeDeletePop()" style="left: 12%; color: rgb(0, 0, 0); background-color: #ececec;">취소</button>
             <button id="deletebutton" class="delete" style="right: 12%; color: rgb(255, 255, 255); background-color: #F0B24C;">재녹음</button>
         </div>
-
+        <audio controls class="record-audio2" src="#"></audio>
         <a class="downloadLink" href="#" download><button id="savebutton" class="save"><img src="./img/button_save.png" alt="save button img"></button></a>
     </div>
 
@@ -713,10 +713,12 @@
             }
 
             const audioURL = window.URL.createObjectURL(audioFile);            
-            const audio = document.querySelector('.record-audio'); 
+            const audio = document.querySelector('.record-audio');
+            const audio2 = document.querySelector('.record-audio2'); 
 
             audio.controls = false;
             audio.src = audioURL;
+            audio2.src = audioURL;
 
             var link = document.querySelector('.downloadLink');
             link.href = audioURL;
