@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi"/>
-    <title>main</title>
+    <title>녹음하기</title>
     <link rel="stylesheet" href="./font/NotoSansKR.css" type="text/css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
@@ -458,7 +458,7 @@
         <div id="mainTutorial2" onclick="mainTutorial2Del()">
             <img id="tutorialStep" src="./img/tutorial_step_2.png" alt="tutorial step 2">
             <p id="tutorialWord">버튼을 눌러 녹음하기</p>
-            <img style="position: absolute; width: 10%; top: 55%; left: 35%;" src="./img/tutorial_direct_down.png" alt="tutorial direct down">
+            <img style="position: absolute; width: 10%; height: 20%;top: 55%; left: 35%; margin-top: 10px; margin-bottom: 10px;" src="./img/tutorial_direct_down.png" alt="tutorial direct down">
             <img style="position:absolute; bottom: 10.5%; left: 41%; width: 18%; border-radius: 70%; opacity: 1;"
                 src="./img/button_record.png" alt="record button img">
         </div>
@@ -466,8 +466,8 @@
             <img id="tutorialStep" src="./img/tutorial_step_3.png" alt="tutorial step 3">
             <label style="position: absolute;top: 3%;left: 5%;width: 13%;height: 35px;text-align: center;font-size: 15px;font-weight: bold;line-height: 34px;
 		            color: rgb(0, 0, 0);background-color: #F5F5F5;border: none;border-radius: 30px;">+</label>
-            <img style="position: absolute; width: 22%; bottom: 55%; left: 35%;" src="./img/tutorial_direct_up.png" alt="tutorial direct up">
-            <p id="tutorialWord">버튼을 눌러 파일 불러오기</p>
+            <img style="position: absolute; width: 22%; height: 35%; bottom: 55%; left: 35%;" src="./img/tutorial_direct_up.png" alt="tutorial direct up">
+            <p id="tutorialWord">버튼을 눌러 파일 첨부하기</p>
         </div>
         <div id="mainTutorial4" onclick="mainTutorial4Del()">
             <img id="tutorialStep" src="./img/tutorial_step_4.png" alt="tutorial step 4">
@@ -543,16 +543,16 @@
         <!--레코드 완료-->
         <div id="recordfinishpop" class="popDown">
             <br><h style="font-family: 'Noto Sans KR Bold'; font-size: 28px;">녹음 완료</h><br>
-            <P>녹음된 파일을 NFC 스티커에<br>업로드하시겠습니까?</P>
+            <P>녹음된 파일을 스티커에<br>저장하시겠어요?</P>
             <button onclick="openDeletePop()" style="left: 12%; background-color: #ececec;">재녹음</button>
-            <button onclick="openUploadCheckPop()" style="right: 12%; color: rgb(255, 255, 255); background-color: #F0B24C;">업로드</button>
+            <button onclick="openUploadCheckPop()" style="right: 12%; color: rgb(255, 255, 255); background-color: #F0B24C;">저장</button>
         </div>
 
         <!--업로드-->
         <div id="uploadCheckPop" class="popUpUpload">
-            <p>스티커에 소리를 입히시겠습니까?<br>이후 새로운 소리를 입힐 수 없습니다.</p><br><br>
+            <p>스티커에 소리를 저장하시겠어요?<br>최종 저장 후, 재녹음은 불가능해요.</p><br><br>
             <button onclick="closeUploadCheckPop()" style="left: 12%; color: rgb(0, 0, 0); background-color: #ececec;">취소</button>
-            <button id="finalUploadButton" style="right: 12%; color: rgb(255, 255, 255); background-color: #F0B24C;">입히기</button>
+            <button id="finalUploadButton" style="right: 12%; color: rgb(255, 255, 255); background-color: #F0B24C;">최종 저장</button>
         </div> 
 
         <div id="uploading">
@@ -562,7 +562,7 @@
 
         <!--삭제-->
         <div id="deletePop" class="popUpDelete">
-            <p>현재 녹음된 파일은 삭제됩니다.<br>그래도 재녹음 하시겠습니까?</p><br><br>
+            <p>현재 녹음된 파일은 삭제됩니다.<br>그래도 재녹음 하시겠어요?</p><br><br>
             <button onclick="closeDeletePop()" style="left: 12%; color: rgb(0, 0, 0); background-color: #ececec;">취소</button>
             <button id="deletebutton" class="delete" style="right: 12%; color: rgb(255, 255, 255); background-color: #F0B24C;">재녹음</button>
         </div>
