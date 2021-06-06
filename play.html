@@ -80,7 +80,7 @@
 <body>
     <div id="wrap">
         <div id="timerPosition"><span id="timer">00:00</span></div>
-        <audio controls class="record-audio"></audio>
+        <audio class="record-audio"></audio>
         <button id="playbutton" class="play"><img src="./img/waterdrop_playbutton.png" alt="water drop play img"></button>
         <button id="stopbutton" class="stop"><img src="./img/record_ing.gif" alt="water drop charging img"></button>
         <a class="downloadLink" href="#" download><button id="savebutton" class="save"><img src="./img/button_save.png" alt="save button img"></button></a>
@@ -90,7 +90,7 @@
         const audio = document.querySelector('.record-audio'); 
         var link = document.querySelector('.downloadLink');
 
-        audio.controls = true;
+        audio.controls = false;
         // 오디오 파일 소스 불러오기
         //const audioURL = 서버의 오디오 파일 URL;
         const audioURL = "https://cdn.glitch.com/3b31f53f-f8f3-4160-8aeb-ee601526f48e%2FTaku%20Takahashi%20-%20Shutujin.mp3"; //임시로 설정한 오디오 파일
