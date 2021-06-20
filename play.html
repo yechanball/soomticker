@@ -79,7 +79,7 @@
 </head>
 <body>
     <div id="wrap">
-        <div id="timerPosition"><span id="timer">00:00</span></div>
+        <div id="timerPosition"><span id="timer">재생 버튼을 눌러주세요</span></div>
         <audio class="record-audio"></audio>
         <button id="playbutton" class="play"><img src="./img/waterdrop_playbutton.png" alt="water drop play img"></button>
         <button id="stopbutton" class="stop"><img src="./img/record_ing.gif" alt="water drop charging img"></button>
@@ -114,11 +114,9 @@
             document.all.stopbutton.style.visibility="hidden";
         }
         
+        /*
         audio.addEventListener("loadedmetadata", function(e){
             audio.currentTime = 24*60*60;
-            audio.removeEventListener("loadedmetadata", function(e){
-                audio.currentTime = 24*60*60;
-            });
         });
 
         audio.addEventListener("canplay", function(e){
@@ -127,14 +125,7 @@
             sec = parseInt(audioTime%60);
 
             ($("#timer")).html(parseInt(min/10)+""+parseInt(min%10)+":"+parseInt(sec/10)+""+parseInt(sec%10));
-            audio.removeEventListener("canplay", function(e){
-                var audioTime = audio.duration;
-                min = parseInt(audioTime/60);
-                sec = parseInt(audioTime%60);
-
-                ($("#timer")).html(parseInt(min/10)+""+parseInt(min%10)+":"+parseInt(sec/10)+""+parseInt(sec%10));
-            });
-        });
+        });*/
 
         audio.addEventListener("timeupdate", function(e){
             var playtime = Math.floor(audio.duration-audio.currentTime);
@@ -143,7 +134,7 @@
         
             ($("#timer")).html(parseInt(playtimeMin/10)+""+parseInt(playtimeMin%10)+":"+parseInt(playtimeSec/10)+""+parseInt(playtimeSec%10));
         }, false);
-/*
+
         audio.addEventListener("ended", function() { 
             var audioTime = audio.duration;
             min = parseInt(audioTime/60);
@@ -152,7 +143,7 @@
             ($("#timer")).html(parseInt(min/10)+""+parseInt(min%10)+":"+parseInt(sec/10)+""+parseInt(sec%10));
             document.all.playbutton.style.visibility="visible";
             document.all.stopbutton.style.visibility="hidden";
-        }, false);*/
+        }, false);
     </script>
 </body>
 </html>
