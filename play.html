@@ -113,20 +113,28 @@
             document.all.playbutton.style.visibility="visible";
             document.all.stopbutton.style.visibility="hidden";
         }
-        /*
+        
         audio.addEventListener("loadedmetadata", function(e){
             audio.currentTime = 24*60*60;
-            alert(audio.currentTime + "loaded meta data");
+            audio.removeEventListener("loadedmetadata", function(e){
+                audio.currentTime = 24*60*60;
+            });
         });
 
         audio.addEventListener("canplay", function(e){
             var audioTime = audio.duration;
             min = parseInt(audioTime/60);
             sec = parseInt(audioTime%60);
-            alert(audio.currentTime + "canplay" + audio.duration);
 
             ($("#timer")).html(parseInt(min/10)+""+parseInt(min%10)+":"+parseInt(sec/10)+""+parseInt(sec%10));
-        });*/
+            audio.removeEventListener("canplay", function(e){
+                var audioTime = audio.duration;
+                min = parseInt(audioTime/60);
+                sec = parseInt(audioTime%60);
+
+                ($("#timer")).html(parseInt(min/10)+""+parseInt(min%10)+":"+parseInt(sec/10)+""+parseInt(sec%10));
+            });
+        });
 
         audio.addEventListener("timeupdate", function(e){
             var playtime = Math.floor(audio.duration-audio.currentTime);
