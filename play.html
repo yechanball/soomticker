@@ -116,12 +116,14 @@
 
         audio.addEventListener("loadedmetadata", function(e){
             audio.currentTime = 24*60*60;
+            alert(audio.currentTime + "loaded meta data");
         });
 
         audio.addEventListener("canplay", function(e){
             var audioTime = audio.duration;
             min = parseInt(audioTime/60);
             sec = parseInt(audioTime%60);
+            alert(audio.currentTime + "canplay" + audio.duration);
 
             ($("#timer")).html(parseInt(min/10)+""+parseInt(min%10)+":"+parseInt(sec/10)+""+parseInt(sec%10));
         });
@@ -130,6 +132,7 @@
             var playtime = Math.floor(audio.duration-audio.currentTime);
             var playtimeSec = parseInt(playtime%60);
             var playtimeMin = parseInt(playtime/60);
+            alert("timeupdate" + playtime);
         
             ($("#timer")).html(parseInt(playtimeMin/10)+""+parseInt(playtimeMin%10)+":"+parseInt(playtimeSec/10)+""+parseInt(playtimeSec%10));
         }, false);
