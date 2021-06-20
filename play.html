@@ -114,11 +114,11 @@
             document.all.stopbutton.style.visibility="hidden";
         }
 
-        audio.addEventListener('loadedmetadata', function(e){
+        audio.addEventListener("loadedmetadata", function(e){
             audio.currentTime = 24*60*60;
         });
 
-        audio.addEventListener('canplay', function(e){
+        audio.addEventListener("canplay", function(e){
             var audioTime = audio.duration;
             min = parseInt(audioTime/60);
             sec = parseInt(audioTime%60);
@@ -126,7 +126,7 @@
             ($("#timer")).html(parseInt(min/10)+""+parseInt(min%10)+":"+parseInt(sec/10)+""+parseInt(sec%10));
         });
 
-        audio.addEventListener('timeupdate', function(e){
+        audio.addEventListener("timeupdate", function(e){
             var playtime = Math.floor(audio.duration-audio.currentTime);
             var playtimeSec = parseInt(playtime%60);
             var playtimeMin = parseInt(playtime/60);
@@ -134,7 +134,7 @@
             ($("#timer")).html(parseInt(playtimeMin/10)+""+parseInt(playtimeMin%10)+":"+parseInt(playtimeSec/10)+""+parseInt(playtimeSec%10));
         }, false);
 
-        audio.addEventListener('ended', function() { 
+        audio.addEventListener("ended", function() { 
             var audioTime = audio.duration;
             min = parseInt(audioTime/60);
             sec = parseInt(audioTime%60);
