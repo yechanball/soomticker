@@ -132,7 +132,6 @@
             var playtime = Math.floor(audio.duration-audio.currentTime);
             var playtimeSec = parseInt(playtime%60);
             var playtimeMin = parseInt(playtime/60);
-            alert("timeupdate" + playtime);
         
             ($("#timer")).html(parseInt(playtimeMin/10)+""+parseInt(playtimeMin%10)+":"+parseInt(playtimeSec/10)+""+parseInt(playtimeSec%10));
         }, false);
