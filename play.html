@@ -128,7 +128,7 @@
         });*/
 
         audio.addEventListener("timeupdate", function(e){
-            var playtime = Math.floor(audio.duration-audio.currentTime);
+            var playtime = Math.floor(/*audio.duration-*/audio.currentTime);
             var playtimeSec = parseInt(playtime%60);
             var playtimeMin = parseInt(playtime/60);
         
