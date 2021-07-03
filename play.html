@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi"/>
+    <title>play</title>
+    <link rel="stylesheet" href="./font/NotoSansKR.css" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <style type="text/css">
+        html,
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+    
+        #wrap {
+            position: relative;
+            max-width: 420px;
+            min-width: 300px;
+            max-height: 850px;
+            min-height: 550px;
+            width: 100%;
+            height: 100%;
+            background: rgb(255, 255, 255);
+        }
+       
+        #timerPosition {
+            position: absolute;
+            top: 27%;
+            width: 100%;
+            align-items: center;
+            text-align: center;
+            font-family: 'Noto Sans KR Light';
+            font-size: 19px;
+            visibility: visible;
+        }
+
+        #playbutton {
+            position: absolute;
+            top: 32%;
+            left: 27%;
+            width: 46%;
+            padding: 0%;
+            border: none;
+            background-color: rgba(255, 255, 255, 0);
+            visibility: visible;
+        }
+        #playbutton img { margin: 0%; width: 100%;}
+
+        #stopbutton {
+            position: absolute;
+            top: 32%;
+            left: 27%;
+            width: 46%;
+            padding: 0%;
+            border: none;
+            background-color: rgba(255, 255, 255, 0);
+            visibility: hidden;
+        }
+        #stopbutton img { margin: 0%; width: 100%;}
+
+        #savebutton {
+            position: absolute;
+            bottom: 10%;
+            left: 45%;
+            width: 10%;
+            padding: 0%;
+            border: none;
+            background-color: rgba(255, 255, 255, 0);
+            visibility: visible;
+        }
+        #savebutton img { margin: 0%; width: 100%;}
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="timerPosition"><span id="timer">재생 버튼을 눌러주세요</span></div>
+        <audio class="record-audio"></audio>
+        <button id="playbutton" class="play"><img src="./img/waterdrop_playbutton.png" alt="water drop play img"></button>
+        <button id="stopbutton" class="stop"><img src="./img/record_ing.gif" alt="water drop charging img"></button>
+        <a class="downloadLink" href="#" download><button id="savebutton" class="save"><img src="./img/button_save.png" alt="save button img"></button></a>
+    </div>
+    <script>
+        // 오디오 기능
+        const audio = document.querySelector('.record-audio'); 
+        var link = document.querySelector('.downloadLink');
+
+        audio.controls = false;
+        // 오디오 파일 소스 불러오기
+        //const audioURL = 서버의 오디오 파일 URL;
+        const audioURL = "https://cdn.glitch.com/3b31f53f-f8f3-4160-8aeb-ee601526f48e%2FTaku%20Takahashi%20-%20Shutujin.mp3"; //임시로 설정한 오디오 파일
+        audio.src = audioURL;
+        link.href = audioURL;
+        link.download = "SOOM_Voice.wav";
+        console.log("Audio activate!");
+
+        playbutton.onclick = function (e) {
+            audio.currentTime = 0;
+            audio.play();
+
+            document.all.playbutton.style.visibility="hidden";
+            document.all.stopbutton.style.visibility="visible";
+        }
+
+        stopbutton.onclick = function (e) {
+            audio.pause();
+
+            document.all.playbutton.style.visibility="visible";
+            document.all.stopbutton.style.visibility="hidden";
+        }
+        
+        /*
+        audio.addEventListener("loadedmetadata", function(e){
+            audio.currentTime = 24*60*60;
+        });
+
+        audio.addEventListener("canplay", function(e){
+            var audioTime = audio.duration;
+            min = parseInt(audioTime/60);
+            sec = parseInt(audioTime%60);
+
+            ($("#timer")).html(parseInt(min/10)+""+parseInt(min%10)+":"+parseInt(sec/10)+""+parseInt(sec%10));
+        });*/
+
+        audio.addEventListener("timeupdate", function(e){
+            var playtime = Math.floor(/*audio.duration-*/audio.currentTime);
+            var playtimeSec = parseInt(playtime%60);
+            var playtimeMin = parseInt(playtime/60);
+        
+            ($("#timer")).html(parseInt(playtimeMin/10)+""+parseInt(playtimeMin%10)+":"+parseInt(playtimeSec/10)+""+parseInt(playtimeSec%10));
+        }, false);
+
+        audio.addEventListener("ended", function() { 
+            var audioTime = audio.duration;
+            min = parseInt(audioTime/60);
+            sec = parseInt(audioTime%60);
+
+            ($("#timer")).html(parseInt(min/10)+""+parseInt(min%10)+":"+parseInt(sec/10)+""+parseInt(sec%10));
+            document.all.playbutton.style.visibility="visible";
+            document.all.stopbutton.style.visibility="hidden";
+        }, false);
+    </script>
+</body>
+</html>

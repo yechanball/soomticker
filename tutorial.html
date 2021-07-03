@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi"/>
+    <title>튜토리얼</title>
+    <link rel="stylesheet" href="./font/NotoSansKR.css" type="text/css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <style type="text/css">
+        html,
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+    
+        #wrap {
+            position: relative;
+            max-width: 420px;
+            min-width: 300px;
+            max-height: 850px;
+            min-height: 550px;
+            width: 100%;
+            height: 100%;
+            background: #FBFBFB;
+        }
+
+        #topbutton {
+            position: absolute;
+            top: 3%;
+            left: 7%;
+            width: 16%;
+            height: 40px;
+            text-align: center;
+            font-size: 16px;
+		    color: rgb(255, 255, 255);
+            background-color: #A3A3A3;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .swiper-pagination {
+            position: absolute;
+            top: 10%;
+            width: 100%;
+            height: 5%;
+            text-align: center;
+        }
+        .swiper-pagination span {margin-left: 2%; margin-right: 2%;}
+        .swiper-pagination-bullet-active {background-color: #F0B24C;}
+
+        .swiper-container {
+            width: 100%;
+            height: 75%;
+            margin-top: 25%;
+        }
+
+        .swiper-slide {
+            text-align: center;
+        }
+
+        .swiper-slide h1 {
+            font-family: 'Noto Sans KR Bold';
+            font-size: 28px;
+            line-height: 56px;
+            margin: 0;
+        }
+
+        .swiper-slide img {
+            width: 75%;
+        }
+
+        #nextbutton {
+            position: absolute;
+            top: 88%;
+            left: 40%;
+            width: 20%;
+            height: 40px;
+            text-align: center;
+            font-family: 'Noto Sans KR Light';
+            font-size: 18px;
+		    color: rgb(0, 0, 0);
+            background-color: #eeeeee;
+            border: none;
+            border-radius: 20px;
+            visibility: visible;
+        }
+        .swiper-button-next::after {font-size: 0px;}
+
+        #nextbutton2 {
+            position: absolute;
+            top: 88%;
+            left: 40%;
+            width: 20%;
+            height: 40px;
+            text-align: center;
+            font-family: 'Noto Sans KR Light';
+            font-size: 18px;
+		    color: rgb(0, 0, 0);
+            background-color: #eeeeee;
+            border: none;
+            border-radius: 20px;
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <button id="topbutton" onClick="location.href='./tutorialDone.html'"></buttononClick>Skip</button>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="./img/tutorial_record.gif" alt="tutorial img 1">
+                    <h1><strong>녹음하기</strong></h1>
+                </div>
+                <div class="swiper-slide">
+                    <img src="./img/tutorial_fileupload.gif" alt="tutorial img 2">
+                    <h1><strong>녹음 파일 첨부하기</strong></h1>
+                </div>
+                <div class="swiper-slide">
+                    <img src="./img/tutorial_upload.gif" alt="tutorial img 3">
+                    <h1><strong>스티커에 소리 담기</strong></h1>
+                </div>
+            </div>
+        </div>
+        <button id="nextbutton" onclick="nextSlide()">Next</button>
+        <button id="nextbutton2" onClick="location.href='./tutorialDone.html'">Next</button>
+
+        <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+        <script>
+            const swiper = new Swiper('.swiper-container', {
+                direction: 'horizontal',
+                loop: false,
+
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: 'true',
+                },
+
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                },
+            });
+
+            function nextSlide(){
+                swiper.slideNext();
+            }
+
+            swiper.on('slideChange', function(){
+                if(swiper.activeIndex == 2){
+                    document.all.nextbutton.style.visibility="hidden";
+                    document.all.nextbutton2.style.visibility="visible";
+                }
+                else{
+                    document.all.nextbutton.style.visibility="visible";
+                    document.all.nextbutton2.style.visibility="hidden";
+                }
+            });
+        </script>
+        <!--preload img-->
+        <img style="height: 0.1px; width: 0.1px;" src="./img/tutorial_img_5.png">
+    </div>
+</body>
+</html>
