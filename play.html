@@ -90,11 +90,12 @@
         const audio = document.getElementById('record-audio'); 
         var link = document.querySelector('.downloadLink');
 
-        //audio.controls = false;
+        audio.controls = false;
         // 오디오 파일 소스 불러오기
         //const audioURL = 서버의 오디오 파일 URL;
         const audioURL = "./img/TSP-Cro_magnon_man.mp3"; //임시로 설정한 오디오 파일
         audio.src = audioURL;
+        audio.play();
         link.href = audioURL;
         link.download = "SOOM_Voice.wav";
 
@@ -114,7 +115,7 @@
         }
         
         audio.addEventListener("timeupdate", function(e){
-            var playtime = Math.floor(/*audio.duration-*/audio.currentTime);
+            var playtime = Math.floor(audio.currentTime);
             var playtimeSec = parseInt(playtime%60);
             var playtimeMin = parseInt(playtime/60);
         
