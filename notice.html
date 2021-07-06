@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi"/>
-    <title>튜토리얼</title>
+    <title>서버 점검 안내</title>
     <link rel="stylesheet" href="./font/NotoSansKR.css" type="text/css">
     <style type="text/css">
         html,
@@ -30,73 +30,48 @@
 
         #tutorialImg {
             width: 100%;
-            height: 60%;
+            height: 45%;
+            text-align: center;
         }
 
         #tutorialImg img {
-            position: absolute;
-            top: 12%;
-            left: 10%;
-            width: 80%;
+            height: 95%;
+            padding-top: 12%;
         }
 
         #container {
             width: 100%;
-            height: 24%;
+            height: 55%;
             text-align: center;
         }
 
-        #container > h1 {
+        #container h1 {
             font-family: 'Noto Sans KR Bold';
             font-size: calc((100vh/812)*30);
             line-height: calc((100vh/812)*60);
-            margin-top: 6%;
+            padding-top: 10%;
         }
 
-        #container > p {
+        #container p {
             font-family: 'Noto Sans KR Regular';
             font-size: calc((100vh/812)*18);
             line-height: calc((100vh/812)*35);
-            padding-top: 2%;
-            margin: 0;
-        }
-
-        #bot-button {
-            width: 100%;
-            height: 20%;
-            text-align: center;
-        }
-
-        #bot-button button {
-            width: 20%;
-            height: calc((100vh/812)*45);
-            text-align: center;
-            font-family: 'Noto Sans KR Light';
-            font-size: calc((100vh/812)*19);
-		    color: rgb(255, 255, 255);
-            background-color: #F0B24C;
-            border: none;
-            border-radius: calc((100vh/812)*20);
         }
     </style>
 </head>
 <body>
     <div id="wrap">
         <div id="tutorialImg">
-            <img src="./img/tutorial_img_5.png" alt="tutorial img 5">
+            <img src="./img/tutorial_img_4.png" alt="notice image">
         </div>
         <div id="container">
-            <h1><strong>시작하기</strong></h1>
-            <p>그럼 지금부터 시작해볼까요?</p>
+            <h1><strong>서버 점검 알림</strong></h1>
+            <p>더 즐겁고 편안한 경험을 위해
+                <br>서버를 점검하고 있습니다
+                <br><br>내일 오전 5시 이후부터
+                <br>숨티커를 이용하실 수 있습니다
+                <br>기다려주셔서 감사합니다 :)</p>
         </div>
-        <div id="bot-button">
-            <button onClick="location.href='./main.html'"></buttononClick>Go!</button>
-        </div>
-        <!--preload img-->
-        <img style="height: 0.1px; width: 0.1px;" src="./img/record_start.gif">
-        <img style="height: 0.1px; width: 0.1px;" src="./img/record_ing.gif">
-        <img style="height: 0.1px; width: 0.1px;" src="./img/record_end.gif">
-        <img style="height: 0.1px; width: 0.1px;" src="./img/waterdrop_charge.gif">
     </div>
 </body>
 </html>
