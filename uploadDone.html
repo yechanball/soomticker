@@ -45,7 +45,7 @@
 
         #container {
             width: 100%;
-            height: 30%;
+            height: 50%;
             text-align: center;
         }
 
@@ -59,25 +59,6 @@
             font-family: 'Noto Sans KR Regular';
             font-size: calc((100vh/812)*20);
             line-height: calc((100vh/812)*35);
-        }
-
-        #bot-button {
-            width: 100%;
-            height: 20%;
-            text-align: center;
-        }
-
-        #bot-button button {
-            width: 30%;
-            height: 30%;
-            text-align: center;
-            font-family: 'Noto Sans KR Light';
-            font-size: calc((100vh/812)*19);
-            line-height: calc((100vh/812)*28);
-		    color: rgb(255, 255, 255);
-            background-color: #F0B24C;
-            border: none;
-            border-radius: 20px;
         }
 
         #backGround {
@@ -114,7 +95,7 @@
         }
 
         #surveyPop button {
-            width: calc((100vh/812)*130);
+            width: calc((100vh/812)*110);
             height: calc((100vh/812)*40);
             font-family: 'Noto Sans KR Light';
             font-size: calc((100vh/812)*14);
@@ -129,24 +110,26 @@
         <div id="blank"></div>
         <div id="container">
             <h1><strong>저장 완료!</strong></h1>
-            <p>스티커에 휴대폰을 태그하면<br>저장된 소리를 들으실 수 있어요.</p>
+            <p>웹 브라우저를 종료하고<br>스티커에 휴대폰을 다시 태그하면<br>저장된 소리를 들으실 수 있어요.</p>
         </div>
         <div id="surveyPop" class="popUp">
             <p>녹음하는 과정이 어떠셨나요?<br>아래 버튼을 통해 설문에 참여해주세요!<br>여러분들의 작은 의견 하나하나가<br>저희에게 정말 크나큰 힘이 됩니다</p><br>
-            <!--<button onclick="closeWeb();" style="left: 12%; color: rgb(0, 0, 0); background-color: #ececec;">닫기</button>-->
-            <button onclick="gotoSurveyForm();" style="color: rgb(255, 255, 255); background-color: #F0B24C;">설문하러 가기</button>
+            <button onclick="closeSurveyPop();" style="margin-right: 7%; color: rgb(0, 0, 0); background-color: #ececec;">닫기</button>
+            <button onclick="gotoSurveyForm();" style="margin-left: 7%; color: rgb(255, 255, 255); background-color: #F0B24C;">설문하러 가기</button>
         </div> 
-        <div id="bot-button">
-            <button onClick="openSurveyPop();"></buttononClick>Finish</button>
-        </div>
     </div>
     <script>
         const popUpElement = document.querySelector('.popUp');
 
-        function openSurveyPop(){
+        setTimeout(function() {
             popUpElement.classList.add('animate__animated', 'animate__zoomIn');
             document.all.backGround.style.visibility="visible";
             document.all.surveyPop.style.visibility="visible";
+        }, 2000);
+
+        function closeSurveyPop(){
+            document.all.backGround.style.visibility="hidden";
+            document.all.surveyPop.style.visibility="hidden";
         }
         
         // Open Survey form 
