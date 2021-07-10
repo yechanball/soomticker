@@ -1,0 +1,435 @@
+:root {
+    --animate-duration: 0.2s;
+}
+
+html,
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+#wrap {
+    position: relative;
+    max-width: 420px;
+    min-width: 300px;
+    max-height: 850px;
+    min-height: 550px;
+    width: 100%;
+    height: 100%;
+    background: rgb(255, 255, 255);
+}
+
+#backGround {
+    position: absolute;
+    width: 100%; 
+    height: 100%;
+    margin: 0%;
+    z-index: 1; 
+    opacity: 0.7;
+    background-color: black;
+    visibility: hidden;
+}
+
+#mainTutorial1 {
+    position: absolute;
+    width: 100%; 
+    height: 100%;
+    margin: 0%;
+    text-align: center;
+    z-index: 1; 
+    opacity: 0.7;
+    background-color: black;
+    visibility: hidden;
+}
+
+#mainTutorial2 {
+    position: absolute;
+    width: 100%; 
+    height: 100%;
+    margin: 0%;
+    text-align: center;
+    z-index: 1; 
+    opacity: 0.7;
+    background-color: black;
+    visibility: hidden;
+}
+
+#mainTutorial3 {
+    position: absolute;
+    width: 100%; 
+    height: 100%;
+    margin: 0%;
+    text-align: center;
+    z-index: 1; 
+    opacity: 0.7;
+    background-color: black;
+    visibility: hidden;
+}
+
+#mainTutorial4 {
+    position: absolute;
+    width: 100%; 
+    height: 100%;
+    margin: 0%;
+    text-align: center;
+    z-index: 1; 
+    opacity: 0.7;
+    background-color: black;
+    visibility: hidden;
+}
+
+#recordTutorial1 {
+    position: absolute;
+    width: 100%; 
+    height: 100%;
+    margin: 0%;
+    text-align: center;
+    z-index: 1; 
+    opacity: 0.7;
+    background-color: black;
+    visibility: hidden;
+}
+
+#recordTutorial2 {
+    position: absolute;
+    width: 100%; 
+    height: 100%;
+    margin: 0%;
+    text-align: center;
+    z-index: 1; 
+    opacity: 0.7;
+    background-color: black;
+    visibility: hidden;
+}
+
+#recordTutorial3 {
+    position: absolute;
+    width: 100%; 
+    height: 100%;
+    margin: 0%;
+    text-align: center;
+    z-index: 1; 
+    opacity: 0.7;
+    background-color: black;
+    visibility: hidden;
+}
+
+#recordTutorial4 {
+    position: absolute;
+    width: 100%; 
+    height: 100%;
+    margin: 0%;
+    text-align: center;
+    z-index: 1; 
+    opacity: 0.7;
+    background-color: black;
+    visibility: hidden;
+}
+
+#tutorialStep {
+    position: absolute;
+    width: 20%;
+    top: 3%;
+    right: 5%;
+}
+
+#tutorialWord {
+    position: relative;
+    top: 45%;
+    font-family: 'Noto Sans KR Bold';
+    font-size: 20px;
+    line-height: 35px;
+    color: white;
+}
+
+#uploadbutton {
+    position: absolute;
+    top: 3%;
+    left: 5%;
+    width: 13%;
+    height: 35px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 34px;
+    color: rgb(0, 0, 0);
+    background-color: #F5F5F5;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2), 0 0.7px 2.5px 0 rgba(0,0,0,0.19);
+    visibility: visible;
+}
+
+#filebox {
+    position: absolute;
+    top: 35%;
+    left: 5%;
+    width: 90%;
+    height: 30%;
+    padding-top: 5%;
+    z-index: 1;
+    align-items: center;
+    text-align: center;
+    font-family: 'Noto Sans KR Regular';
+    font-size: 18px;
+    line-height: 40px;
+    background-color:white;
+    border-radius: 30px;
+    visibility: hidden;
+}
+
+#recordpausebutton {
+    position: absolute;
+    top: 10%;
+    left: 44%;
+    width: 12%;
+    padding: 0%;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    visibility: hidden;
+}
+#recordpausebutton img { margin: 0%; width: 100%;}
+
+#recordresumebutton {
+    position: absolute;
+    top: 10%;
+    left: 44%;
+    width: 12%;
+    padding: 0%;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    visibility: hidden;
+}
+#recordresumebutton img { margin: 0%; width: 100%;}
+
+#deletebuttonIcon {
+    position: absolute;
+    top: 10%;
+    left: 45%;
+    width: 10%;
+    padding: 0%;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    visibility: hidden;
+}
+#deletebuttonIcon img { margin: 0%; width: 100%;}
+
+#recordfinishpop {
+    position: absolute;
+    top: -5%;
+    left: 5%;
+    width: 80%;
+    height: 45%;
+    padding: 5%;
+    padding-top: 10%;
+    z-index: 0.9;
+    text-align: center;
+    font-family: 'Noto Sans KR Regular';
+    font-size: 18px;
+    line-height: 40px;
+    background-color:white;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2), 0 0.7px 2.5px 0 rgba(0,0,0,0.19);
+    visibility: hidden;
+}
+
+#recordfinishpop button {
+    position: absolute;
+    top: 85%;
+    width: 25%;
+    height: 35px;
+    font-family: 'Noto Sans KR Light';
+    font-size: 14px;
+    border: none;
+    border-radius: 30px;
+}
+
+#uploadCheckPop {
+    position: absolute;
+    top: 35%;
+    left: 5%;
+    width: 90%;
+    height: 30%;
+    padding-top: 5%;
+    z-index: 1;
+    text-align: center;
+    font-family: 'Noto Sans KR Regular';
+    font-size: 18px;
+    line-height: 40px;
+    background-color:white;
+    border-radius: 30px;
+    visibility: hidden;
+}
+
+#uploadCheckPop button {
+    position: absolute;
+    bottom: 10%;
+    width: 25%;
+    height: 35px;
+    font-family: 'Noto Sans KR Light';
+    font-size: 14px;
+    border: none;
+    border-radius: 30px;
+}
+
+#deletePop {
+    position: absolute;
+    top: 35%;
+    left: 5%;
+    width: 90%;
+    height: 30%;
+    padding-top: 5%;
+    z-index: 1;
+    text-align: center;
+    font-family: 'Noto Sans KR Regular';
+    font-size: 18px;
+    line-height: 40px;
+    background-color:white;
+    border-radius: 30px;
+    visibility: hidden;
+}
+
+#deletePop button {
+    position: absolute;
+    bottom: 10%;
+    width: 25%;
+    height: 35px;
+    font-family: 'Noto Sans KR Light';
+    font-size: 14px;
+    border: none;
+    border-radius: 30px;
+}
+
+#timerPosition {
+    position: absolute;
+    top: 27%;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    font-family: 'Noto Sans KR Light';
+    font-size: 19px;
+    visibility: hidden;
+}
+
+#waterdrop {
+    position: absolute;
+    top: 32%;
+    left: 30%;
+    width: 40%;
+    visibility: visible;
+}
+#waterdropIng {
+    position: absolute;
+    top: 32%;
+    left: 30%;
+    width: 40%;
+    visibility: hidden;
+}
+
+#playbutton {
+    width: 100%;
+    padding: 0%;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    visibility: hidden;
+}
+#playbutton img { margin: 0%; width: 100%;}
+
+#pausebutton {
+    position: absolute;
+    top: 32%;
+    left: 30%;
+    width: 40%;
+    padding: 0%;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    visibility: hidden;
+}
+#pausebutton img { margin: 0%; width: 100%;}
+
+.swiper-container {
+    position: absolute;
+    top: 32%;
+    left: 30%;
+    width: 40%;
+    height: 68%;
+    font-size: 0px;
+}
+
+#dragdirection {
+    position: absolute;
+    top: 58%;
+    left: 49.1%;
+    width: 1.8%;
+    visibility: hidden;
+}
+
+#dragposition {
+    position: absolute;
+    bottom: 3%;
+    left: 30%;
+    width: 40%;
+    visibility: hidden;
+}
+
+#dragup {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: -100%;
+    opacity: 1;
+}
+
+#dragwaterdrop {
+    position: absolute;
+    width: 40%;
+    left: 30%;
+    bottom: 3%;
+    visibility: hidden;
+}
+
+#recordbutton {
+    position: absolute;
+    bottom: 10%;
+    left: 41%;
+    width: 18%;
+    padding: 0%;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    visibility: visible;
+}
+#recordbutton img { margin: 0%; width: 100%;}
+
+#stopbutton {
+    position: absolute;
+    bottom: 10%;
+    left: 41%;
+    width: 18%;
+    padding: 0%;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    visibility: hidden;
+}
+#stopbutton img { margin: 0%; width: 100%;}
+
+#uploading {
+    position: absolute;
+    top: 32%;
+    left: 27%;
+    width: 46%;
+    padding: 0%;
+    z-index: 1;
+    border: none;
+    text-align: center;
+    font-family: 'Noto Sans KR Medium';
+    font-size: 28px;
+    color: #F0B24C;
+    background-color: rgba(255, 255, 255, 0);
+    visibility: hidden;
+}
