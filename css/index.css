@@ -23,6 +23,7 @@ body {
 #logoArea {
     margin-top: 45%;
     text-align: center;
+    visibility: hidden;
 }
 
 #logoArea img {
