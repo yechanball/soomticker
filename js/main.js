@@ -28,6 +28,7 @@ function recordTutorial1Del(){
     document.all.recordTutorial2.style.visibility="visible";
 }
 function recordTutorial2Del(){
+    document.all.timer.style.visibility="hidden";
     document.all.recordTutorial2.style.visibility="hidden";
     document.all.recordTutorial3.style.visibility="visible";
 }
@@ -36,6 +37,7 @@ function recordTutorial3Del(){
     document.all.recordTutorial4.style.visibility="visible";
 }
 function recordTutorial4Del(){
+    document.all.timer.style.visibility="visible";
     document.all.recordTutorial4.style.visibility="hidden";
 }
 
