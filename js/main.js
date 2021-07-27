@@ -143,17 +143,24 @@ function tempUpload(){
     document.all.filebox.style.visibility="hidden";
     document.all.uploadbutton.style.visibility="hidden";
     document.all.recordbutton.style.visibility="hidden";
-    document.all.waterdrop.style.visibility="hidden";
-    document.all.timer.style.visibility="visible";
-    document.all.playbutton.style.visibility="visible";
-    document.all.deletebuttonIcon.style.visibility="visible";
-    document.all.swiperDiv.style.visibility="visible";
-    document.all.dragdirection.style.visibility="visible";
-    document.all.dragposition.style.visibility="visible";
-    if(tryNum==0){
-        document.all.recordTutorial1.style.visibility="visible";
-    }
-    
+    document.all.waterdrop.src="./img/record_end.gif";
+    document.all.waterdrop.style.visibility = "visible";
+
+    setTimeout(function() {
+        document.all.waterdrop.style.visibility="hidden";
+        document.all.waterdrop.src="./img/waterdrop_blank.png";
+        document.all.timer.style.visibility="visible";
+        document.all.playbutton.style.visibility="visible";
+        document.all.deletebuttonIcon.style.visibility="visible";
+        document.all.swiperDiv.style.visibility="visible";
+        document.all.dragdirection.style.visibility="visible";
+        document.all.dragposition.style.visibility="visible";
+        if(tryNum==0){
+            document.all.recordTutorial1.style.visibility="visible";
+        }
+    }, 1700);
+
+
     // 오디오 기능
     var audioFile = document.getElementById('audio_file').files[0];
     console.log(audioFile.name);
@@ -252,7 +259,7 @@ function tempUpload(){
         audio.src = "none";
         tryNum++;
         ($("#timer")).html("00:00");
-        
+
         // 삭제 팝업 애니메이션 제거
         popUpFileElement.classList.remove('animate__animated', 'animate__zoomIn');
         popUpUploadElement.classList.remove('animate__animated', 'animate__zoomIn');
@@ -312,6 +319,7 @@ stopButton.addEventListener("click", stopRecording);
 
 function startRecording() {
     console.log("recordButton clicked");
+    ($("#timer")).html("00:00");
 
     var constraints = { audio: true, video:false };
 
@@ -393,7 +401,7 @@ function stopRecording() {
         if(tryNum==0){
             document.all.recordTutorial1.style.visibility="visible";
         }
-    }, 1800);
+    }, 1700);
 }
 
 function createLink(blob) {
