@@ -150,9 +150,9 @@ function tempUpload(){
         document.all.waterdrop.style.visibility="hidden";
         document.all.waterdrop.src="./img/waterdrop_blank.png";
         document.all.timer.style.visibility="visible";
-        document.all.playbutton.style.visibility="visible";
         document.all.deletebuttonIcon.style.visibility="visible";
         document.all.swiperDiv.style.visibility="visible";
+        document.all.playbutton.style.visibility="visible";
         document.all.dragdirection.style.visibility="visible";
         document.all.dragposition.style.visibility="visible";
         if(tryNum==0){
@@ -345,8 +345,11 @@ function startRecording() {
         document.all.timer.style.visibility="visible";
 
         recordTimer = setInterval(function(){
-            if(recordTime > 601) {
+            // 녹음 시간이 10분 초과된 경우 녹음을 종료하는 기능
+            if(recordTime > 600) {
                 alert("녹음 시간이 10분을 초과하였습니다! 녹음이 중지됩니다.");
+                recordTime = 599;
+                stopRecording();
             }
             
             min = parseInt(recordTime/60);
@@ -393,9 +396,9 @@ function stopRecording() {
     setTimeout(function() {
         document.all.waterdrop.style.visibility="hidden";
         document.all.waterdrop.src="./img/waterdrop_blank.png";
-        document.all.playbutton.style.visibility="visible";
         document.all.deletebuttonIcon.style.visibility="visible";
         document.all.swiperDiv.style.visibility="visible";
+        document.all.playbutton.style.visibility="visible";
         document.all.dragdirection.style.visibility="visible";
         document.all.dragposition.style.visibility="visible";
         if(tryNum==0){
