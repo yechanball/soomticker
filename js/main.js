@@ -324,6 +324,7 @@ function tempUpload(){
     }
 
     const audioURL = window.URL.createObjectURL(audioFile);
+    document.getElementById("tempUploadForm").reset();
     audioManipulation(audioURL, true, 0);
 }
 
