@@ -165,70 +165,57 @@ function audioManipulation(audioURL, uploadMode, recordTime) {
         document.all.pausebutton.style.visibility="hidden";
     }
 
-    // when you upload file
     if(uploadMode == true) {
         setTimeout(function() {
             audio.currentTime = 24*60*60;
-        }, 2000);
-        /*
-        audio.addEventListener('loadedmetadata', function(e){
-            audio.currentTime = 24*60*60;
-        });*/
-    
-        audio.addEventListener('canplay', function(e){
-            var audioTime = audio.duration;
-            var min = parseInt(audioTime/60);
-            var sec = parseInt(audioTime%60);
-    
-            ($("#timer")).html(parseInt(min/10)+""+parseInt(min%10)+":"+parseInt(sec/10)+""+parseInt(sec%10));
-        });
-    
-        audio.addEventListener('timeupdate', function(e){
-            var playtime = Math.floor(audio.duration-audio.currentTime);
-            var playtimeSec = parseInt(playtime%60);
-            var playtimeMin = parseInt(playtime/60);
-        
-            ($("#timer")).html(parseInt(playtimeMin/10)+""+parseInt(playtimeMin%10)+":"+parseInt(playtimeSec/10)+""+parseInt(playtimeSec%10));
-        }, false);
-    
-        audio.addEventListener('ended', function() { 
-            var audioTime = audio.duration;
-            var min = parseInt(audioTime/60);
-            var sec = parseInt(audioTime%60);
-    
-            ($("#timer")).html(parseInt(min/10)+""+parseInt(min%10)+":"+parseInt(sec/10)+""+parseInt(sec%10));
-            document.all.playbutton.style.visibility="visible";
-            document.all.pausebutton.style.visibility="hidden";
-        }, false);
+            console.log("upload audio currentTime:"+audio.currentTime+", duration:"+audio.duration);
+        }, 1700);
     }
-    
-    // when you record audio
-    else {
-        audio.addEventListener('canplay', function(e){
-            var min = parseInt(recordTime/60);
-            var sec = parseInt(recordTime%60);
-    
-            ($("#timer")).html(parseInt(min/10)+""+parseInt(min%10)+":"+parseInt(sec/10)+""+parseInt(sec%10));
-        });
-    
-        audio.addEventListener('timeupdate', function(e){
-            var playtime = Math.floor(recordTime-audio.currentTime);
-            var playtimeSec = parseInt(playtime%60);
-            var playtimeMin = parseInt(playtime/60);
-        
-            ($("#timer")).html(parseInt(playtimeMin/10)+""+parseInt(playtimeMin%10)+":"+parseInt(playtimeSec/10)+""+parseInt(playtimeSec%10));
-        }, false);
 
-        audio.addEventListener('ended', function() { 
-            var min = parseInt(recordTime/60);
-            var sec = parseInt(recordTime%60);
+    audio.addEventListener('canplay', function(e){
+        console.log("audio can play");
+
+        var audioTime;
+        if(uploadMode == true) {
+            audioTime = audio.duration;
+        }else{
+            audioTime = recordTime;
+        }
+        var min = parseInt(audioTime/60);
+        var sec = parseInt(audioTime%60);
+
+        ($("#timer")).html(parseInt(min/10)+""+parseInt(min%10)+":"+parseInt(sec/10)+""+parseInt(sec%10));
+    });
+
+    audio.addEventListener('timeupdate', function(e){
+        var playtime;
+        if(uploadMode == true) {
+            playtime = Math.floor(audio.duration-audio.currentTime);
+        }else{
+            playtime = Math.floor(recordTime-audio.currentTime);
+        }
+        var playtimeSec = parseInt(playtime%60);
+        var playtimeMin = parseInt(playtime/60);
     
-            ($("#timer")).html(parseInt(min/10)+""+parseInt(min%10)+":"+parseInt(sec/10)+""+parseInt(sec%10));
-    
-            document.all.playbutton.style.visibility="visible";
-            document.all.pausebutton.style.visibility="hidden";
-        }, false);
-    }
+        ($("#timer")).html(parseInt(playtimeMin/10)+""+parseInt(playtimeMin%10)+":"+parseInt(playtimeSec/10)+""+parseInt(playtimeSec%10));
+    }, false);
+
+    audio.addEventListener('ended', function() { 
+        console.log("audio ended");
+
+        var audioTime;
+        if(uploadMode == true) {
+            audioTime = audio.duration;
+        }else{
+            audioTime = recordTime;
+        }
+        var min = parseInt(audioTime/60);
+        var sec = parseInt(audioTime%60);
+
+        ($("#timer")).html(parseInt(min/10)+""+parseInt(min%10)+":"+parseInt(sec/10)+""+parseInt(sec%10));
+        document.all.playbutton.style.visibility="visible";
+        document.all.pausebutton.style.visibility="hidden";
+    }, false);
 
     // Upload 
     finalUploadButton.onclick = function (e) {
