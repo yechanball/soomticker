@@ -165,12 +165,17 @@ function audioManipulation(audioURL, uploadMode, recordTime) {
         document.all.pausebutton.style.visibility="hidden";
     }
 
-    if(uploadMode == true) {
-        setTimeout(function() {
-            audio.currentTime = 24*60*60;
-            console.log("upload audio currentTime:"+audio.currentTime+", duration:"+audio.duration);
-        }, 1700);
-    }
+    audio.addEventListener('durationchange', function(e){
+        console.log("audio duration change");
+
+        if(uploadMode == true) {            
+            var audioDuration = audio.duration;
+            var audioMin = parseInt(audioDuration/60);
+            var audioSec = parseInt(audioDuration%60);
+
+            ($("#timer")).html(parseInt(audioMin/10)+""+parseInt(audioMin%10)+":"+parseInt(audioSec/10)+""+parseInt(audioSec%10));
+        }
+    });
 
     audio.addEventListener('canplay', function(e){
         console.log("audio can play");
