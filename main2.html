@@ -315,16 +315,16 @@
                 document.all.pausebutton.style.visibility="hidden";
             }
 
-            /*audio.addEventListener('canplaythrough', function(e){
+            audio.addEventListener('loadeddata', function(e){
                 if(uploadMode == true) {            
                     var audioDuration = audio.duration;
                     var audioMin = parseInt(audioDuration/60);
                     var audioSec = parseInt(audioDuration%60);
 
                     ($("#timer")).html(parseInt(audioMin/10)+""+parseInt(audioMin%10)+":"+parseInt(audioSec/10)+""+parseInt(audioSec%10));
-                    //alert("upload audio duration:"+audio.duration);
+                    alert("upload audio duration:"+audioDuration);
                 }
-            });*/
+            });
 
             audio.addEventListener('canplay', function(e){
                 console.log("audio can play");
@@ -332,7 +332,6 @@
                 var audioTime;
                 if(uploadMode == true) {
                     audioTime = audio.duration;
-                    alert("upload audio duration:"+audioTime);
                 }else{
                     audioTime = recordTime;
                 }
