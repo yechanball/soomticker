@@ -401,6 +401,7 @@ function startRecording() {
         }, 1310);
     }).catch(function(err) {
         console.log("enable the record button if getUserMedia() fails");
+        alert("enable the record button if getUserMedia() fails");
         //enable the record button if getUserMedia() fails
         recordButton.disabled = false;
         stopButton.disabled = true;
