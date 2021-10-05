@@ -108,7 +108,6 @@ swiper.on('progress', function(){
 });
 swiper.on('slideChange', function(){
     if(swiper.activeIndex == 0){
-        window.navigator.vibrate([100]);
         document.all.dragup.style.bottom = "-50%";
         document.all.timer.style.opacity = 0;
         document.all.dragwaterdrop.style.visibility = "visible";
@@ -118,6 +117,7 @@ swiper.on('slideChange', function(){
 
         document.all.recordfinishpop.style.visibility = "visible";
         popDownElement.classList.add('animate__animated', 'animate__fadeInDown');
+        window.navigator.vibrate([100]);
     }
 });
 
