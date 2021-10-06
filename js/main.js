@@ -99,7 +99,6 @@ swiper.on('progress', function(){
         }
         else if(swiper.progress<0.4){
             /* stop swiping */
-            window.navigator.vibrate([50]);
         }
         else{
             document.all.timer.style.opacity = 0;
