@@ -1,5 +1,6 @@
 /* javascript of main.html */
 var agent = navigator.userAgent.toLowerCase();
+console.log(agent);
 
 /* Page loading */
 window.onload = function() {
@@ -98,11 +99,7 @@ swiper.on('progress', function(){
         }
         else if(swiper.progress<0.4){
             /* stop swiping */
-            if(agent.indexOf("safari")!=-1){
-                console.log("It is Safari browser!");
-            }else{
-                window.navigator.vibrate([50]);
-            }
+            window.navigator.vibrate([50]);
         }
         else{
             document.all.timer.style.opacity = 0;
@@ -123,11 +120,7 @@ swiper.on('slideChange', function(){
 
         document.all.recordfinishpop.style.visibility = "visible";
         popDownElement.classList.add('animate__animated', 'animate__fadeInDown');
-        if(agent.indexOf("safari")!=-1){
-            console.log("It is Safari browser!");
-        }else{
-            window.navigator.vibrate([150]);
-        }
+        window.navigator.vibrate([100]);
     }
 });
 
