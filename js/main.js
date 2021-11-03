@@ -1,7 +1,4 @@
 /* javascript of main.html */
-var agent = navigator.userAgent.toLowerCase();
-console.log(agent);
-
 /* Page loading */
 window.onload = function() {
     document.all.mainTutorial1.style.visibility="visible";
