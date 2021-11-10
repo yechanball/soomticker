@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi"/>
     <!-- Global site tag (gtag.js) - Google Analytics
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBY6LK1BC2"></script>
-    <script src="./js/gtag.js"></script> -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZBY6LK1BC2');
+    </script>-->
     <title>녹음하기</title>
     <link href="./img/favicon_logo.png" rel="shortcut icon" type="image/x-icon">
     <link rel="stylesheet" href="./css/loadingIcon.css" type="text/css">
@@ -61,7 +66,7 @@
         </div>
         <div id="recordTutorial3" onclick="recordTutorial3Del()">
             <img id="tutorialStep" src="./img/tutorial_step_3.png" alt="tutorial step 3">
-            <p style="position:relative; top: 18%; font-family: 'Noto Sans KR Bold'; font-size: 20px; line-height: 35px; color: white;">아래로 드래그해서<br>스티커에 소리 저장하기</p>
+            <p style="position:relative; top: 18%; font-family: 'Noto Sans KR Bold'; font-size: 20px; line-height: 35px; color: white;">아래로 드래그해서<br>숨티커에 소리 저장하기</p>
             <img style="position: absolute; top: 32%; left: 30%; width: 40%;" src="./img/waterdrop_playbutton.png" alt="play button"> 
         </div>
         <div id="recordTutorial4" onclick="recordTutorial4Del()">
@@ -119,14 +124,14 @@
         <!--레코드 완료-->
         <div id="recordfinishpop" class="popDown">
             <br><h style="font-family: 'Noto Sans KR Bold'; font-size: 28px;">녹음 완료</h><br>
-            <P>녹음된 파일을 스티커에<br>저장하시겠어요?</P>
-            <button onclick="openDeletePop()" style="left: 12%; background-color: #ececec;">재녹음</button>
+            <P>녹음된 파일을 숨티커에<br>저장하시겠어요?</P>
+            <button onclick="openDeletePop()" style="left: 12%; color: rgb(0, 0, 0); background-color: #ececec;">재녹음</button>
             <button onclick="openUploadCheckPop()" style="right: 12%; color: rgb(255, 255, 255); background-color: #F0B24C;">저장</button>
         </div>
 
         <!--업로드-->
         <div id="uploadCheckPop" class="popUpUpload">
-            <p>스티커에 소리를 저장하시겠어요?<br>최종 저장 후, 재녹음은 불가능해요.</p><br><br>
+            <p>숨티커에 소리를 저장하시겠어요?<br>최종 저장 후, 재녹음은 불가능해요.</p><br><br>
             <button onclick="closeUploadCheckPop()" style="left: 12%; color: rgb(0, 0, 0); background-color: #ececec;">취소</button>
             <button id="finalUploadButton" style="right: 12%; color: rgb(255, 255, 255); background-color: #F0B24C;">최종 저장</button>
         </div> 
