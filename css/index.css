@@ -21,12 +21,11 @@ body {
 }
 
 #logoArea {
-    margin-top: 45%;
+    margin-top: calc((100vh/100)*43);
     text-align: center;
     visibility: hidden;
 }
 
 #logoArea img {
-    margin-top: 10%;
-    width: 45%;
+    width: 70%;
 }

@@ -23,13 +23,12 @@ body {
 #tutorialImg {
     width: 100%;
     height: 60%;
+    text-align: center;
 }
 
 #tutorialImg img {
-    position: absolute;
-    top: 12%;
-    left: 10%;
-    width: 80%;
+    margin-top: 70%;
+    width: 90%;
 }
 
 #container {
