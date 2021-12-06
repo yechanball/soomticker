@@ -21,7 +21,7 @@ body {
 }
 
 #logoArea {
-    margin-top: calc((100vh/100)*43);
+    margin-top: calc((100vh/100)*40);
     text-align: center;
     visibility: hidden;
 }
