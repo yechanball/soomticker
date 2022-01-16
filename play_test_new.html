@@ -86,6 +86,9 @@
         }
         #savebutton img { margin: 0%; width: 100%;}
 
+        #current-time, #duration {
+            visibility: hidden;
+        }
         #slider-container {
             position: absolute;
             top: 65%;
@@ -93,6 +96,7 @@
             width: 46%;
             --seek-before-width: 0%;
             --buffered-width: 0%;
+            visibility: hidden;
         }
 
         #seek-slider{
@@ -206,7 +210,7 @@
         </div>
         <div id="timerPosition">
             <span id="current-time" class="time">0:00</span>
-            <span> / </span>
+            <span id="topword">재생 버튼을 눌러주세요</span>
             <span id="duration" class="time">0:00</span>
         </div>
         <audio id="record-audio" preload="metadata"></audio>
@@ -242,10 +246,14 @@
 
         // Play
         playbutton.onclick = function (e) {
-            audio.currentTime = 0;
+            //audio.currentTime = 0;
             audio.play();
             requestAnimationFrame(whilePlaying);
 
+            ($("#topword")).html(" / ");
+            currentTimeContainer.style.visibility="visible";
+            durationContainer.style.visibility="visible";
+            sliderContainer.style.visibility="visible";
             document.all.playbutton.style.visibility="hidden";
             document.all.stopbutton.style.visibility="visible";
         }
