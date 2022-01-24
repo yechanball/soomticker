@@ -86,17 +86,29 @@
         }
         #savebutton img { margin: 0%; width: 100%;}
 
-        #current-time, #duration {
-            visibility: hidden;
+        #current-time {
+            float: left;
+            font-family: 'Noto Sans KR Regular';
+            font-size: 14px;
+            /*visibility: hidden;*/
+            visibility: visible;
+        }
+        #duration {
+            float: right;
+            font-family: 'Noto Sans KR Regular';
+            font-size: 14px;
+            /*visibility: hidden;*/
+            visibility: visible;
         }
         #slider-container {
             position: absolute;
             top: 65%;
-            left: 27%;
-            width: 46%;
+            left: 17%;
+            width: 66%;
             --seek-before-width: 0%;
             --buffered-width: 0%;
-            visibility: hidden;
+            /*visibility: hidden;*/
+            visibility: visible;
         }
 
         #seek-slider{
@@ -110,14 +122,14 @@
             margin: 0;
             padding: 0;
             height: 19px;
-            margin: 30px 2.5% 20px 2.5%;
+            /*margin: 30px 2.5% 20px 2.5%;*/
             outline: none;
         }
         input[type="range"]::-webkit-slider-runnable-track {
             width: 100%;
             height: 3px;
             cursor: pointer;
-            background: linear-gradient(to right, #f0b14c69 var(--buffered-width), #F0B24C20 var(--buffered-width));
+            background: linear-gradient(to right, #C4C4C4 var(--buffered-width), #c4c4c481 var(--buffered-width));
         }
         input[type="range"]::before {
             position: absolute;
@@ -134,10 +146,10 @@
             -webkit-appearance: none;
             box-sizing: content-box;
             border: 2px solid #F0B24C;
-            height: 16px;
-            width: 16px;
+            height: 15px;
+            width: 15px;
             border-radius: 50%;
-            background-color: #fff;
+            background-color: #F0B24C;
             cursor: pointer;
             margin: -7px 0 0 0;
         }
@@ -149,7 +161,7 @@
             width: 100%;
             height: 3px;
             cursor: pointer;
-            background: linear-gradient(to right, rgba(0, 125, 181, 0.6) var(--buffered-width), rgba(0, 125, 181, 0.2) var(--buffered-width));
+            background: linear-gradient(to right, #C4C4C4 var(--buffered-width), #c4c4c481 var(--buffered-width));
         }
         input[type="range"]::-moz-range-progress {
             background-color: #F0B24C;
@@ -163,7 +175,7 @@
             height: 15px;
             width: 15px;
             border-radius: 50%;
-            background-color: #fff;
+            background-color: #F0B24C;
             cursor: pointer;
         }
         input[type="range"]:active::-moz-range-thumb {
@@ -182,7 +194,7 @@
             background-color: #F0B24C;
         }
         input[type="range"]::-ms-fill-upper {
-            background: linear-gradient(to right, rgba(0, 125, 181, 0.6) var(--buffered-width), rgba(0, 125, 181, 0.2) var(--buffered-width));
+            background: linear-gradient(to right, #C4C4C4 var(--buffered-width), #c4c4c481 var(--buffered-width));
         }
         input[type="range"]::-ms-thumb {
             box-sizing: content-box;
@@ -190,7 +202,7 @@
             height: 15px;
             width: 15px;
             border-radius: 50%;
-            background-color: #fff;
+            background-color: #F0B24C;
             cursor: pointer;
         }
         input[type="range"]:active::-ms-thumb {
@@ -208,17 +220,20 @@
                 </div>
             </div>
         </div>
-        <div id="timerPosition">
-            <span id="current-time" class="time">0:00</span>
+        <!--<div id="timerPosition">
+            <span id="current-time" class="time">00:00</span>
             <span id="topword">재생 버튼을 눌러주세요</span>
-            <span id="duration" class="time">0:00</span>
-        </div>
+            <span id="duration" class="time">00:00</span>
+        </div>-->
         <audio id="record-audio" preload="metadata"></audio>
         <button id="playbutton" class="play"><img src="./img/waterdrop_playbutton.png" alt="water drop play img"></button>
         <button id="stopbutton" class="stop"><img src="./img/record_ing.gif" alt="water drop charging img"></button>
         <div id="slider-container">
             <input type="range" id="seek-slider" max="100" value="0">
+            <br><span id="current-time" class="time">00:00</span>
+            <span id="duration" class="time">00:00</span>
         </div>
+        
         <a class="downloadLink" href="#" download><button id="savebutton" class="save"><img src="./img/button_save.png" alt="save button img"></button></a>
     </div>
     <script>
@@ -239,7 +254,7 @@
         audio.controls = false;
         // 오디오 파일 소스 불러오기
         //const audioURL = 서버의 오디오 파일 URL;
-        const audioURL = "./img/bakamitai_template.mp3"; //임시로 설정한 오디오 파일
+        const audioURL = "./img/bgm.mp3"; //임시로 설정한 오디오 파일
         audio.src = audioURL;
         link.href = audioURL;
         link.download = "SOOM_Voice.mp3";
@@ -250,10 +265,10 @@
             audio.play();
             requestAnimationFrame(whilePlaying);
 
-            ($("#topword")).html(" / ");
-            currentTimeContainer.style.visibility="visible";
+            //($("#topword")).html(" / ");
+            /*currentTimeContainer.style.visibility="visible";
             durationContainer.style.visibility="visible";
-            sliderContainer.style.visibility="visible";
+            sliderContainer.style.visibility="visible";*/
             document.all.playbutton.style.visibility="hidden";
             document.all.stopbutton.style.visibility="visible";
         }
@@ -286,7 +301,9 @@
             const minutes = Math.floor(secs / 60);
             const seconds = Math.floor(secs % 60);
             const returnedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
-            return `${minutes}:${returnedSeconds}`;
+            
+            if(minutes<10) return `0${minutes}:${returnedSeconds}`;
+            else return `${minutes}:${returnedSeconds}`;
         }
 
         const displayDuration = () => {
