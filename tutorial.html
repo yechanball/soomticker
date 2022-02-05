@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi"/>
+    <!-- Global site tag (gtag.js) - Google Analytics
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBY6LK1BC2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZBY6LK1BC2');
+    </script>-->
+    <title>튜토리얼</title>
+    <link href="./img/favicon_logo.png" rel="shortcut icon" type="image/x-icon">
+    <link rel="stylesheet" href="./css/loadingIcon.css" type="text/css">
+    <link rel="stylesheet" href="./font/NotoSansKR.css" type="text/css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="./css/tutorial.css" type="text/css">
+</head>
+<body>
+    <div id="wrap">
+        <div id="loadingioBackground">
+            <div class="loadingio-spinner">
+                <div class="loadingio">
+                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                </div>
+            </div>
+        </div>
+        <button id="topbutton" onClick="location.href='./tutorialDone.html'"></buttononClick>Skip</button>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="imgArea">
+                        <img src="./img/tutorial_record.gif" alt="tutorial img 1">
+                    </div>
+                    <h1><strong>녹음하기</strong></h1>
+                    <p>첫 단계는 소리 녹음하기입니다
+                        <br>최장 10분의 녹음이 가능해요</p>
+                </div>
+                <div class="swiper-slide">
+                    <div class="imgArea">
+                        <img src="./img/tutorial_fileupload.gif" alt="tutorial img 2">
+                    </div>
+                    <h1><strong>녹음 파일 첨부하기</strong></h1>
+                    <p>기존에 녹음했던 파일(최장 10분)을
+                        <br>첨부할 수도 있어요</p>
+                </div>
+                <div class="swiper-slide">
+                    <div class="imgArea">
+                        <img src="./img/tutorial_upload.gif" alt="tutorial img 3">
+                    </div>
+                    <h1><strong>숨티커에 소리 담기</strong></h1>
+                    <p>녹음 또는 첨부를 마친 후
+                        <br>소리를 저장하세요</p>
+                </div>
+                <div class="swiper-slide">
+                    <div class="imgArea">
+                        <img src="./img/tutorial_tag.gif" style="height: 80%; padding-top: 10%;" alt="tutorial img 4">
+                    </div>
+                    <h1><strong>담은 소리 듣기</strong></h1>
+                    <p>이제, 언제 어디서든 숨티커를 통해
+                        <br>내게 소중한 소리를 들을 수 있어요</p>
+                </div>
+            </div>
+        </div>
+        <button id="nextbutton" onclick="nextSlide()">Next</button>
+        <button id="nextbutton2" onClick="location.href='./tutorialDone.html'">Next</button>
+
+        <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+        <script src="./js/tutorial.js"></script>
+    </div>
+</body>
+</html>

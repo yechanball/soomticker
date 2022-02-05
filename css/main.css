@@ -1,0 +1,698 @@
+:root {
+    --animate-duration: 0.2s;
+}
+
+html,
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+#backGround {
+    position: absolute;
+    width: 100%; 
+    height: 100%;
+    margin: 0%;
+    z-index: 1; 
+    opacity: 0.7;
+    background-color: black;
+    visibility: hidden;
+}
+
+#wrap {
+    position: relative;
+    max-width: 360px;
+    max-height: 660px;
+    width: 100%;
+    height: 100%;
+    background: rgb(255, 255, 255);
+    overflow: visible;
+}
+
+.tutorialWord {
+    font-family: 'Noto Sans KR Regular';
+    font-size: 14px;
+    line-height: 20.27px;
+    margin: 0;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.tutorialWordBox {
+    position: absolute;
+    top: 567px;
+    left: 11px;
+    width: 340px;
+    height: 78px;
+    border: 2px solid #F5F5F5;
+    box-sizing: border-box;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 3px;
+    align-items: center;
+    text-align: center;
+}
+
+#tutorialWordBoxTitle {
+    font-family: 'Noto Sans KR Bold';
+    font-size: 24px;
+    line-height: 35px;
+    margin-top: 7px;
+    margin-bottom: 0;
+    color: #FFFFFF;
+}
+
+#tutorialWordBoxText {
+    font-family: 'Noto Sans KR Regular';
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0;
+    color: #FFFFFF;
+}
+
+#mainhelpbutton {
+    position: absolute;
+    top: 32px;
+    right: 18px;
+    width: 78px;
+    height: 29px;
+    align-items: center;
+    text-align: center;
+    font-family: 'Noto Sans KR Regular';
+    font-size: 12px;
+    line-height: 17px;
+    color: #ffffff;
+    border: none;
+    background: #F1B85A;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 35px;
+    visibility: visible;
+}
+
+#mainTutorial {
+    position: absolute;
+    width: 100%; 
+    height: 100%;
+    margin: 0%;
+    text-align: center;
+    align-items: center;
+    z-index: 1; 
+    visibility: hidden;
+}
+
+#tutorialUploadbtn {
+    position: absolute;
+    top: 32px;
+    left: 19px;
+    width: 78px;
+    height: 29px;
+    align-items: center;
+    text-align: center;
+    font-family: 'Noto Sans KR Regular';
+    font-size: 12px;
+    line-height: 17px;
+    color: rgb(0, 0, 0);
+    background: #F5F5F5;
+    border: none;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 35px;
+}
+
+#uploadbtnDirection1 {
+    position: absolute;
+    top: 50px;
+    left: 103.04px;
+    width: 28.58px;
+    height: 83.42px;
+    transform: rotate(6.91deg);
+}
+
+#mainTutorialWord1 {
+    position: absolute;
+    top: 138px;
+    left: 28px;
+    width: 138px;
+    height: 44px;
+}
+
+#tutorialMainhelpbtn {
+    position: absolute;
+    top: 32px;
+    right: 18px;
+    width: 78px;
+    height: 29px;
+    align-items: center;
+    text-align: center;
+    font-family: 'Noto Sans KR Regular';
+    font-size: 12px;
+    line-height: 17px;
+    color: #ffffff;
+    border: none;
+    background: #F1B85A;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 35px;
+}
+
+#mainhelpbtnDirection2 {
+    position: absolute;
+    top: 67px;
+    left: 243.37px;
+    width: 21.55px;
+    height: 62.89px;
+    transform: matrix(-0.99, 0.13, 0.13, 0.99, 0, 0);
+}
+
+#mainTutorialWord2 {
+    position: absolute;
+    top: 137px;
+    right: 14px;
+    width: 138px;
+    height: 44px;
+}
+
+#tutorialRecordbtn {
+    position: absolute;
+    top: 479px;
+    left: 147px;
+    width: 67px;
+    height: 67px;
+}
+
+#mainhelpbtnDirection3 {
+    position: absolute;
+    top: 376.24px;
+    left: 226.67px;
+    width: 24.72px;
+    height: 106.07px;
+    transform: matrix(-0.94, -0.33, -0.33, 0.94, 0, 0);
+}
+
+#mainTutorialWord3 {
+    position: absolute;
+    top: 324px;
+    right: 68px;
+    width: 138px;
+    height: 44px;
+}
+
+#recordhelpbutton {
+    position: absolute;
+    top: 32px;
+    right: 18px;
+    width: 78px;
+    height: 29px;
+    align-items: center;
+    text-align: center;
+    font-family: 'Noto Sans KR Regular';
+    font-size: 12px;
+    line-height: 17px;
+    color: #ffffff;
+    border: none;
+    background: #F1B85A;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 35px;
+    visibility: hidden;
+}
+
+#recordTutorial1 {
+    position: absolute;
+    width: 100%; 
+    height: 100%;
+    margin: 0%;
+    text-align: center;
+    z-index: 1; 
+    opacity: 0.7;
+    background-color: black;
+    visibility: hidden;
+}
+
+#recordTutorial2 {
+    position: absolute;
+    width: 100%; 
+    height: 100%;
+    margin: 0%;
+    text-align: center;
+    z-index: 1; 
+    opacity: 0.7;
+    background-color: black;
+    visibility: hidden;
+}
+
+#recordTutorial3 {
+    position: absolute;
+    width: 100%; 
+    height: 100%;
+    margin: 0%;
+    text-align: center;
+    z-index: 1; 
+    opacity: 0.7;
+    background-color: black;
+    visibility: hidden;
+}
+
+#recordTutorial4 {
+    position: absolute;
+    width: 100%; 
+    height: 100%;
+    margin: 0%;
+    text-align: center;
+    z-index: 1; 
+    opacity: 0.7;
+    background-color: black;
+    visibility: hidden;
+}
+
+#tutorialStep {
+    position: absolute;
+    width: 20%;
+    top: 3%;
+    right: 5%;
+}
+
+#tutorialWord {
+    position: relative;
+    top: 45%;
+    font-family: 'Noto Sans KR Bold';
+    font-size: 20px;
+    line-height: 35px;
+    color: white;
+}
+
+#uploadbutton {
+    position: absolute;
+    top: 32px;
+    left: 19px;
+    width: 78px;
+    height: 29px;
+    align-items: center;
+    text-align: center;
+    font-family: 'Noto Sans KR Regular';
+    font-size: 12px;
+    line-height: 17px;
+    color: rgb(0, 0, 0);
+    background: #F5F5F5;
+    border: none;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 35px;
+    visibility: visible;
+}
+
+#filebox {
+    position: absolute;
+    top: 35%;
+    left: 5%;
+    width: 90%;
+    height: 30%;
+    padding-top: 5%;
+    z-index: 1;
+    align-items: center;
+    text-align: center;
+    font-family: 'Noto Sans KR Regular';
+    font-size: 18px;
+    line-height: 40px;
+    background-color:white;
+    border-radius: 30px;
+    visibility: hidden;
+}
+
+#recordbutton {
+    position: absolute;
+    top: 479px;
+    left: 147px;
+    width: 67px;
+    height: 67px;
+    padding: 0%;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    visibility: visible;
+}
+#recordbutton img { margin: 0%; width: 100%;}
+
+#stopbutton {
+    position: absolute;
+    top: 479px;
+    left: 147px;
+    width: 67px;
+    height: 67px;
+    padding: 0%;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    visibility: hidden;
+}
+#stopbutton img { margin: 0%; width: 100%;}
+
+/*#recordpausebutton {
+    position: absolute;
+    top: 479px;
+    left: 147px;
+    width: 67px;
+    height: 67px;
+    padding: 0%;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    visibility: hidden;
+}
+#recordpausebutton img { margin: 0%; width: 100%;}
+
+#recordresumebutton {
+    position: absolute;
+    top: 479px;
+    left: 147px;
+    width: 67px;
+    height: 67px;
+    padding: 0%;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    visibility: hidden;
+}
+#recordresumebutton img { margin: 0%; width: 100%;}*/
+
+#deletebuttonIcon {
+    position: absolute;
+    top: 10%;
+    left: 45%;
+    width: 10%;
+    padding: 0%;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    visibility: hidden;
+}
+#deletebuttonIcon img { margin: 0%; width: 100%;}
+
+#recordfinishpop {
+    position: absolute;
+    top: -5%;
+    left: 5%;
+    width: 80%;
+    height: 45%;
+    padding: 5%;
+    padding-top: 10%;
+    z-index: 0.9;
+    text-align: center;
+    font-family: 'Noto Sans KR Regular';
+    font-size: 18px;
+    line-height: 40px;
+    background-color:white;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2), 0 0.7px 2.5px 0 rgba(0,0,0,0.19);
+    visibility: hidden;
+}
+
+#recordfinishpop button {
+    position: absolute;
+    top: 85%;
+    width: 25%;
+    height: 35px;
+    font-family: 'Noto Sans KR Light';
+    font-size: 14px;
+    border: none;
+    border-radius: 30px;
+}
+
+#uploadCheckPop {
+    position: absolute;
+    top: 35%;
+    left: 5%;
+    width: 90%;
+    height: 30%;
+    padding-top: 5%;
+    z-index: 1;
+    text-align: center;
+    font-family: 'Noto Sans KR Regular';
+    font-size: 18px;
+    line-height: 40px;
+    background-color:white;
+    border-radius: 30px;
+    visibility: hidden;
+}
+
+#uploadCheckPop button {
+    position: absolute;
+    bottom: 10%;
+    width: 25%;
+    height: 35px;
+    font-family: 'Noto Sans KR Light';
+    font-size: 14px;
+    border: none;
+    border-radius: 30px;
+}
+
+#deletePop {
+    position: absolute;
+    top: 35%;
+    left: 5%;
+    width: 90%;
+    height: 30%;
+    padding-top: 5%;
+    z-index: 1;
+    text-align: center;
+    font-family: 'Noto Sans KR Regular';
+    font-size: 18px;
+    line-height: 40px;
+    background-color:white;
+    border-radius: 30px;
+    visibility: hidden;
+}
+
+#deletePop button {
+    position: absolute;
+    bottom: 10%;
+    width: 25%;
+    height: 35px;
+    font-family: 'Noto Sans KR Light';
+    font-size: 14px;
+    border: none;
+    border-radius: 30px;
+}
+
+#timerPosition {
+    position: absolute;
+    top: 146px;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    font-family: 'Noto Sans KR Light';
+    font-size: 19px;
+    visibility: hidden;
+}
+
+#waterdrop {
+    position: absolute;
+    top: 182px;
+    left: 102px;
+    width: 156px;
+    height: 185px; 
+    visibility: visible;
+}
+#waterdropIng {
+    position: absolute;
+    top: 182px;
+    left: 102px;
+    width: 156px;
+    height: 185px; 
+    visibility: hidden;
+}
+
+#playbutton {
+    width: 100%;
+    padding: 0%;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    visibility: hidden;
+}
+#playbutton img { margin: 0%; width: 100%;}
+
+#pausebutton {
+    position: absolute;
+    top: 32%;
+    left: 30%;
+    width: 40%;
+    padding: 0%;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    visibility: hidden;
+}
+#pausebutton img { margin: 0%; width: 100%;}
+
+.swiper-container {
+    position: absolute;
+    top: 182px;
+    left: 102px;
+    width: 156px;
+    height: 478px;
+    font-size: 0px;
+}
+
+#dragdirection {
+    position: absolute;
+    top: 58%;
+    left: 49.1%;
+    width: 1.8%;
+    visibility: hidden;
+}
+
+#dragposition {
+    position: absolute;
+    bottom: 3%;
+    left: 30%;
+    width: 40%;
+    visibility: hidden;
+}
+
+#dragup {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: -100%;
+    opacity: 1;
+}
+
+#dragwaterdrop {
+    position: absolute;
+    width: 40%;
+    left: 30%;
+    bottom: 3%;
+    visibility: hidden;
+}
+
+#uploading {
+    position: absolute;
+    top: 32%;
+    left: 27%;
+    width: 46%;
+    padding: 0%;
+    z-index: 1;
+    border: none;
+    text-align: center;
+    font-family: 'Noto Sans KR Medium';
+    font-size: 28px;
+    color: #F0B24C;
+    background-color: rgba(255, 255, 255, 0);
+    visibility: hidden;
+}
+
+#current-time {
+    float: left;
+    font-family: 'Noto Sans KR Regular';
+    font-size: 14px;
+}
+#duration {
+    float: right;
+    font-family: 'Noto Sans KR Regular';
+    font-size: 14px;
+}
+#slider-container {
+    position: absolute;
+    top: 65%;
+    left: 17%;
+    width: 66%;
+    --seek-before-width: 0%;
+    --buffered-width: 0%;
+    visibility: hidden;
+    /*visibility: visible;*/
+}
+
+#seek-slider{
+    width: 100%;
+}
+
+input[type="range"] {
+    position: relative;
+    -webkit-appearance: none;
+    width: 50%;
+    margin: 0;
+    padding: 0;
+    height: 19px;
+    /*margin: 30px 2.5% 20px 2.5%;*/
+    outline: none;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 3px;
+    cursor: pointer;
+    background: linear-gradient(to right, #C4C4C4 var(--buffered-width), #c4c4c481 var(--buffered-width));
+}
+input[type="range"]::before {
+    position: absolute;
+    content: "";
+    top: 8px;
+    left: 0;
+    width: var(--seek-before-width);
+    height: 3px;
+    background-color: #F0B24C;
+    cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+    position: relative;
+    -webkit-appearance: none;
+    box-sizing: content-box;
+    border: 2px solid #F0B24C;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: #F0B24C;
+    cursor: pointer;
+    margin: -7px 0 0 0;
+}
+input[type="range"]:active::-webkit-slider-thumb {
+    transform: scale(1.2);
+    background: #F0B24C;
+}
+input[type="range"]::-moz-range-track {
+    width: 100%;
+    height: 3px;
+    cursor: pointer;
+    background: linear-gradient(to right, #C4C4C4 var(--buffered-width), #c4c4c481 var(--buffered-width));
+}
+input[type="range"]::-moz-range-progress {
+    background-color: #F0B24C;
+}
+input[type="range"]::-moz-focus-outer {
+    border: 0;
+}
+input[type="range"]::-moz-range-thumb {
+    box-sizing: content-box;
+    border: 1px solid #F0B24C;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: #F0B24C;
+    cursor: pointer;
+}
+input[type="range"]:active::-moz-range-thumb {
+    transform: scale(1.2);
+    background: #F0B24C;
+}
+input[type="range"]::-ms-track {
+    width: 100%;
+    height: 3px;
+    cursor: pointer;
+    background: transparent;
+    border: solid transparent;
+    color: transparent;
+}
+input[type="range"]::-ms-fill-lower {
+    background-color: #F0B24C;
+}
+input[type="range"]::-ms-fill-upper {
+    background: linear-gradient(to right, #C4C4C4 var(--buffered-width), #c4c4c481 var(--buffered-width));
+}
+input[type="range"]::-ms-thumb {
+    box-sizing: content-box;
+    border: 1px solid #F0B24C;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: #F0B24C;
+    cursor: pointer;
+}
+input[type="range"]:active::-ms-thumb {
+    transform: scale(1.2);
+    background: #F0B24C;
+}

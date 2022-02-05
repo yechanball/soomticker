@@ -1,0 +1,192 @@
+html,
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+#wrap {
+    position: relative;
+    max-width: 420px;
+    min-width: 300px;
+    max-height: 850px;
+    min-height: 550px;
+    width: 100%;
+    height: 100%;
+    background: rgb(255, 255, 255);
+}
+
+#timerPosition {
+    position: absolute;
+    top: 27%;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    font-family: 'Noto Sans KR Light';
+    font-size: 19px;
+    visibility: visible;
+}
+
+#playbutton {
+    position: absolute;
+    top: 32%;
+    left: 27%;
+    width: 46%;
+    padding: 0%;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    visibility: visible;
+}
+#playbutton img { margin: 0%; width: 100%;}
+
+#stopbutton {
+    position: absolute;
+    top: 32%;
+    left: 27%;
+    width: 46%;
+    padding: 0%;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    visibility: hidden;
+}
+#stopbutton img { margin: 0%; width: 100%;}
+
+#savebutton {
+    position: absolute;
+    bottom: 10%;
+    left: 45%;
+    width: 10%;
+    padding: 0%;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    visibility: visible;
+}
+#savebutton img { margin: 0%; width: 100%;}
+
+#current-time {
+    float: left;
+    font-family: 'Noto Sans KR Regular';
+    font-size: 14px;
+    /*visibility: hidden;*/
+    visibility: visible;
+}
+#duration {
+    float: right;
+    font-family: 'Noto Sans KR Regular';
+    font-size: 14px;
+    /*visibility: hidden;*/
+    visibility: visible;
+}
+#slider-container {
+    position: absolute;
+    top: 65%;
+    left: 17%;
+    width: 66%;
+    --seek-before-width: 0%;
+    --buffered-width: 0%;
+    /*visibility: hidden;*/
+    visibility: visible;
+}
+
+#seek-slider{
+    width: 100%;
+}
+
+input[type="range"] {
+    position: relative;
+    -webkit-appearance: none;
+    width: 50%;
+    margin: 0;
+    padding: 0;
+    height: 19px;
+    /*margin: 30px 2.5% 20px 2.5%;*/
+    outline: none;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 3px;
+    cursor: pointer;
+    background: linear-gradient(to right, #C4C4C4 var(--buffered-width), #c4c4c481 var(--buffered-width));
+}
+input[type="range"]::before {
+    position: absolute;
+    content: "";
+    top: 8px;
+    left: 0;
+    width: var(--seek-before-width);
+    height: 3px;
+    background-color: #F0B24C;
+    cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+    position: relative;
+    -webkit-appearance: none;
+    box-sizing: content-box;
+    border: 2px solid #F0B24C;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: #F0B24C;
+    cursor: pointer;
+    margin: -7px 0 0 0;
+}
+input[type="range"]:active::-webkit-slider-thumb {
+    transform: scale(1.2);
+    background: #F0B24C;
+}
+input[type="range"]::-moz-range-track {
+    width: 100%;
+    height: 3px;
+    cursor: pointer;
+    background: linear-gradient(to right, #C4C4C4 var(--buffered-width), #c4c4c481 var(--buffered-width));
+}
+input[type="range"]::-moz-range-progress {
+    background-color: #F0B24C;
+}
+input[type="range"]::-moz-focus-outer {
+    border: 0;
+}
+input[type="range"]::-moz-range-thumb {
+    box-sizing: content-box;
+    border: 1px solid #F0B24C;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: #F0B24C;
+    cursor: pointer;
+}
+input[type="range"]:active::-moz-range-thumb {
+    transform: scale(1.2);
+    background: #F0B24C;
+}
+input[type="range"]::-ms-track {
+    width: 100%;
+    height: 3px;
+    cursor: pointer;
+    background: transparent;
+    border: solid transparent;
+    color: transparent;
+}
+input[type="range"]::-ms-fill-lower {
+    background-color: #F0B24C;
+}
+input[type="range"]::-ms-fill-upper {
+    background: linear-gradient(to right, #C4C4C4 var(--buffered-width), #c4c4c481 var(--buffered-width));
+}
+input[type="range"]::-ms-thumb {
+    box-sizing: content-box;
+    border: 1px solid #F0B24C;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: #F0B24C;
+    cursor: pointer;
+}
+input[type="range"]:active::-ms-thumb {
+    transform: scale(1.2);
+    background: #F0B24C;
+}
