@@ -33,13 +33,13 @@
         <button id="mainhelpbutton" onclick="openMainTutorial()">녹음 가이드</button>
         <div id="mainTutorial" onclick="mainTutorialDel()">
             <button id="tutorialUploadbtn">첨부하기</button>
-            <img id="uploadbtnDirection1" src="./img/tutorial_direct_up.png">
+            <img id="mainTutorialDirection1" src="./img/tutorial_direct_up.png">
             <p class="tutorialWord" id="mainTutorialWord1">기존에 녹음한 파일을<br>첨부하고 싶다면 !</p>
             <button id="tutorialMainhelpbtn">녹음 가이드</button>
-            <img id="mainhelpbtnDirection2" src="./img/tutorial_direct_up.png">
+            <img id="mainTutorialDirection2" src="./img/tutorial_direct_up.png">
             <p class="tutorialWord" id="mainTutorialWord2">녹음 가이드를<br>다시 보고 싶다면 !</p>
             <img id="tutorialRecordbtn" src="./img/button_record.png">
-            <img id="mainhelpbtnDirection3" src="./img/tutorial_direct_down.png">
+            <img id="mainTutorialDirection3" src="./img/tutorial_direct_down.png">
             <p class="tutorialWord" id="mainTutorialWord3">지금 녹음을<br>시작하고 싶다면 !</p>
             <div class="tutorialWordBox">
                 <p id="tutorialWordBoxTitle">| 녹음 가이드 |</p>
@@ -48,24 +48,20 @@
         </div>
 
         <button id="recordhelpbutton" onclick="openRecordTutorial()">저장 가이드</button>
-        <div id="recordTutorial1" onclick="recordTutorial1Del()">
-            <img id="tutorialStep" src="./img/tutorial_step_1.png" alt="tutorial step 1">
-            <p id="tutorialWord">저장하는 방법 살펴보기</p>
-        </div>
-        <div id="recordTutorial2" onclick="recordTutorial2Del()">
-            <img id="tutorialStep" src="./img/tutorial_step_2.png" alt="tutorial step 2">
-            <p style="position:relative; top: 20%; font-family: 'Noto Sans KR Bold'; font-size: 20px; line-height: 35px; color: white;">재생 버튼을 눌러 다시 듣기</p>
-            <img style="position: absolute; top: 32%; left: 30%; width: 40%; background-color: rgba(255, 255, 255, 0);" src="./img/recordtutorial_play.png" alt="play button"> 
-        </div>
-        <div id="recordTutorial3" onclick="recordTutorial3Del()">
-            <img id="tutorialStep" src="./img/tutorial_step_3.png" alt="tutorial step 3">
-            <p style="position:relative; top: 18%; font-family: 'Noto Sans KR Bold'; font-size: 20px; line-height: 35px; color: white;">아래로 드래그해서<br>숨티커에 소리 저장하기</p>
-            <img style="position: absolute; top: 32%; left: 30%; width: 40%;" src="./img/waterdrop_playbutton.png" alt="play button"> 
-        </div>
-        <div id="recordTutorial4" onclick="recordTutorial4Del()">
-            <img id="tutorialStep" src="./img/tutorial_step_4.png" alt="tutorial step 4">
-            <img style="position: absolute; top: 10%; left: 45%; width: 10%;" src="./img/button_delete.png" alt="delete button img">
-            <p style="position:relative; top: 18%; font-family: 'Noto Sans KR Bold'; font-size: 20px; line-height: 35px; color: white;">휴지통을 클릭해서<br>삭제 후 재녹음하기</p> 
+        <div id="recordTutorial" onclick="recordTutorialDel()">
+            <button id="tutorialDeletebtn">재녹음하기</button>
+            <img id="recordTutorialDirection1" src="./img/tutorial_direct_up.png">
+            <p class="tutorialWord" id="recordTutorialWord1">다시<br>녹음하고 싶다면 !</p>
+            <button id="tutorialRecordhelpbtn">저장 가이드</button>
+            <img id="recordTutorialDirection2" src="./img/tutorial_direct_up.png">
+            <p class="tutorialWord" id="recordTutorialWord2">저장 가이드를<br>다시 보고 싶다면 !</p>
+            <img id="tutorialPlaybtn" src="./img/waterdrop_playbutton.png">
+            <img id="recordTutorialDirection3" src="./img/tutorial_direct_down.png">
+            <p class="tutorialWord" id="recordTutorialWord3">녹음한 소리를 들어보고,<br>마음에 든다면 !<br>아래로 드래그해서 저장하기</p>
+            <div class="tutorialWordBox">
+                <p id="tutorialWordBoxTitle">| 저장 가이드 |</p>
+                <p id="tutorialWordBoxText">가이드 종료를 원한다면, 화면 아무 곳이나 클릭해주세요</p>
+            </div>
         </div>
 
         <!--업로드-->
@@ -109,16 +105,10 @@
             <span id="duration" class="time">00:00</span>
         </div>
 
-        <!--버튼-->
-        <!--<button id="pausebutton" class="pause"><img src="./img/waterdrop_pausebutton.png" alt="water drop pause img"></button>-->
         <button id="pausebutton" class="pause"><img src="./img/record_ing.gif" alt="water drop pause img"></button>
         <button id="recordbutton" class="record"><img src="./img/button_record.png" alt="record button img"></button>
         <button id="stopbutton" class="stop"><img src="./img/button_stop.png" alt="stop button img"></button>
-        <!--
-        <button id="recordpausebutton" class="recordpause"><img src="./img/button_pause.png" alt="pause button img"></button>
-        <button id="recordresumebutton" class="recordresume"><img src="./img/button_resume.png" alt="resume button img"></button> 
-        -->
-        <button id="deletebuttonIcon" onclick="openDeletePop()"><img src="./img/button_delete.png" alt="delete button img"></button>
+        <button id="deletebuttonIcon" onclick="openDeletePop()">재녹음하기</button>
 
         <!--레코드 완료-->
         <div id="recordfinishpop" class="popDown">
