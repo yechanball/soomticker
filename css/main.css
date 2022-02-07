@@ -27,7 +27,7 @@ body {
 #wrap {
     position: relative;
     max-width: 360px;
-    max-height: 660px;
+    max-height: 550px;
     width: 100%;
     height: 100%;
     background: rgb(255, 255, 255);
@@ -46,7 +46,7 @@ body {
 
 .tutorialWordBox {
     position: absolute;
-    top: 567px;
+    top: 463px;
     left: 11px;
     width: 340px;
     height: 78px;
@@ -77,8 +77,8 @@ body {
 
 #mainhelpbutton {
     position: absolute;
-    top: 32px;
-    right: 18px;
+    top: 16px;
+    right: 19px;
     width: 78px;
     height: 29px;
     align-items: center;
@@ -107,8 +107,8 @@ body {
 
 #tutorialUploadbtn {
     position: absolute;
-    top: 32px;
-    left: 19px;
+    top: 16px;
+    left: 18px;
     width: 78px;
     height: 29px;
     align-items: center;
@@ -123,27 +123,27 @@ body {
     border-radius: 35px;
 }
 
-#uploadbtnDirection1 {
+#mainTutorialDirection1 {
     position: absolute;
-    top: 50px;
-    left: 103.04px;
-    width: 28.58px;
-    height: 83.42px;
+    top: 35px;
+    left: 105px;
+    width: 28.5px;
+    height: 83.5px;
     transform: rotate(6.91deg);
 }
 
 #mainTutorialWord1 {
     position: absolute;
-    top: 138px;
-    left: 28px;
+    top: 122px;
+    left: 27px;
     width: 138px;
     height: 44px;
 }
 
 #tutorialMainhelpbtn {
     position: absolute;
-    top: 32px;
-    right: 18px;
+    top: 16px;
+    right: 19px;
     width: 78px;
     height: 29px;
     align-items: center;
@@ -158,52 +158,52 @@ body {
     border-radius: 35px;
 }
 
-#mainhelpbtnDirection2 {
+#mainTutorialDirection2 {
     position: absolute;
-    top: 67px;
-    left: 243.37px;
-    width: 21.55px;
-    height: 62.89px;
+    top: 45px;
+    right: 100px;
+    width: 21.5px;
+    height: 63px;
     transform: matrix(-0.99, 0.13, 0.13, 0.99, 0, 0);
 }
 
 #mainTutorialWord2 {
     position: absolute;
-    top: 137px;
-    right: 14px;
+    top: 115px;
+    right: 12px;
     width: 138px;
     height: 44px;
 }
 
 #tutorialRecordbtn {
     position: absolute;
-    top: 479px;
-    left: 147px;
-    width: 67px;
-    height: 67px;
+    top: 375px;
+    left: 143.5px;
+    width: 73px;
+    height: 73px;
 }
 
-#mainhelpbtnDirection3 {
+#mainTutorialDirection3 {
     position: absolute;
-    top: 376.24px;
-    left: 226.67px;
-    width: 24.72px;
-    height: 106.07px;
+    top: 265px;
+    left: 206px;
+    width: 24px;
+    height: 106px;
     transform: matrix(-0.94, -0.33, -0.33, 0.94, 0, 0);
 }
 
 #mainTutorialWord3 {
     position: absolute;
-    top: 324px;
-    right: 68px;
+    top: 216px;
+    left: 114px;
     width: 138px;
     height: 44px;
 }
 
 #recordhelpbutton {
     position: absolute;
-    top: 32px;
-    right: 18px;
+    top: 16px;
+    right: 19px;
     width: 78px;
     height: 29px;
     align-items: center;
@@ -219,74 +219,116 @@ body {
     visibility: hidden;
 }
 
-#recordTutorial1 {
+#recordTutorial {
     position: absolute;
     width: 100%; 
     height: 100%;
     margin: 0%;
     text-align: center;
+    align-items: center;
     z-index: 1; 
-    opacity: 0.7;
-    background-color: black;
     visibility: hidden;
 }
 
-#recordTutorial2 {
+#tutorialDeletebtn {
     position: absolute;
-    width: 100%; 
-    height: 100%;
-    margin: 0%;
+    top: 16px;
+    left: 18px;
+    width: 78px;
+    height: 29px;
+    align-items: center;
     text-align: center;
-    z-index: 1; 
-    opacity: 0.7;
-    background-color: black;
-    visibility: hidden;
+    font-family: 'Noto Sans KR Regular';
+    font-size: 12px;
+    line-height: 17px;
+    color: rgb(0, 0, 0);
+    background: #F5F5F5;
+    border: none;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 35px;
 }
 
-#recordTutorial3 {
+#recordTutorialDirection1 {
     position: absolute;
-    width: 100%; 
-    height: 100%;
-    margin: 0%;
+    top: 35px;
+    left: 98px;
+    width: 22px;
+    height: 63.5px;
+    transform: rotate(6.91deg);
+}
+
+#recordTutorialWord1 {
+    position: absolute;
+    top: 91px;
+    left: 14px;
+    width: 110px;
+    height: 44px;
+}
+
+#tutorialRecordhelpbtn {
+    position: absolute;
+    top: 16px;
+    right: 19px;
+    width: 78px;
+    height: 29px;
+    align-items: center;
     text-align: center;
-    z-index: 1; 
-    opacity: 0.7;
-    background-color: black;
-    visibility: hidden;
+    font-family: 'Noto Sans KR Regular';
+    font-size: 12px;
+    line-height: 17px;
+    color: #ffffff;
+    border: none;
+    background: #F1B85A;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 35px;
 }
 
-#recordTutorial4 {
+#recordTutorialDirection2 {
     position: absolute;
-    width: 100%; 
-    height: 100%;
-    margin: 0%;
-    text-align: center;
-    z-index: 1; 
-    opacity: 0.7;
-    background-color: black;
-    visibility: hidden;
+    top: 42px;
+    right: 106px;
+    width: 21.5px;
+    height: 63px;
+    transform: matrix(-1, -0.01, -0.01, 1, 0, 0);
 }
 
-#tutorialStep {
+#recordTutorialWord2 {
     position: absolute;
-    width: 20%;
-    top: 3%;
-    right: 5%;
+    top: 100px;
+    right: 10px;
+    width: 120px;
+    height: 44px;
 }
 
-#tutorialWord {
-    position: relative;
-    top: 45%;
-    font-family: 'Noto Sans KR Bold';
-    font-size: 20px;
-    line-height: 35px;
-    color: white;
+#tutorialPlaybtn {
+    position: absolute;
+    top: 97px;
+    left: 104.5px;
+    width: 151px;
+    height: 178px; 
+}
+
+#recordTutorialDirection3 {
+    position: absolute;
+    top: 270px;
+    left: 90px;
+    width: 20px;
+    height: 84px;
+    transform: matrix(0.93, 0.38, 0.38, -0.93, 0, 0);
+}
+
+#recordTutorialWord3 {
+    position: absolute;
+    top: 360px;
+    left: 30px;
+    width: 225px;
+    height: 60px;
 }
 
 #uploadbutton {
     position: absolute;
-    top: 32px;
-    left: 19px;
+    top: 16px;
+    left: 18px;
     width: 78px;
     height: 29px;
     align-items: center;
@@ -322,10 +364,10 @@ body {
 
 #recordbutton {
     position: absolute;
-    top: 479px;
-    left: 147px;
-    width: 67px;
-    height: 67px;
+    top: 375px;
+    left: 143.5px;
+    width: 73px;
+    height: 73px;
     padding: 0%;
     border: none;
     background-color: rgba(255, 255, 255, 0);
@@ -335,10 +377,10 @@ body {
 
 #stopbutton {
     position: absolute;
-    top: 479px;
-    left: 147px;
-    width: 67px;
-    height: 67px;
+    top: 375px;
+    left: 143.5px;
+    width: 73px;
+    height: 73px;
     padding: 0%;
     border: none;
     background-color: rgba(255, 255, 255, 0);
@@ -346,43 +388,24 @@ body {
 }
 #stopbutton img { margin: 0%; width: 100%;}
 
-/*#recordpausebutton {
-    position: absolute;
-    top: 479px;
-    left: 147px;
-    width: 67px;
-    height: 67px;
-    padding: 0%;
-    border: none;
-    background-color: rgba(255, 255, 255, 0);
-    visibility: hidden;
-}
-#recordpausebutton img { margin: 0%; width: 100%;}
-
-#recordresumebutton {
-    position: absolute;
-    top: 479px;
-    left: 147px;
-    width: 67px;
-    height: 67px;
-    padding: 0%;
-    border: none;
-    background-color: rgba(255, 255, 255, 0);
-    visibility: hidden;
-}
-#recordresumebutton img { margin: 0%; width: 100%;}*/
-
 #deletebuttonIcon {
     position: absolute;
-    top: 10%;
-    left: 45%;
-    width: 10%;
-    padding: 0%;
+    top: 16px;
+    left: 18px;
+    width: 78px;
+    height: 29px;
+    align-items: center;
+    text-align: center;
+    font-family: 'Noto Sans KR Regular';
+    font-size: 12px;
+    line-height: 17px;
+    color: rgb(0, 0, 0);
+    background: #F5F5F5;
     border: none;
-    background-color: rgba(255, 255, 255, 0);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 35px;
     visibility: hidden;
 }
-#deletebuttonIcon img { margin: 0%; width: 100%;}
 
 #recordfinishpop {
     position: absolute;
@@ -473,34 +496,35 @@ body {
 
 #timerPosition {
     position: absolute;
-    top: 146px;
+    top: 65px;
     width: 100%;
     align-items: center;
     text-align: center;
     font-family: 'Noto Sans KR Light';
-    font-size: 19px;
+    font-size: 20px;
     visibility: hidden;
 }
 
 #waterdrop {
     position: absolute;
-    top: 182px;
-    left: 102px;
-    width: 156px;
-    height: 185px; 
+    top: 97px;
+    left: 104.5px;
+    width: 151px;
+    height: 178px; 
     visibility: visible;
 }
 #waterdropIng {
     position: absolute;
-    top: 182px;
-    left: 102px;
-    width: 156px;
-    height: 185px; 
+    top: 97px;
+    left: 104.5px;
+    width: 151px;
+    height: 178px; 
     visibility: hidden;
 }
 
 #playbutton {
-    width: 100%;
+    width: 151px;
+    height: 178px; 
     padding: 0%;
     border: none;
     background-color: rgba(255, 255, 255, 0);
@@ -510,9 +534,10 @@ body {
 
 #pausebutton {
     position: absolute;
-    top: 32%;
-    left: 30%;
-    width: 40%;
+    top: 97px;
+    left: 104.5px;
+    width: 151px;
+    height: 178px; 
     padding: 0%;
     border: none;
     background-color: rgba(255, 255, 255, 0);
@@ -522,26 +547,27 @@ body {
 
 .swiper-container {
     position: absolute;
-    top: 182px;
-    left: 102px;
-    width: 156px;
-    height: 478px;
+    top: 97px;
+    left: 104.5px;
+    width: 151px;
+    height: 453px;
     font-size: 0px;
 }
 
 #dragdirection {
     position: absolute;
-    top: 58%;
-    left: 49.1%;
-    width: 1.8%;
+    top: 275px;
+    left: 176px;
+    width: 8px;
     visibility: hidden;
 }
 
 #dragposition {
     position: absolute;
-    bottom: 3%;
-    left: 30%;
-    width: 40%;
+    bottom: 10px;
+    left: 104.5px;
+    width: 151px;
+    height: 178px; 
     visibility: hidden;
 }
 
@@ -555,9 +581,10 @@ body {
 
 #dragwaterdrop {
     position: absolute;
-    width: 40%;
-    left: 30%;
-    bottom: 3%;
+    bottom: 10.5px;
+    left: 105px;
+    width: 150px;
+    height: 177px;
     visibility: hidden;
 }
 
