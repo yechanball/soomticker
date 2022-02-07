@@ -11,6 +11,8 @@ window.onload = function () {
 /* Tutorial */
 var tryNum = 0;  // Number of attempts
 const mainTutorialElement = document.querySelector('#mainTutorial');
+const recordTutorialElement = document.querySelector('#recordTutorial');
+
 function openMainTutorial() {
     console.log("open main tutorial");
     mainTutorialElement.classList.replace('animate__fadeOut', 'animate__fadeIn');
@@ -25,30 +27,22 @@ function mainTutorialDel() {
         document.all.backGround.style.visibility = "hidden";
     }, 400);
 }
-
 function openRecordTutorial() {
-    document.all.recordhelpbutton.style.visibility = "hidden";
-    document.all.recordTutorial1.style.visibility = "visible";
-}
-function recordTutorial1Del() {
-    document.all.recordTutorial1.style.visibility = "hidden";
-    document.all.recordTutorial2.style.visibility = "visible";
-}
-function recordTutorial2Del() {
+    console.log("open record tutorial");
     document.all.timer.style.visibility = "hidden";
-    document.all.recordTutorial2.style.visibility = "hidden";
-    document.all.recordTutorial3.style.visibility = "visible";
+    recordTutorialElement.classList.replace('animate__fadeOut', 'animate__fadeIn');
+    document.all.recordTutorial.style.visibility = "visible";
+    document.all.backGround.style.visibility = "visible";
 }
-function recordTutorial3Del() {
-    document.all.recordTutorial3.style.visibility = "hidden";
-    document.all.recordTutorial4.style.visibility = "visible";
+function recordTutorialDel() {
+    console.log("close record tutorial");
+    recordTutorialElement.classList.replace('animate__fadeIn', 'animate__fadeOut');
+    setTimeout(function () {
+        document.all.timer.style.visibility = "visible";
+        document.all.recordTutorial.style.visibility = "hidden";
+        document.all.backGround.style.visibility = "hidden";
+    }, 400);
 }
-function recordTutorial4Del() {
-    document.all.timer.style.visibility = "visible";
-    document.all.recordhelpbutton.style.visibility = "visible";
-    document.all.recordTutorial4.style.visibility = "hidden";
-}
-
 
 /* Popup and Animation effect */
 const popUpFileElement = document.querySelector('.popUpFile');
@@ -75,9 +69,12 @@ function openUploadCheckPop() {
     document.all.uploadCheckPop.style.visibility = "visible";
 }
 function closeUploadCheckPop() {
-    popUpUploadElement.classList.remove('animate__animated', 'animate__zoomIn');
-    document.all.backGround.style.visibility = "hidden";
-    document.all.uploadCheckPop.style.visibility = "hidden";
+    popUpUploadElement.classList.replace('animate__zoomIn', 'animate__zoomOut');
+    setTimeout(function () {
+        popUpUploadElement.classList.remove('animate__animated', 'animate__zoomOut');
+        document.all.backGround.style.visibility = "hidden";
+        document.all.uploadCheckPop.style.visibility = "hidden";
+    }, 200);
 }
 function openDeletePop() {
     popUpDeleteElement.classList.add('animate__animated', 'animate__zoomIn');
@@ -85,9 +82,12 @@ function openDeletePop() {
     document.all.deletePop.style.visibility = "visible";
 }
 function closeDeletePop() {
-    popUpDeleteElement.classList.remove('animate__animated', 'animate__zoomIn');
-    document.all.backGround.style.visibility = "hidden";
-    document.all.deletePop.style.visibility = "hidden";
+    popUpDeleteElement.classList.replace('animate__zoomIn', 'animate__zoomOut');
+    setTimeout(function () {
+        popUpDeleteElement.classList.remove('animate__animated', 'animate__zoomOut');
+        document.all.backGround.style.visibility = "hidden";
+        document.all.deletePop.style.visibility = "hidden";
+    }, 200);
 }
 
 
@@ -164,7 +164,6 @@ function audioManipulation(audioURL, uploadMode, recordTime) {
 
     // Play
     playbutton.onclick = function (e) {
-        //audio.currentTime = 0;
         audio.play();
         requestAnimationFrame(whilePlaying);
         sliderContainer.style.visibility = "visible";
@@ -218,39 +217,12 @@ function audioManipulation(audioURL, uploadMode, recordTime) {
         } else {
             audioTime = recordTime;
         }
-        /*var min = parseInt(audioTime/60);
-        var sec = parseInt(audioTime%60);
-
-        ($("#timer")).html(parseInt(min/10)+""+parseInt(min%10)+":"+parseInt(sec/10)+""+parseInt(sec%10));*/
     });
-
-    /*audio.addEventListener('timeupdate', function(e){
-        var playtime;
-        if(uploadMode == true) {
-            playtime = Math.floor(audio.duration-audio.currentTime);
-        }else{
-            playtime = Math.floor(recordTime-audio.currentTime);
-        }
-        var playtimeSec = parseInt(playtime%60);
-        var playtimeMin = parseInt(playtime/60);
-    
-        ($("#timer")).html(parseInt(playtimeMin/10)+""+parseInt(playtimeMin%10)+":"+parseInt(playtimeSec/10)+""+parseInt(playtimeSec%10));
-    }, false);*/
 
     audio.addEventListener('ended', function () {
         console.log("audio ended");
         sliderContainer.style.visibility = "hidden";
 
-        /*var audioTime;
-        if(uploadMode == true) {
-            audioTime = audio.duration;
-        }else{
-            audioTime = recordTime;
-        }
-        var min = parseInt(audioTime/60);
-        var sec = parseInt(audioTime%60);
-
-        ($("#timer")).html(parseInt(min/10)+""+parseInt(min%10)+":"+parseInt(sec/10)+""+parseInt(sec%10));*/
         document.all.timer.style.visibility = "visible";
         document.all.dragdirection.style.visibility = "visible";
         document.all.dragposition.style.visibility = "visible";
@@ -377,7 +349,6 @@ function audioManipulation(audioURL, uploadMode, recordTime) {
         document.all.uploadbutton.style.visibility = "visible";
         document.all.recordbutton.style.visibility = "visible";
         document.all.mainhelpbutton.style.visibility = "visible";
-        //document.all.recordpausebutton.style.visibility="hidden";
         document.all.stopbutton.style.visibility = "hidden";
         document.all.timer.style.visibility = "hidden";
         document.all.swiperDiv.style.visibility = "hidden";
@@ -397,8 +368,6 @@ function switchingPage() {
     document.all.waterdropIng.style.visibility = "hidden";
     document.all.waterdrop.src = "./img/record_end.gif";
     document.all.waterdrop.style.visibility = "visible";
-    //document.all.recordpausebutton.style.visibility="hidden";
-    //document.all.recordresumebutton.style.visibility="hidden";
     document.all.stopbutton.style.visibility = "hidden";
 
     setTimeout(function () {
@@ -412,8 +381,10 @@ function switchingPage() {
         document.all.dragdirection.style.visibility = "visible";
         document.all.dragposition.style.visibility = "visible";
         if (tryNum == 0) {
-            document.all.recordTutorial1.style.visibility = "visible";
-            document.all.recordhelpbutton.style.visibility = "hidden";
+            document.all.timer.style.visibility = "hidden";
+            recordTutorialElement.classList.add('animate__animated', 'animate__fadeIn', 'animate__slower');
+            document.all.recordTutorial.style.visibility = "visible";
+            document.all.backGround.style.visibility = "visible";
         }
     }, 1700);
 }
@@ -507,7 +478,6 @@ function startRecording() {
         }, 1000);
 
         setTimeout(function () {
-            //document.all.recordpausebutton.style.visibility="visible";
             document.all.stopbutton.style.visibility = "visible";
             document.all.waterdrop.style.visibility = "hidden";
             document.all.waterdropIng.style.visibility = "visible";
