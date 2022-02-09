@@ -29,7 +29,7 @@
     </div>
     <div id="backGround"></div>
     <div id="wrap">   
-        <!--튜토리얼-->
+        <!--Tutorial-->
         <button id="mainhelpbutton" onclick="openMainTutorial()">녹음 가이드</button>
         <div id="mainTutorial" onclick="mainTutorialDel()">
             <button id="tutorialUploadbtn">첨부하기</button>
@@ -64,28 +64,27 @@
             </div>
         </div>
 
-        <!--업로드-->
+        <!--File upload-->
         <form id="tempUploadForm" name="tempUploadForm" method="post" enctype="multipart/form-data">
             <button type="button" id="uploadbutton" onclick="showFilebox()">첨부하기</button>
             <div id="filebox" class="popUpFile">
-                <div style="width: 260px; height: 40px; margin-left: 30px; margin-top: 10%; margin-bottom: 20%; font-size: 18px; overflow: hidden;">
-                    <input type="file" id="audio_file" accept="audio/*, .m4a, .wav, .mp3, .aac, .ogg" style="width: 260px;">
+                <div class="fileboxInner">
+                    <input class="upload-name" value="선택한 파일이 없습니다" disabled="disabled">
+					<label for="audio_file">찾아보기</label> 
+					<input type="file" id="audio_file" class="upload-hidden" accept="audio/*, .m4a, .wav, .mp3, .aac, .ogg"> 
                 </div>
-                <button type="button" onclick="closeFilebox()" style="position: absolute; left: 12%; bottom: 20%; width: 25%; height: 35px; font-family: 'Noto Sans KR Light'; font-size: 14px;
-                    border: none; border-radius: 30px; color: rgb(0, 0, 0); background-color: #ececec;">취소</button>
-                <button type="button" style="position: absolute; right: 12%; bottom: 20%; width: 25%; height: 35px; font-family: 'Noto Sans KR Light'; font-size: 14px;
-                    border: none; border-radius: 30px; color: rgb(255, 255, 255); background-color: #F0B24C;"
-                    onclick="tempUpload()">첨부</button>
+                <button id="closeFileboxbtn" type="button" onclick="closeFilebox()">뒤로가기</button>
+                <button id="uploadFilebtn" type="button" onclick="tempUpload()">첨부하기</button>
             </div>
         </form>
 
-        <!--드래그-->
+        <!--Drag-->
         <img id="dragup" src="./img/drag_on.png" alt="drag on">
         <img id="dragwaterdrop" src="./img/waterdrop_playbutton.png" alt="play button img">
         <img id="dragdirection" src="./img/direction_dropdown.png" alt="drop down direction img">
         <img id="dragposition" src="./img/waterdrop_dropdown.png" alt="drop down position">
 
-        <div id="swiperDiv" class="swiper-container" style="visibility: hidden;">
+        <div id="swiperDiv" class="swiper-container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                 </div>
@@ -110,19 +109,20 @@
         <button id="stopbutton" class="stop"><img src="./img/button_stop.png" alt="stop button img"></button>
         <button id="deletebuttonIcon" onclick="openDeletePop()">재녹음하기</button>
 
-        <!--레코드 완료-->
+        <!--Record done-->
         <div id="recordfinishpop" class="popDown">
-            <br><h style="font-family: 'Noto Sans KR Bold'; font-size: 28px;">녹음 완료</h><br>
-            <P>녹음된 파일을 숨티커에<br>저장하시겠어요?</P>
-            <button onclick="openDeletePop()" style="left: 12%; color:rgb(0, 0, 0); background-color: #ececec;">재녹음</button>
-            <button onclick="openUploadCheckPop()" style="right: 12%; color: rgb(255, 255, 255); background-color: #F0B24C;">저장</button>
+            <h1>녹음 완료</h1>
+            <P>녹음된 파일을 스티커에 저장하시겠어요?</P>
+            <button id="openDeletePopbtn" onclick="openDeletePop()">재녹음하기</button>
+            <button id="openUploadCheckPopbtn" onclick="openUploadCheckPop()">저장하기</button>
         </div>
 
-        <!--업로드-->
+        <!--Final upload-->
         <div id="uploadCheckPop" class="popUpUpload">
-            <p>숨티커에 소리를 저장하시겠어요?<br>최종 저장 후, 재녹음은 불가능해요.</p><br><br>
-            <button onclick="closeUploadCheckPop()" style="left: 12%; color: rgb(0, 0, 0); background-color: #ececec;">취소</button>
-            <button id="finalUploadButton" style="right: 12%; color: rgb(255, 255, 255); background-color: #F0B24C;">최종 저장</button>
+            <p id="uploadCheckPopWord1">숨티커에 소리를 최종적으로 저장하시겠어요?</p>
+            <p id="uploadCheckPopWord2">(최종 저장 후 재녹음 불가)</p>
+            <button id="closeUploadCheckPopbtn" onclick="closeUploadCheckPop()">다시 생각해볼래요</button>
+            <button id="finalUploadButton">네, 지금 담을래요 !</button>
         </div> 
 
         <div id="uploading">
@@ -130,11 +130,11 @@
             <p id="uploadProgress"></p>
         </div>
 
-        <!--삭제-->
+        <!--Delete-->
         <div id="deletePop" class="popUpDelete">
-            <p>현재 녹음된 파일은 삭제됩니다.<br>그래도 재녹음 하시겠어요?</p><br><br>
-            <button onclick="closeDeletePop()" style="left: 12%; color: rgb(0, 0, 0); background-color: #ececec;">취소</button>
-            <button id="deletebutton" class="delete" style="right: 12%; color: rgb(255, 255, 255); background-color: #F0B24C;">재녹음</button>
+            <p>재녹음하면, 지금 녹음한 파일은 삭제돼요</p>
+            <button id="closeDeletePopbtn" onclick="closeDeletePop()">다시 생각해볼래요</button>
+            <button id="deletebutton" class="delete">그래도 재녹음할래요</button>
         </div>
     </div>
 
