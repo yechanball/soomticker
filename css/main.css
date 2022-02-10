@@ -363,7 +363,7 @@ body {
     top: 145px;
     left: 15px;
     width: 330px;
-    height: 123px;
+    height: 169px;
     align-items: center;
     text-align: center;
     font-family: 'Noto Sans KR Regular';
@@ -378,10 +378,10 @@ body {
 
 .fileboxInner {
     position: absolute;
-    top: 26px;
-    left: 15px;
-    width: 300px; 
-    height: 40px; 
+    top: 41px;
+    left: 32px;
+    width: 266px; 
+    height: 29px; 
 }
 
 .fileboxInner input[type="file"] {
@@ -399,7 +399,7 @@ body {
 	display: inline-block;
     height: 15px;
 	padding: .5em .75em;
-	font-family: 'Noto Sans KR Bold';
+	font-family: 'Noto Sans KR Regular';
     font-size: 12px;
     line-height: 17px;
     text-align: center;
@@ -434,7 +434,7 @@ body {
 
 #closeFileboxbtn {
     position: absolute;
-    bottom: 26px;
+    bottom: 39px;
     left: 43px; 
     width: 78px;
     height: 29px;
@@ -454,7 +454,7 @@ body {
 
 #uploadFilebtn {
     position: absolute; 
-    bottom: 26px;
+    bottom: 39px;
     right: 43px; 
     width: 78px;
     height: 29px;
@@ -610,7 +610,7 @@ body {
     top: 145px;
     left: 15px;
     width: 330px;
-    height: 123px;
+    height: 169px;
     align-items: center;
     text-align: center;
     background: #FDFDFD;
@@ -624,7 +624,7 @@ body {
     font-family: 'Noto Sans KR Regular';
     font-size: 14px;
     line-height: 20px;
-    padding-top: 15px;
+    padding-top: 31px;
     margin: 0;
 }
 
@@ -638,7 +638,7 @@ body {
 
 #closeUploadCheckPopbtn {
     position: absolute;
-    bottom: 26px;
+    bottom: 39px;
     left: 30px; 
     width: 121px;
     height: 29px;
@@ -658,7 +658,7 @@ body {
 
 #finalUploadButton {
     position: absolute; 
-    bottom: 26px;
+    bottom: 39px;
     right: 30px; 
     width: 121px;
     height: 29px;
@@ -681,7 +681,7 @@ body {
     top: 145px;
     left: 15px;
     width: 330px;
-    height: 123px;
+    height: 169px;
     align-items: center;
     text-align: center;
     font-family: 'Noto Sans KR Regular';
@@ -695,12 +695,12 @@ body {
 }
 
 #deletePop p {
-    padding-top: 12px;
+    padding-top: 25px;
 }
 
 #closeDeletePopbtn {
     position: absolute;
-    bottom: 26px;
+    bottom: 39px;
     left: 30px; 
     width: 121px;
     height: 29px;
@@ -720,7 +720,7 @@ body {
 
 #deletebutton {
     position: absolute; 
-    bottom: 26px;
+    bottom: 39px;
     right: 30px; 
     width: 121px;
     height: 29px;
@@ -836,9 +836,9 @@ body {
 
 #uploading {
     position: absolute;
-    top: 32%;
-    left: 27%;
-    width: 46%;
+    top: 135px;
+    left: 100px;
+    width: 160px;
     padding: 0%;
     z-index: 4;
     border: none;
@@ -862,13 +862,12 @@ body {
 }
 #slider-container {
     position: absolute;
-    top: 65%;
-    left: 17%;
-    width: 66%;
+    top: 354px;
+    left: 60px;
+    width: 240px;
     --seek-before-width: 0%;
     --buffered-width: 0%;
     visibility: hidden;
-    /*visibility: visible;*/
 }
 
 #seek-slider{
