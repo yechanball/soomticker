@@ -453,7 +453,12 @@ function startRecording() {
     document.all.mainhelpbutton.style.visibility = "hidden";
     ($("#timer")).html("00:00");
 
-    var constraints = { audio: true, video: false };
+    //var constraints = { audio: true, video: false };
+    var constraints = {  "audio": { "mandatory": {
+                        "googEchoCancellation": "false",
+                        "googAutoGainControl": "false",
+                        "googNoiseSuppression": "false",
+                        "googHighpassFilter": "false"}, "optional": []}};
 
     recordButton.disabled = true;
     stopButton.disabled = false;
@@ -495,7 +500,7 @@ function startRecording() {
         }, 1310);
     }).catch(function (err) {
         console.log("enable the record button if getUserMedia() fails");
-        alert("enable the record button if getUserMedia() fails");
+        alert("ERROR! getUserMedia() fails");
         //enable the record button if getUserMedia() fails
         recordButton.disabled = false;
         stopButton.disabled = true;
