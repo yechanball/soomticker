@@ -168,6 +168,8 @@ function audioManipulation(audioURL, uploadMode, recordTime) {
     const durationContainer = document.getElementById('duration');
     const currentTimeContainer = document.getElementById('current-time');
     const seekSlider = document.getElementById('seek-slider');
+    const playbtnElement = document.querySelector('#playbutton');
+    const pausebtnElement = document.querySelector('#pausebutton');
     let raf = null;
 
     audio.controls = false;
@@ -175,36 +177,49 @@ function audioManipulation(audioURL, uploadMode, recordTime) {
 
     // Play
     playbutton.onclick = function (e) {
-        audio.play();
-        requestAnimationFrame(whilePlaying);
-        sliderContainer.style.visibility = "visible";
+        playbtnElement.classList.add('animate__animated', 'animate__pulse', 'animate__slower');
 
-        document.all.timer.style.visibility = "hidden";
-        document.all.dragdirection.style.visibility = "hidden";
-        document.all.dragposition.style.visibility = "hidden";
-        document.all.deletebuttonIcon.style.visibility = "hidden";
-        document.all.recordhelpbutton.style.visibility = "hidden";
+        setTimeout(function () {
+            playbtnElement.classList.remove('animate__animated', 'animate__pulse', 'animate__slower');
+            
+            audio.play();
+            requestAnimationFrame(whilePlaying);
+            sliderContainer.style.visibility = "visible";
 
-        document.all.playbutton.style.visibility = "hidden";
-        document.all.swiperDiv.style.visibility = "hidden";
-        document.all.pausebutton.style.visibility = "visible";
+            document.all.timer.style.visibility = "hidden";
+            document.all.dragdirection.style.visibility = "hidden";
+            document.all.dragposition.style.visibility = "hidden";
+            document.all.deletebuttonIcon.style.visibility = "hidden";
+            document.all.recordhelpbutton.style.visibility = "hidden";
+
+            document.all.playbutton.style.visibility = "hidden";
+            document.all.swiperDiv.style.visibility = "hidden";
+            document.all.pausebutton.style.visibility = "visible";
+        }, 600);
     }
 
     // Pause
     pausebutton.onclick = function (e) {
         audio.pause();
         cancelAnimationFrame(raf);
-        sliderContainer.style.visibility = "hidden";
 
-        document.all.timer.style.visibility = "visible";
-        document.all.dragdirection.style.visibility = "visible";
-        document.all.dragposition.style.visibility = "visible";
-        document.all.deletebuttonIcon.style.visibility = "visible";
-        document.all.recordhelpbutton.style.visibility = "visible";
+        pausebtnElement.classList.add('animate__animated', 'animate__pulse', 'animate__slower');
 
-        document.all.playbutton.style.visibility = "visible";
-        document.all.swiperDiv.style.visibility = "visible";
-        document.all.pausebutton.style.visibility = "hidden";
+        setTimeout(function () {
+            pausebtnElement.classList.remove('animate__animated', 'animate__pulse', 'animate__slower');
+            
+            sliderContainer.style.visibility = "hidden";
+
+            document.all.timer.style.visibility = "visible";
+            document.all.dragdirection.style.visibility = "visible";
+            document.all.dragposition.style.visibility = "visible";
+            document.all.deletebuttonIcon.style.visibility = "visible";
+            document.all.recordhelpbutton.style.visibility = "visible";
+
+            document.all.playbutton.style.visibility = "visible";
+            document.all.swiperDiv.style.visibility = "visible";
+            document.all.pausebutton.style.visibility = "hidden";
+        }, 600);
     }
 
     audio.addEventListener('durationchange', function (e) {
@@ -232,16 +247,22 @@ function audioManipulation(audioURL, uploadMode, recordTime) {
 
     audio.addEventListener('ended', function () {
         console.log("audio ended");
-        sliderContainer.style.visibility = "hidden";
 
-        document.all.timer.style.visibility = "visible";
-        document.all.dragdirection.style.visibility = "visible";
-        document.all.dragposition.style.visibility = "visible";
-        document.all.deletebuttonIcon.style.visibility = "visible";
-        document.all.recordhelpbutton.style.visibility = "visible";
+        pausebtnElement.classList.add('animate__animated', 'animate__fadeOut', 'animate__slower');
+        setTimeout(function () {
+            pausebtnElement.classList.remove('animate__animated', 'animate__fadeOut', 'animate__slower');
+            
+            sliderContainer.style.visibility = "hidden";
 
-        document.all.playbutton.style.visibility = "visible";
-        document.all.pausebutton.style.visibility = "hidden";
+            document.all.timer.style.visibility = "visible";
+            document.all.dragdirection.style.visibility = "visible";
+            document.all.dragposition.style.visibility = "visible";
+            document.all.deletebuttonIcon.style.visibility = "visible";
+            document.all.recordhelpbutton.style.visibility = "visible";
+
+            document.all.playbutton.style.visibility = "visible";
+            document.all.pausebutton.style.visibility = "hidden";
+        }, 300); 
     }, false);
 
     // audio control
