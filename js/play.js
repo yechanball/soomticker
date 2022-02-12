@@ -9,6 +9,8 @@ const audio = document.getElementById('record-audio');
 const durationContainer = document.getElementById('duration');
 const currentTimeContainer = document.getElementById('current-time');
 const seekSlider = document.getElementById('seek-slider');
+const playbtnElement = document.querySelector('#playbutton');
+const stopbtnElement = document.querySelector('#stopbutton');
 var link = document.querySelector('.downloadLink');
 let raf = null;
 
@@ -22,16 +24,17 @@ link.download = "SOOM_Voice.mp3";
 
 // Play
 playbutton.onclick = function (e) {
-    //audio.currentTime = 0;
-    audio.play();
-    requestAnimationFrame(whilePlaying);
+    playbtnElement.classList.add('animate__animated', 'animate__pulse', 'animate__faster');
 
-    //($("#topword")).html(" / ");
-    /*currentTimeContainer.style.visibility="visible";
-    durationContainer.style.visibility="visible";
-    sliderContainer.style.visibility="visible";*/
-    document.all.playbutton.style.visibility="hidden";
-    document.all.stopbutton.style.visibility="visible";
+    setTimeout(function () {
+        playbtnElement.classList.remove('animate__animated', 'animate__pulse', 'animate__faster');
+        //audio.currentTime = 0;
+        audio.play();
+        requestAnimationFrame(whilePlaying);
+
+        document.all.playbutton.style.visibility="hidden";
+        document.all.stopbutton.style.visibility="visible";
+    }, 500);
 }
 
 // Pause
@@ -39,8 +42,13 @@ stopbutton.onclick = function (e) {
     audio.pause();
     cancelAnimationFrame(raf);
 
-    document.all.playbutton.style.visibility="visible";
-    document.all.stopbutton.style.visibility="hidden";
+    stopbtnElement.classList.add('animate__animated', 'animate__pulse', 'animate__faster');
+
+    setTimeout(function () {
+        stopbtnElement.classList.remove('animate__animated', 'animate__pulse', 'animate__faster');
+        document.all.playbutton.style.visibility="visible";
+        document.all.stopbutton.style.visibility="hidden";
+    }, 500);
 }
 
 audio.addEventListener('durationchange', function(e){
@@ -54,8 +62,12 @@ audio.addEventListener('canplay', function(e){
 audio.addEventListener('ended', function() { 
     console.log("audio ended");
     
-    document.all.playbutton.style.visibility="visible";
-    document.all.stopbutton.style.visibility="hidden";
+    stopbtnElement.classList.add('animate__animated', 'animate__fadeOut', 'animate__faster');
+    setTimeout(function () {
+        stopbtnElement.classList.remove('animate__animated', 'animate__fadeOut', 'animate__faster');
+        document.all.playbutton.style.visibility="visible";
+        document.all.stopbutton.style.visibility="hidden";
+    }, 300);
 }, false);
 
 const calculateTime = (secs) => {
