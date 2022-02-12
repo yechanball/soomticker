@@ -140,6 +140,7 @@ $(document).ready(function () {
             var filename = $(this).val().split('/').pop().split('\\').pop();
         }
         $(this).siblings('.upload-name').val(filename);
+        document.all.uploadFilebtn.style.visibility = "visible";
     });
 }); 
 
@@ -427,6 +428,7 @@ function tempUpload() {
     popUpFileElement.classList.remove('animate__animated', 'animate__zoomIn');
     document.all.backGround.style.visibility = "hidden";
     document.all.filebox.style.visibility = "hidden";
+    document.all.uploadFilebtn.style.visibility = "hidden";
     document.all.mainhelpbutton.style.visibility = "hidden";
     document.all.uploadbutton.style.visibility = "hidden";
     document.all.recordbutton.style.visibility = "hidden";
