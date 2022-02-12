@@ -11,31 +11,40 @@ body {
 
 #wrap {
     position: relative;
-    max-width: 420px;
-    min-width: 300px;
-    max-height: 850px;
-    min-height: 550px;
+    max-width: 360px;
+    max-height: 550px;
     width: 100%;
     height: 100%;
     background: rgb(255, 255, 255);
+    overflow: visible;
 }
 
-#timerPosition {
+#savebutton {
     position: absolute;
-    top: 27%;
-    width: 100%;
+    top: 16px;
+    right: 19px;
+    width: 78px;
+    height: 29px;
+    padding: 0;
+    margin: 0;
     align-items: center;
     text-align: center;
-    font-family: 'Noto Sans KR Light';
-    font-size: 19px;
+    font-family: 'Noto Sans KR Regular';
+    font-size: 12px;
+    line-height: 17px;
+    color: #ffffff;
+    border: none;
+    background: #F1B85A;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 35px;
     visibility: visible;
 }
 
 #playbutton {
     position: absolute;
-    top: 32%;
-    left: 27%;
-    width: 46%;
+    top: 132px;
+    left: 104.5px;
+    width: 151px;
     padding: 0%;
     border: none;
     background-color: rgba(255, 255, 255, 0);
@@ -45,9 +54,9 @@ body {
 
 #stopbutton {
     position: absolute;
-    top: 32%;
-    left: 27%;
-    width: 46%;
+    top: 132px;
+    left: 104.5px;
+    width: 151px;
     padding: 0%;
     border: none;
     background-color: rgba(255, 255, 255, 0);
@@ -55,41 +64,23 @@ body {
 }
 #stopbutton img { margin: 0%; width: 100%;}
 
-#savebutton {
-    position: absolute;
-    bottom: 10%;
-    left: 45%;
-    width: 10%;
-    padding: 0%;
-    border: none;
-    background-color: rgba(255, 255, 255, 0);
-    visibility: visible;
-}
-#savebutton img { margin: 0%; width: 100%;}
-
 #current-time {
     float: left;
     font-family: 'Noto Sans KR Regular';
     font-size: 14px;
-    /*visibility: hidden;*/
-    visibility: visible;
 }
 #duration {
     float: right;
     font-family: 'Noto Sans KR Regular';
     font-size: 14px;
-    /*visibility: hidden;*/
-    visibility: visible;
 }
 #slider-container {
     position: absolute;
-    top: 65%;
-    left: 17%;
-    width: 66%;
+    top: 366px;
+    left: 60px;
+    width: 240px;
     --seek-before-width: 0%;
     --buffered-width: 0%;
-    /*visibility: hidden;*/
-    visibility: visible;
 }
 
 #seek-slider{
