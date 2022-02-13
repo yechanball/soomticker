@@ -61,6 +61,8 @@ function closeFilebox() {
         popUpFileElement.classList.remove('animate__animated', 'animate__zoomOut');
         document.all.backGround.style.visibility = "hidden";
         document.all.filebox.style.visibility = "hidden";
+        document.all.uploadFilebtn.style.visibility = "hidden";
+        document.getElementById("tempUploadForm").reset();
     }, 200);
 }
 function openUploadCheckPop() {
