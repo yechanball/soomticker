@@ -480,10 +480,10 @@ function startRecording() {
 
     //var constraints = { audio: true, video: false };
     var constraints = {  "audio": { "mandatory": {
-                        "googEchoCancellation": "false",
-                        "googAutoGainControl": "false",
+                        "googEchoCancellation": "true",
+                        "googAutoGainControl": "true",
                         "googNoiseSuppression": "true",
-                        "googHighpassFilter": "false"}, "optional": []}};
+                        "googHighpassFilter": "true"}, "optional": []}};
 
     recordButton.disabled = true;
     stopButton.disabled = false;
