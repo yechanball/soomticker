@@ -1,7 +1,37 @@
 window.onload = function() {
     document.all.loadingioBackground.style.visibility="hidden";
     console.log('Complete page load!');
+    document.all.playTutorial.style.visibility = "visible";
+    document.all.backGround.style.visibility = "visible";
+    console.log("open play tutorial");
 };
+
+const playTutorialElement = document.querySelector('#playTutorial');
+const popUpRecordElement = document.querySelector('.popUpRecord');
+
+function playTutorialDel() {
+    console.log("close play tutorial");
+    playTutorialElement.classList.add('animate__animated', 'animate__fadeOut');
+    setTimeout(function () {
+        document.all.playTutorial.style.visibility = "hidden";
+        document.all.backGround.style.visibility = "hidden";
+        //sliderContainer.style.visibility = "visible";
+    }, 200);
+}
+
+function openRecordCheckPop() {
+    popUpRecordElement.classList.add('animate__animated', 'animate__zoomIn');
+    document.all.backGround.style.visibility = "visible";
+    document.all.recordCheckPop.style.visibility = "visible";
+}
+function closeRecordCheckPop() {
+    popUpRecordElement.classList.replace('animate__zoomIn', 'animate__zoomOut');
+    setTimeout(function () {
+        popUpRecordElement.classList.remove('animate__animated', 'animate__zoomOut');
+        document.all.backGround.style.visibility = "hidden";
+        document.all.recordCheckPop.style.visibility = "hidden";
+    }, 200);
+}
 
 // 오디오 기능
 const sliderContainer = document.getElementById('slider-container');
@@ -23,17 +53,17 @@ link.download = "SOOM_Voice.mp3";
 
 // Play
 playbutton.onclick = function (e) {
-    playbtnElement.classList.add('animate__animated', 'animate__pulse', 'animate__faster');
+    playbtnElement.classList.add('animate__animated', 'animate__pulse', 'animate__slower');
 
     setTimeout(function () {
-        playbtnElement.classList.remove('animate__animated', 'animate__pulse', 'animate__faster');
+        playbtnElement.classList.remove('animate__animated', 'animate__pulse', 'animate__slower');
         //audio.currentTime = 0;
         audio.play();
         requestAnimationFrame(whilePlaying);
 
         document.all.playbutton.style.visibility="hidden";
         document.all.stopbutton.style.visibility="visible";
-    }, 500);
+    }, 600);
 }
 
 // Pause
@@ -41,13 +71,13 @@ stopbutton.onclick = function (e) {
     audio.pause();
     cancelAnimationFrame(raf);
 
-    stopbtnElement.classList.add('animate__animated', 'animate__pulse', 'animate__faster');
+    stopbtnElement.classList.add('animate__animated', 'animate__pulse', 'animate__slower');
 
     setTimeout(function () {
-        stopbtnElement.classList.remove('animate__animated', 'animate__pulse', 'animate__faster');
+        stopbtnElement.classList.remove('animate__animated', 'animate__pulse', 'animate__slower');
         document.all.playbutton.style.visibility="visible";
         document.all.stopbutton.style.visibility="hidden";
-    }, 500);
+    }, 600);
 }
 
 audio.addEventListener('durationchange', function(e){
@@ -61,9 +91,9 @@ audio.addEventListener('canplay', function(e){
 audio.addEventListener('ended', function() { 
     console.log("audio ended");
     
-    stopbtnElement.classList.add('animate__animated', 'animate__fadeOut', 'animate__faster');
+    stopbtnElement.classList.add('animate__animated', 'animate__fadeOut', 'animate__slower');
     setTimeout(function () {
-        stopbtnElement.classList.remove('animate__animated', 'animate__fadeOut', 'animate__faster');
+        stopbtnElement.classList.remove('animate__animated', 'animate__fadeOut', 'animate__slower');
         document.all.playbutton.style.visibility="visible";
         document.all.stopbutton.style.visibility="hidden";
     }, 300);
