@@ -3,141 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi"/>
+    <!-- Global site tag (gtag.js) - Google Analytics
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBY6LK1BC2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZBY6LK1BC2');
+    </script>-->
     <title>튜토리얼</title>
+    <link href="./img/favicon_logo.png" rel="shortcut icon" type="image/x-icon">
+    <link rel="stylesheet" href="./css/loadingIcon.css" type="text/css">
     <link rel="stylesheet" href="./font/NotoSansKR.css" type="text/css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <style type="text/css">
-        html,
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            overflow: hidden;
-        }
-    
-        #wrap {
-            position: relative;
-            max-width: 420px;
-            min-width: 300px;
-            max-height: 850px;
-            min-height: 550px;
-            width: 100%;
-            height: 100%;
-            background: rgb(255, 255, 255);
-        }
-
-        #topbutton {
-            position: absolute;
-            top: 3%;
-            left: 7%;
-            width: 16%;
-            height: 40px;
-            text-align: center;
-            font-size: 16px;
-		    color: rgb(255, 255, 255);
-            background-color: #A3A3A3;
-            border: none;
-            border-radius: 20px;
-        }
-
-        #tutorialImg {
-            width: 100%;
-            height: 55%;
-        }
-
-        #tutorialImg img {
-            position: absolute;
-            top: 10%;
-            left: 10%;
-            width: 80%;
-        }
-
-        .swiper-pagination {
-            width: 100%;
-            height: 5%;
-            text-align: center;
-        }
-        .swiper-pagination span {margin-left: 2%; margin-right: 2%;}
-        .swiper-pagination-bullet-active {background-color: #F0B24C;}
-
-        .swiper-container {
-            width: 100%;
-            height: 30%;
-            margin-top: 5%;
-        }
-
-        .swiper-slide {
-            text-align: center;
-        }
-
-        .swiper-slide h1 {
-            font-family: 'Noto Sans KR Bold';
-            font-size: 28px;
-            line-height: 56px;
-        }
-
-        #nextbutton {
-            position: absolute;
-            top: 88%;
-            left: 40%;
-            width: 20%;
-            height: 40px;
-            text-align: center;
-            font-family: 'Noto Sans KR Light';
-            font-size: 18px;
-		    color: rgb(0, 0, 0);
-            background-color: #eeeeee;
-            border: none;
-            border-radius: 20px;
-            visibility: visible;
-        }
-        .swiper-button-next::after {font-size: 0px;}
-
-        #nextbutton2 {
-            position: absolute;
-            top: 88%;
-            left: 40%;
-            width: 20%;
-            height: 40px;
-            text-align: center;
-            font-family: 'Noto Sans KR Light';
-            font-size: 18px;
-		    color: rgb(0, 0, 0);
-            background-color: #eeeeee;
-            border: none;
-            border-radius: 20px;
-            visibility: hidden;
-        }
-    </style>
+    <link rel="stylesheet" href="./css/tutorial.css" type="text/css">
 </head>
 <body>
     <div id="wrap">
-        <button id="topbutton" onClick="location.href='./tutorialDone.html'"></buttononClick>Skip</button>
-        <div id="tutorialImg">
-            <img id="tutorialImg1" class="img1" style="visibility: visible;" src="./img/tutorial_img_1.png" alt="tutorial img 1">
-            <img id="tutorialImg2" class="img2" style="visibility: hidden;" src="./img/tutorial_img_2.png" alt="tutorial img 2">
-            <img id="tutorialImg3" class="img3" style="visibility: hidden;" src="./img/tutorial_img_3.png" alt="tutorial img 3">
-            <img id="tutorialImg4" class="img4" style="visibility: hidden;" src="./img/tutorial_img_4.png" alt="tutorial img 4">
+        <div id="loadingioBackground">
+            <div class="loadingio-spinner">
+                <div class="loadingio">
+                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                </div>
+            </div>
         </div>
+        <button id="topbutton" onClick="location.href='./tutorialDone.html'"></buttononClick>Skip</button>
         <div class="swiper-pagination"></div>
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
+                    <div class="imgArea">
+                        <img src="./img/tutorial_record.gif" alt="tutorial img 1">
+                    </div>
                     <h1><strong>녹음하기</strong></h1>
+                    <p>첫 단계는 소리 녹음하기입니다
+                        <br>최장 10분의 녹음이 가능해요</p>
                 </div>
                 <div class="swiper-slide">
+                    <div class="imgArea">
+                        <img src="./img/tutorial_fileupload.gif" alt="tutorial img 2">
+                    </div>
                     <h1><strong>녹음 파일 첨부하기</strong></h1>
+                    <p>기존에 녹음했던 파일(최장 10분)을
+                        <br>첨부할 수도 있어요</p>
                 </div>
                 <div class="swiper-slide">
-                    <h1><strong>저장하기</strong></h1>
+                    <div class="imgArea">
+                        <img src="./img/tutorial_upload.gif" alt="tutorial img 3">
+                    </div>
+                    <h1><strong>숨티커에 소리 담기</strong></h1>
+                    <p>녹음 또는 첨부를 마친 후
+                        <br>소리를 저장하세요</p>
                 </div>
                 <div class="swiper-slide">
-                    <h1><strong>스티커에 소리 담기</strong></h1>
+                    <div class="imgArea">
+                        <img src="./img/tutorial_tag.gif" style="height: 80%; padding-top: 10%;" alt="tutorial img 4">
+                    </div>
+                    <h1><strong>담은 소리 듣기</strong></h1>
+                    <p>이제, 언제 어디서든 숨티커를 통해
+                        <br>내게 소중한 소리를 들을 수 있어요</p>
                 </div>
             </div>
         </div>
@@ -146,85 +71,7 @@
 
         <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-        <script>
-            const swiper = new Swiper('.swiper-container', {
-                direction: 'horizontal',
-                loop: false,
-
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: 'true',
-                },
-
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                },
-            });
-
-            function nextSlide(){
-                swiper.slideNext();
-            }
-
-            const img1Element = document.querySelector('.img1');
-            const img2Element = document.querySelector('.img2');
-            const img3Element = document.querySelector('.img3');
-            const img4Element = document.querySelector('.img4');
-
-            swiper.on('slideChange', function(){
-                if(swiper.activeIndex == 0){
-                    document.all.tutorialImg1.style.visibility="visible";
-                    document.all.tutorialImg2.style.visibility="hidden";
-                    document.all.tutorialImg3.style.visibility="hidden";
-                    document.all.tutorialImg4.style.visibility="hidden";
-
-                    img1Element.classList.add('animate__animated', 'animate__fadeIn');
-                    img2Element.classList.remove('animate__animated', 'animate__fadeIn');
-                    img3Element.classList.remove('animate__animated', 'animate__fadeIn');
-                    img4Element.classList.remove('animate__animated', 'animate__fadeIn');
-                }
-                if(swiper.activeIndex == 1){
-                    document.all.tutorialImg1.style.visibility="hidden";
-                    document.all.tutorialImg2.style.visibility="visible";
-                    document.all.tutorialImg3.style.visibility="hidden";
-                    document.all.tutorialImg4.style.visibility="hidden";
-
-                    img1Element.classList.remove('animate__animated', 'animate__fadeIn');
-                    img2Element.classList.add('animate__animated', 'animate__fadeIn');
-                    img3Element.classList.remove('animate__animated', 'animate__fadeIn');
-                    img4Element.classList.remove('animate__animated', 'animate__fadeIn');
-                }
-                if(swiper.activeIndex == 2){
-                    document.all.tutorialImg1.style.visibility="hidden";
-                    document.all.tutorialImg2.style.visibility="hidden";
-                    document.all.tutorialImg3.style.visibility="visible";
-                    document.all.tutorialImg4.style.visibility="hidden";
-
-                    img1Element.classList.remove('animate__animated', 'animate__fadeIn');
-                    img2Element.classList.remove('animate__animated', 'animate__fadeIn');
-                    img3Element.classList.add('animate__animated', 'animate__fadeIn');
-                    img4Element.classList.remove('animate__animated', 'animate__fadeIn');
-
-                    document.all.nextbutton.style.visibility="visible";
-                    document.all.nextbutton2.style.visibility="hidden";
-                }
-                if(swiper.activeIndex == 3){
-                    document.all.tutorialImg1.style.visibility="hidden";
-                    document.all.tutorialImg2.style.visibility="hidden";
-                    document.all.tutorialImg3.style.visibility="hidden";
-                    document.all.tutorialImg4.style.visibility="visible";
-
-                    img1Element.classList.remove('animate__animated', 'animate__fadeIn');
-                    img2Element.classList.remove('animate__animated', 'animate__fadeIn');
-                    img3Element.classList.remove('animate__animated', 'animate__fadeIn');
-                    img4Element.classList.add('animate__animated', 'animate__fadeIn');
-
-                    document.all.nextbutton.style.visibility="hidden";
-                    document.all.nextbutton2.style.visibility="visible";
-                }
-            });
-        </script>
-        <!--preload img-->
-        <img style="height: 0.1px; width: 0.1px;" src="./img/tutorial_img_5.png">
+        <script src="./js/tutorial.js"></script>
     </div>
 </body>
 </html>

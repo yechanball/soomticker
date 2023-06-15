@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi"/>
+    <!-- Global site tag (gtag.js) - Google Analytics
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBY6LK1BC2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZBY6LK1BC2');
+    </script>-->
+    <title>숨티커</title>
+    <link href="./img/favicon_logo.png" rel="shortcut icon" type="image/x-icon">
+    <link rel="stylesheet" href="./css/loadingIcon.css" type="text/css">
+    <link rel="stylesheet" href="./font/NotoSansKR.css" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <style type="text/css">
+        html,
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #wrap {
+            position: relative;
+            max-width: 420px;
+            min-width: 300px;
+            max-height: 850px;
+            min-height: 550px;
+            width: 100%;
+            height: 100%;
+            background: rgb(255, 255, 255);
+        }
+
+        #timerPosition {
+            position: absolute;
+            top: 27%;
+            width: 100%;
+            align-items: center;
+            text-align: center;
+            font-family: 'Noto Sans KR Light';
+            font-size: 19px;
+            visibility: visible;
+        }
+
+        #playbutton {
+            position: absolute;
+            top: 32%;
+            left: 27%;
+            width: 46%;
+            padding: 0%;
+            border: none;
+            background-color: rgba(255, 255, 255, 0);
+            visibility: visible;
+        }
+        #playbutton img { margin: 0%; width: 100%;}
+
+        #stopbutton {
+            position: absolute;
+            top: 32%;
+            left: 27%;
+            width: 46%;
+            padding: 0%;
+            border: none;
+            background-color: rgba(255, 255, 255, 0);
+            visibility: hidden;
+        }
+        #stopbutton img { margin: 0%; width: 100%;}
+
+        #savebutton {
+            position: absolute;
+            bottom: 10%;
+            left: 45%;
+            width: 10%;
+            padding: 0%;
+            border: none;
+            background-color: rgba(255, 255, 255, 0);
+            visibility: visible;
+        }
+        #savebutton img { margin: 0%; width: 100%;}
+
+        #current-time {
+            float: left;
+            font-family: 'Noto Sans KR Regular';
+            font-size: 14px;
+            /*visibility: hidden;*/
+            visibility: visible;
+        }
+        #duration {
+            float: right;
+            font-family: 'Noto Sans KR Regular';
+            font-size: 14px;
+            /*visibility: hidden;*/
+            visibility: visible;
+        }
+        #slider-container {
+            position: absolute;
+            top: 65%;
+            left: 17%;
+            width: 66%;
+            --seek-before-width: 0%;
+            --buffered-width: 0%;
+            /*visibility: hidden;*/
+            visibility: visible;
+        }
+
+        #seek-slider{
+            width: 100%;
+        }
+
+        input[type="range"] {
+            position: relative;
+            -webkit-appearance: none;
+            width: 50%;
+            margin: 0;
+            padding: 0;
+            height: 19px;
+            /*margin: 30px 2.5% 20px 2.5%;*/
+            outline: none;
+        }
+        input[type="range"]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 3px;
+            cursor: pointer;
+            background: linear-gradient(to right, #C4C4C4 var(--buffered-width), #c4c4c481 var(--buffered-width));
+        }
+        input[type="range"]::before {
+            position: absolute;
+            content: "";
+            top: 8px;
+            left: 0;
+            width: var(--seek-before-width);
+            height: 3px;
+            background-color: #F0B24C;
+            cursor: pointer;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            position: relative;
+            -webkit-appearance: none;
+            box-sizing: content-box;
+            border: 2px solid #F0B24C;
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+            background-color: #F0B24C;
+            cursor: pointer;
+            margin: -7px 0 0 0;
+        }
+        input[type="range"]:active::-webkit-slider-thumb {
+            transform: scale(1.2);
+            background: #F0B24C;
+        }
+        input[type="range"]::-moz-range-track {
+            width: 100%;
+            height: 3px;
+            cursor: pointer;
+            background: linear-gradient(to right, #C4C4C4 var(--buffered-width), #c4c4c481 var(--buffered-width));
+        }
+        input[type="range"]::-moz-range-progress {
+            background-color: #F0B24C;
+        }
+        input[type="range"]::-moz-focus-outer {
+            border: 0;
+        }
+        input[type="range"]::-moz-range-thumb {
+            box-sizing: content-box;
+            border: 1px solid #F0B24C;
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+            background-color: #F0B24C;
+            cursor: pointer;
+        }
+        input[type="range"]:active::-moz-range-thumb {
+            transform: scale(1.2);
+            background: #F0B24C;
+        }
+        input[type="range"]::-ms-track {
+            width: 100%;
+            height: 3px;
+            cursor: pointer;
+            background: transparent;
+            border: solid transparent;
+            color: transparent;
+        }
+        input[type="range"]::-ms-fill-lower {
+            background-color: #F0B24C;
+        }
+        input[type="range"]::-ms-fill-upper {
+            background: linear-gradient(to right, #C4C4C4 var(--buffered-width), #c4c4c481 var(--buffered-width));
+        }
+        input[type="range"]::-ms-thumb {
+            box-sizing: content-box;
+            border: 1px solid #F0B24C;
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+            background-color: #F0B24C;
+            cursor: pointer;
+        }
+        input[type="range"]:active::-ms-thumb {
+            transform: scale(1.2);
+            background: #F0B24C;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="loadingioBackground">
+            <div class="loadingio-spinner">
+                <div class="loadingio">
+                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                </div>
+            </div>
+        </div>
+        <!--<div id="timerPosition">
+            <span id="current-time" class="time">00:00</span>
+            <span id="topword">재생 버튼을 눌러주세요</span>
+            <span id="duration" class="time">00:00</span>
+        </div>-->
+        <audio id="record-audio" preload="metadata"></audio>
+        <button id="playbutton" class="play"><img src="./img/waterdrop_playbutton.png" alt="water drop play img"></button>
+        <button id="stopbutton" class="stop"><img src="./img/record_ing.gif" alt="water drop charging img"></button>
+        <div id="slider-container">
+            <input type="range" id="seek-slider" max="100" value="0">
+            <br><span id="current-time" class="time">00:00</span>
+            <span id="duration" class="time">00:00</span>
+        </div>
+        
+        <a class="downloadLink" href="#" download><button id="savebutton" class="save"><img src="./img/button_save.png" alt="save button img"></button></a>
+    </div>
+    <script>
+        window.onload = function() {
+            document.all.loadingioBackground.style.visibility="hidden";
+            console.log('Complete page load!');
+        };
+
+        // 오디오 기능
+        const sliderContainer = document.getElementById('slider-container');
+        const audio = document.getElementById('record-audio');
+        const durationContainer = document.getElementById('duration');
+        const currentTimeContainer = document.getElementById('current-time');
+        const seekSlider = document.getElementById('seek-slider');
+        var link = document.querySelector('.downloadLink');
+        let raf = null;
+
+        audio.controls = false;
+        // 오디오 파일 소스 불러오기
+        //const audioURL = 서버의 오디오 파일 URL;
+        const audioURL = "./img/bgm.mp3"; //임시로 설정한 오디오 파일
+        audio.src = audioURL;
+        link.href = audioURL;
+        link.download = "SOOM_Voice.mp3";
+
+        // Play
+        playbutton.onclick = function (e) {
+            //audio.currentTime = 0;
+            audio.play();
+            requestAnimationFrame(whilePlaying);
+
+            //($("#topword")).html(" / ");
+            /*currentTimeContainer.style.visibility="visible";
+            durationContainer.style.visibility="visible";
+            sliderContainer.style.visibility="visible";*/
+            document.all.playbutton.style.visibility="hidden";
+            document.all.stopbutton.style.visibility="visible";
+        }
+
+        // Pause
+        stopbutton.onclick = function (e) {
+            audio.pause();
+            cancelAnimationFrame(raf);
+
+            document.all.playbutton.style.visibility="visible";
+            document.all.stopbutton.style.visibility="hidden";
+        }
+
+        audio.addEventListener('durationchange', function(e){
+            console.log("audio duration change");
+        });
+
+        audio.addEventListener('canplay', function(e){
+            console.log("audio can play");
+        });
+
+        audio.addEventListener('ended', function() { 
+            console.log("audio ended");
+            
+            document.all.playbutton.style.visibility="visible";
+            document.all.stopbutton.style.visibility="hidden";
+        }, false);
+
+        const calculateTime = (secs) => {
+            const minutes = Math.floor(secs / 60);
+            const seconds = Math.floor(secs % 60);
+            const returnedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
+            
+            if(minutes<10) return `0${minutes}:${returnedSeconds}`;
+            else return `${minutes}:${returnedSeconds}`;
+        }
+
+        const displayDuration = () => {
+            durationContainer.textContent = calculateTime(audio.duration);
+        }
+
+        const showRangeProgress = (rangeInput) => {
+            if(rangeInput === seekSlider) sliderContainer.style.setProperty('--seek-before-width', rangeInput.value / rangeInput.max * 100 + '%');
+            else sliderContainer.style.setProperty('--volume-before-width', rangeInput.value / rangeInput.max * 100 + '%');
+        }
+
+        seekSlider.addEventListener('input', (e) => {
+            showRangeProgress(e.target);
+        });
+
+        const setSliderMax = () => {
+            seekSlider.max = Math.floor(audio.duration);
+        }
+
+        const displayBufferedAmount = () => {
+            const bufferedAmount = Math.floor(audio.buffered.end(audio.buffered.length - 1));
+            sliderContainer.style.setProperty('--buffered-width', `${(bufferedAmount / seekSlider.max) * 100}%`);
+        }
+
+        const whilePlaying = () => {
+            seekSlider.value = Math.floor(audio.currentTime);
+            currentTimeContainer.textContent = calculateTime(seekSlider.value);
+            sliderContainer.style.setProperty('--seek-before-width', `${seekSlider.value / seekSlider.max * 100}%`);
+            raf = requestAnimationFrame(whilePlaying);
+        }
+
+        if (audio.readyState > 0) {
+            displayDuration();
+            setSliderMax();
+            displayBufferedAmount();
+        } else {
+            audio.addEventListener('loadedmetadata', () => {
+                displayDuration();
+                setSliderMax();
+                displayBufferedAmount();
+            });
+        }
+
+        audio.addEventListener('progress', displayBufferedAmount);
+
+        seekSlider.addEventListener('input', () => {
+            currentTimeContainer.textContent = calculateTime(seekSlider.value);
+            if(!audio.paused) {
+                cancelAnimationFrame(raf);
+            }
+        });
+
+        seekSlider.addEventListener('change', () => {
+            audio.currentTime = seekSlider.value;
+            if(!audio.paused) {
+                requestAnimationFrame(whilePlaying);
+            }
+        });
+    </script>
+</body>
+</html>
